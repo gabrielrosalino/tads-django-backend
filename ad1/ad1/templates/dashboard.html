@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Aprova System{% endblock %}
+
+{% block content %}
+<div class="flex-container">
+    <!-- Área Azul (Fica oculta no Mobile) -->
+    <div class="flex-item flex-blue">
+        <div class="search-container">
+            <input type="text" placeholder="Pesquise">
+            <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
+        </div>
+        <a href="#" class="active">Relatório de Aprovações</a>
+        <a href="#">Relatório de Desempenho</a>
+        <a href="#">Exportar Relatórios</a>
+        <a href="#">Editar Turmas</a>
+        <a href="#">Vincular Alunos/Turmas</a>
+    </div>
+
+
+    <!-- Área do Meio (Campos ficam em colunas no Mobile) -->
+    <div class="flex-item flex-middle">
+
+        <!-- Título e Subtítulo -->
+        <div class="report-header">
+            <h3 class="report-subtitle">Relatório de</h3>
+            <h1 class="report-title">Aprovações</h1>
+            <p class="report-description">Selecione qual universidade deseja verificar os índices de aprovação</p>
+        </div>
+
+        <!-- UNIVERSIDADES -->
+        <div class="field-group">
+            <div class="field">ACAFE</div>
+            <div class="field">UFRGS</div>
+            <div class="field">UFCSPA</div>
+            <div class="field active">UDESC</div>
+            <div class="field">UFSC</div>
+            <div class="field">UFSM</div>
+            <div class="field">PUCRS</div>
+            <div class="field">UNISINOS</div>
+            <div class="field">UFPR</div>
+            <div class="field">UFPEL</div>
+        </div>
+
+        <!-- CARD-->
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon" style="background: #E0E0E0;">
+                    <img src="{% static 'img/icon.png' %}" alt="Inscritos">
+                </div>
+                <p class="card-number">870</p>
+                <p class="card-title">Total Inscritos</p>
+                <p class="card-detail">+85 em 2024</p>
+            </div>
+            <div class="card" style="background: #D8FBF8;">
+                <div class="card-icon" style="background: #20A09F;">
+                    <img src="{% static 'img/new-customers-icon.png' %}" alt="Aprovados">
+                </div>
+                <p class="card-number">220</p>
+                <p class="card-title">Aprovados</p>
+                <p class="card-detail">+20 em 2024</p>
+            </div>
+            <div class="card" style="background: #E6F3FF;">
+                <div class="card-icon" style="background: #003479;">
+                    <img src="{% static 'img/order-icon.png' %}" alt="Lista de Inscritos">
+                </div>
+                <p class="card-number">62</p>
+                <p class="card-title">Lista de espera</p>
+                <p class="card-detail">+5 em 2024</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background: #E0E0E0;">
+                    <img src="{% static 'img/graduation-cap.png' %}" alt="Cursos">
+                </div>
+                <p class="card-number">18</p>
+                <p class="card-title">Cursos</p>
+                <p class="card-detail">+4 em 2024</p>
+            </div>
+        </div>
+
+
+        <!-- Tabela de aprovação dos cursos -->
+        <div class="chart-container">
+            <h3 class="chart-title">Aprovação dos cursos</h3>
+            <p class="chart-description">
+                <span style="color: #00A19A;">TOP +4</span> em aprovação
+            </p>
+            <div class="box approved-list">
+                <table>
+                    <thead>
+                        <tr style="text-align: left; color: #c4c4c4">
+                            <th>#</th>
+                            <th>Curso</th>
+                            <th>Aprovação</th>
+                            <th>Média Corte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Medicina</td>
+                            <td>
+                                <div class="progress1"></div>
+                            </td>
+                            <td>72,5</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>TADS</td>
+                            <td>
+                                <div class="progress2"></div>
+                            </td>
+                            <td>62,5</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Engenharia Mecânica</td>
+                            <td>
+                                <div class="progress3"></div>
+                            </td>
+                            <td>50,2</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Administração</td>
+                            <td>
+                                <div class="progress4"></div>
+                            </td>
+                            <td>40,2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Terceira Área -->
+    <div class="flex-item flex-bottom">
+        <div class="calendar-container">
+            <iframe
+                src="https://calendar.google.com/calendar/embed?src=a3fe25f4d40b316f9409a332a48403a9427bc8bfbe61ca3f164e5b77aa65a09f%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+                style="border: none; border-radius: 20px;" width="100%" height="100%" frameborder="0" scrolling="no">
+            </iframe>
+        </div>
+
+        <!-- Container das Imagens -->
+        <div class="ads-box">
+            <div class="ads-container">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 1">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 2">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 3">
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aprova System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- Barra de Navegação -->
+    <header class="navbar">
+
+        <!-- Logotipo -->
+        <div class="logo">
+            <img src="{% static 'img/logo.png' %}" alt="Aprova System">
+        </div>
+
+        <!-- Menu Central -->
+        <nav class="menu-central">
+            <ul>
+                <li><a href="#">Início <br>& Turmas</a></li>
+                <li><a href="#">Alunos <br>& Turmas</a></li>
+                <li><a href="#">Cursos <br>& Disciplinas</a></li>
+                <li><a href="#">Professores <br>& Horários</a></li>
+                <li><a href="#">Avaliações <br>& Notas</a></li>
+                <li><a href="#">Relatórios <br>& Estatísticas</a></li>
+                <li><a href="#">Comunicação <br>& Notificações</a></li>
+            </ul>
+        </nav>
+
+
+        <!-- Foto e Nome/Cargo do Usuário -->
+        <div class="user-info">
+            <img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário">
+            <div class="user-details">
+                <span class="user-name">Marina Boa Ventura</span>
+                <span class="user-role">Coordenadora</span>
+            </div>
+        </div>
+    </header>
+    <section>
+        {% block content %}
+
+        {% endblock %}
+    </section>
+    <footer class="footer">
+        <p>&copy; 2025 Aprova System LTDA. Todos os direitos reservados.</p>
+        <p>Contato: contato@aprovasystem.com.br | Telefone: (00) 1234-5678 | @aprovasystem</p>
+    </footer>
+</body>
+
+</html>
