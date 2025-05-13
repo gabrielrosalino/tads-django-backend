@@ -1,0 +1,1035 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da Página */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F5F5F5; /* Cor de fundo da página */
+}
+
+/* Barra de Navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre os itens */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #F5F5F5; /* Fundo branco */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logotipo */
+.logo img {
+    height: 50px;
+}
+
+.stats {
+    display: block;           /* Transforma a imagem em um bloco, permitindo centralizá-la */
+    margin: 0 auto;           /* Aplica margens automáticas para centralizar a imagem */
+    width: 200px;             /* Define a largura da imagem */
+    height: auto;             /* A altura se ajusta automaticamente de acordo com a proporção da imagem */
+}
+
+/* Menu Central (Desktop) */
+.menu-central {
+    display: flex;
+    list-style: none;
+    gap: 15px; /* Espaçamento entre os itens */
+    border-radius: 50px;
+    padding: 1px 1px;
+    background-color: #E0E0E0;
+}
+
+.menu-central ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.menu-central li {
+    text-align: center;
+}
+
+.menu-central a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column; /* Texto em duas linhas */
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 14px;
+    color: black;
+    border-radius: 50px; /* Botões arredondados */
+    background-color: #E0E0E0; /* Fundo cinza claro */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover */
+.menu-central a:hover {
+    background-color: #005599; /* Cor de hover */
+}
+
+/* Item Ativo */
+.menu-central a.active {
+    background-color: #003366; /* Fundo azul escuro */
+    color: white; /* Texto branco */
+}
+
+/* Menu Lateral */
+.menu-lateral {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Botão de Mensagens */
+.msg-button {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background: white;
+    border: none;
+    border-radius: 50%; /* Botão circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.msg-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: #00C853; /* Verde do indicador */
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Foto e Detalhes do Usuário */
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Garante o alinhamento centralizado */
+    padding: 0 10px;
+    height: 48px; /* Altura igual ao botão de mensagens */
+    background: white; /* Fundo branco ao redor */
+    border-radius: 50px; /* Oblongo no desktop */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; /* Transição suave entre layouts */
+}
+
+.user-info img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Mantém a imagem circular */
+    object-fit: cover; /* Garante o corte correto da imagem */
+}
+
+/* Detalhes do usuário (nome e cargo) */
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.user-role {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Menu Sanduíche (Hambúrguer) */
+.hamburger-menu {
+    display: none; /* Esconde no desktop */
+    flex-direction: column;
+    gap: 4px;
+    background: #003366; /* Fundo azul */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/* Dropdown do Menu Sanduíche */
+.dropdown-menu {
+    position: absolute;
+    top: 70px; /* Posicionado abaixo do header */
+    left: 0;
+    width: 80%; /* Define que o menu ocupa 80% da largura */
+    height: calc(100% - 70px); /* Altura ajustada para não cobrir completamente */
+    background-color: #003366; /* Fundo azul */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: none; /* Escondido por padrão */
+    z-index: 1000;
+    border-top-right-radius: 30px; /* Bordas arredondadas para um design mais limpo */
+    border-bottom-right-radius: 30px;
+    overflow-y: auto; /* Permite rolagem caso o conteúdo exceda o tamanho */
+}
+
+.dropdown-menu.active {
+    display: block; /* Mostra o menu quando ativo */
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    padding-left: 30px; /* afasta da lateral */
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    border-bottom: none; /* Remove divisões principais */
+}
+
+.dropdown-menu li a:hover {
+    background-color: #005599;
+    display: inline-block;
+    border-radius: 30px;
+}
+
+
+/* Submenu */
+.submenu {
+   /*  display: none; /* Escondido por padrão */
+    list-style: none;
+    position: absolute;
+    top: 100%; /* Posicionado abaixo do item pai */
+    left: 0;
+    background-color: #003366; /* Fundo azul escuro */
+    padding: 0;
+    margin: 0;
+    border-radius: 8px;
+    z-index: 10; /* Para aparecer acima dos outros elementos */
+}
+
+.has-submenu.active .submenu {
+    display: none; /* Mostra o submenu quando o pai estiver ativo */
+}
+.submenu li {
+    border-bottom: none; /* Remove as divisões */
+    padding-left: 40px; /* Espaçamento da borda esquerda */
+}
+
+.submenu li:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+.submenu li a {
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-left: 20px; /* Adiciona margem interna nos itens */
+}
+
+.submenu li a:hover {
+    background-color: #005599; /* Cor ao passar o mouse */
+    display: inline-block;
+}
+
+/* Mostrar Submenu somente quando ativo */
+.has-submenu.active > a {
+    display: none;
+    font-weight: bold; /* Texto em negrito */
+    color: white; /* Cor do texto */
+    background-color: transparent; /* Sem fundo */
+}
+
+.submenu a.active {
+    background-color: #00A19A; /* Fundo verde */
+    color: white; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+    border-radius: 30px; /* Oblongo */
+    padding: 10px 20px; /* Espaçamento interno */
+    margin-left: 10; /* Remove deslocamento lateral, se necessário */
+    display: inline-block; /* Garante que o tamanho seja ajustado ao conteúdo */
+}
+
+
+/* Dropdown no Mobile */
+.hamburger-menu {
+
+    flex-direction: column;
+    gap: 4px;
+    background: #003366;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+
+
+/* Contêiner de Pesquisa no Menu Hambúrguer */
+.dropdown-menu .search-container {
+    padding: 10px; /* Espaçamento interno */
+    background-color: #003366; /* Fundo igual ao menu */
+}
+
+.dropdown-menu .search-container input {
+    width: calc(100% - 40px); /* Largura do campo menos o botão de limpar */
+    padding: 10px 15px; /* Espaçamento interno */
+    border: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 20px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco */
+    color: #333; /* Texto escuro */
+    font-size: 14px; /* Tamanho da fonte */
+    outline: none; /* Remove borda de foco padrão */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container Flexível */
+.flex-container {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os itens */
+    margin: 20px 0;
+}
+
+/* Itens Flexíveis com Proporções */
+.flex-item {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Área Azul (1/5) */
+.flex-blue {
+    flex: 1; /* Ocupa 1/5 do espaço */
+    background-color: #003366; /* Fundo azul escuro */
+    color: white; /* Texto em branco */
+    border-radius: 0 20px 20px 0; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os elementos internos */
+    justify-content: top;
+}
+
+/* Estilo dos links ou itens na área azul */
+.flex-blue a {
+    text-decoration: none; /* Remove sublinhado */
+    color: white; /* Texto em branco */
+    font-size: 16px; /* Tamanho da fonte */
+    line-height: 1.5; /* Altura da linha para espaçamento */
+    border-radius: 20px; /* Bordas arredondadas dos links */
+    padding: 10px 15px; /* Espaçamento interno */
+}
+
+/* Hover nos links */
+.flex-blue a:hover {
+    background-color: #005599; /* Cor de destaque no hover */
+    border-radius: 50px;
+}
+
+/* Link ativo */
+.flex-blue a.active {
+    background-color: #00A19A; /* Cor diferente para o item ativo */
+    color: white; /* Texto em branco */
+    border-radius: 50px;
+}
+
+/* Contêiner de Pesquisa */
+.search-container {
+    position: relative;
+    margin-bottom: 15px; /* Espaçamento abaixo do campo */
+}
+
+.search-container input {
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    padding: 10px 40px 10px 15px; /* Espaçamento interno (inclui espaço para o botão de limpar) */
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco */
+    color: #333; /* Texto escuro */
+    font-size: 14px; /* Tamanho da fonte */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    outline: none; /* Remove borda de foco padrão */
+}
+
+/* Botão de Limpar */
+.clear-button {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Alinhado à direita */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    color: #333; /* Cor mais escura ao passar o mouse */
+}
+
+/* Links ou itens na área azul */
+.flex-blue a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover nos links */
+.flex-blue a:hover {
+    background-color: #005599;
+}
+
+/* Link ativo */
+.flex-blue a.active {
+    background-color: #00A19A;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Área do Meio (3/5) */
+.flex-middle {
+    flex: 3; /* Ocupa 3/5 do espaço */
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* Container dos Campos */
+.field-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas para desktop */
+    gap: 15px; /* Espaçamento entre os itens */
+    margin: 20px auto; /* Centraliza horizontalmente */
+    max-width: 1050px; /* Define a largura máxima do container */
+}
+
+/* Estilo dos Campos */
+.field {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px; /* Bordas arredondadas */
+    background-color: #E0E0E0; /* Cor de fundo */
+    color: #333; /* Cor do texto */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    cursor: pointer; /* Estilo de ponteiro ao passar o mouse */
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito Hover */
+.field:hover {
+    background-color: #005599; /* Cor ao passar o mouse */
+    color: white;
+}
+
+/* Botão Ativo */
+.field.active {
+    background-color: #00A19A; /* Cor de fundo para o ativo */
+    color: white;
+    font-weight: bold; 
+}
+
+
+
+/* Estilo do cabeçalho do relatório */
+.report-header {
+    text-align: left; /* Centraliza o texto */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+    margin-left: 10px;
+}
+
+.report-subtitle {
+    font-size: 20px;
+    color: #464646; /* Cor do subtítulo */
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.report-title {
+    font-size: 60px;
+    color: #00A19A; /* Cor principal do título */
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.report-description {
+    font-size: 16px;
+    color: #979797; /* Cor secundária para o texto */
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas no desktop */
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: center; /* Centraliza os cards */
+    margin: 20px auto; /* Centraliza e adiciona margem */
+    padding: 10px;
+}
+
+.card {
+    background: #F5F5F5; /* Fundo padrão */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os elementos à esquerda */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 15px; /* Espaçamento abaixo da bolinha */
+    display: flex; /* Flexbox para centralização */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    position: relative; /* Garante que o conteúdo dentro da bolinha esteja alinhado */
+    overflow: hidden; /* Evita qualquer conteúdo extra fora do círculo */
+}
+
+.card-icon img {
+    width: 60%; /* Ajuste para deixar o ícone proporcional à bolinha */
+    height: 60%;
+    object-fit: contain; /* Evita distorção do ícone */
+}
+
+.card-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Cor do número */
+    margin-bottom: 5px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666; /* Cor do título */
+    margin-bottom: 8px;
+}
+
+.card-detail {
+    font-size: 12px;
+    color: #979797; /* Cor do detalhe */
+}
+
+
+
+
+/* GRAFICOOO */
+.chart-container {
+    margin: 30px auto;
+    max-width: 1050px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1PX solid #c4c4c4;
+    border-radius: 20px;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    text-align: left;
+}
+
+.chart-description {
+    font-size: 14px;
+    color: #00A19A;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+/* Container geral para os dois boxes */
+.dual-box-container {
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre os boxes */
+    gap: 20px; /* Espaçamento horizontal */
+    align-items: flex-start; /* Alinha os boxes no topo */
+}
+
+/* Estilo padrão para os boxes */
+.box {
+    flex: 1; /* Cada box ocupa metade do espaço */
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1PX solid #c4c4c4;
+    border-radius: 20px;
+    
+}
+
+/*Barra de progresso*/
+.progress1 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+.progress1:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 80%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+.progress2 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+.progress2:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 65%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+.progress3 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+.progress3:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 60%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+.progress4 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+.progress4:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 25%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+
+
+/* Para a tabela na Lista de Aprovados */
+.approved-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+
+
+/* ESTILOS" */
+.best-disciplines h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    margin-bottom: 10px;
+}
+
+.best-disciplines p {
+    font-size: 14px;
+    color: #00A19A;
+    margin-bottom: 20px; 
+}
+
+
+.approved-list h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    margin-bottom: 10px;
+}
+
+.approved-list p {
+    font-size: 14px;
+    color: #00A19A;
+    margin-bottom: 20px;
+}
+
+
+.approved-list th,
+.approved-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.approved-list th {
+    font-size: 14px;
+    font-weight: bold;
+    color: #979797;
+}
+
+.approved-list td {
+    font-size: 14px;
+    color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+/* Container geral da Terceira Área */
+.flex-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%; /* Garante que o container ocupe todo o espaço disponível */
+}
+
+.calendar-container {
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    height: 350px; /* Define uma altura fixa */
+    overflow: hidden; /* Evita transbordamento */
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+}
+
+/* Box Cinza para as Imagens */
+.ads-box {
+    width: 100%;
+    max-width: 600px; /* Limite no desktop */
+    background-color: #f0f0f0; /* Fundo cinza */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    overflow: hidden; /* Evita conteúdo excedendo o box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+/* Container das Imagens */
+.ads-container {
+    display: flex;
+    flex-direction: column; /* Imagens empilhadas no desktop */
+    gap: 15px; /* Espaçamento entre as imagens */
+    padding: 10px;
+}
+
+/* Estilo para cada imagem */
+.ad-image {
+    width: 100%;
+    max-width: 100%; /* Cada imagem ocupa a largura completa do container */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Reorganização para Telas Menores */
+@media (max-width: 768px) {
+    /* Menu Sanduíche Aparece */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Esconde o Menu Central */
+    .menu-central {
+        display: none;
+    }
+
+    /* Centraliza a Logo */
+    .logo {
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Botões de Mensagem e Usuário à Direita */
+    .menu-lateral {
+        gap: 10px;
+    }
+
+    .submenu {
+        position: static; /* Remove a posição absoluta no mobile */
+        border-radius: 0; /* Remove bordas no mobile */
+    }
+
+    .user-info {
+        justify-content: center; /* Centraliza a imagem no círculo */
+        padding: 0; /* Remove o padding extra */
+        width: 48px;
+        height: 48px; /* Redefine a altura para círculo perfeito */
+        border-radius: 50%; /* Transforma em círculo */
+    }
+
+    .user-info img {
+        margin-right: 0; /* Remove o espaçamento lateral */
+    }
+
+    .user-details {
+        display: none; /* Esconde nome e cargo */
+    }
+
+
+
+    /* Tornar as áreas em coluna no mobile */
+    .flex-container {
+        flex-direction: column;
+    }
+
+    /* Ocultar Área Azul */
+    .flex-blue {
+        display: none; /* Oculta a área azul no mobile */
+    }
+
+    .field-group {
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas no mobile */
+    }
+
+    .field {
+        padding: 12px 18px; /* Reduz o tamanho para mobile */
+        font-size: 12px; /* Reduz o tamanho da fonte */
+    }
+
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no mobile */
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card-number {
+        font-size: 20px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-detail {
+        font-size: 12px;
+    }
+
+
+
+
+    .report-title {
+        font-size: 48px; /* Reduz tamanho do título no mobile */
+        text-align: center;
+    }
+
+    .report-subtitle {
+        font-size: 24px; /* Ajusta o subtítulo */
+        text-align: center;
+    }
+
+    .report-description {
+        font-size: 12px; /* Ajusta o texto descritivo */
+            text-align: center;
+    }
+
+    .chart-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #464646;
+        text-align: center;
+    }
+    
+    .chart-description {
+        font-size: 14px;
+        color: #00A19A;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+
+
+    .dual-box-container {
+        flex-direction: column; /* Empilha os boxes no mobile */
+        gap: 20px; /* Ajusta o espaçamento entre os boxes */
+    }
+
+    .box {
+        width: 100%; /* Cada box ocupa toda a largura */
+    }
+
+
+
+
+
+
+
+    .ads-container {
+        display: flex;
+        flex-direction: row; /* Mantém o layout horizontal no mobile */
+        overflow-x: auto; /* Permite rolagem horizontal */
+        gap: 15px; /* Espaçamento entre as imagens */
+        scrollbar-width: thin; /* Personaliza a barra de rolagem no Firefox */
+        justify-content: start; /* Alinha à esquerda */
+    }
+    
+    .ad-image {
+        flex-shrink: 0; /* Impede que a imagem encolha */
+        width: auto; /* Ajusta largura proporcional */
+        height: 250px; /* Define altura fixa com base na maior imagem */
+        max-height: 250px; /* Limita a altura máxima */
+        aspect-ratio: 1; /* Mantém as imagens quadradas */
+        border-radius: 20px; /* Bordas arredondadas */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        object-fit: cover; /* Garante que o conteúdo da imagem preencha sem distorção */
+        transition: transform 0.3s ease; /* Adiciona animação */
+    }
+
+
+    .calendar-section iframe {
+        max-width: 100%; /* Garante que o calendário ocupe toda a largura */
+    }
+
+
+
+
+}
