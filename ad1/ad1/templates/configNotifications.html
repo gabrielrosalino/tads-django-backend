@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Configuração de notificações | Aprova System {% endblock %}
+
+{% block content %}
+
+<div class="flex-container">
+    <!-- Área Azul (Fica oculta no Mobile) -->
+    <div class="flex-item flex-blue">
+        <div class="search-container">
+            <input type="text" placeholder="Pesquise">
+            <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
+        </div>
+        <a href="#" class="active">Configurações de Notificações</a>
+        <a href="#">Enviar mensagem</a>
+    </div>
+
+    <!-- Área do Meio (Campos ficam em colunas no Mobile) -->
+    <div class="flex-item flex-middle">
+
+        <!-- Título e Subtítulo -->
+        <div class="report-header">
+            <h3 class="report-subtitle">Configuração de</h3>
+            <h1 class="report-title">Notificações</h1>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
