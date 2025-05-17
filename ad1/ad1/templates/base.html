@@ -14,20 +14,25 @@
     <!-- Barra de Navegação -->
     <header class="navbar">
 
+        <button class="hamburger-menu" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <!-- Logotipo -->
         <div class="logo">
-            <img src="{% static 'img/logo.png' %}" alt="Aprova System">
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt="Aprova System"></a>
         </div>
 
         <!-- Menu Central -->
         <nav class="menu-central">
             <ul>
-                <li><a href="#">Início <br>& Dashboard</a></li>
                 <li><a href="#">Alunos <br>& Turmas</a></li>
                 <li><a href="#">Cursos <br>& Disciplinas</a></li>
                 <li><a href="#">Professores <br>& Horários</a></li>
                 <li><a href="#">Avaliações <br>& Notas</a></li>
-                <li><a href="#">Relatórios <br>& Estatísticas</a></li>
+                <li><a href="{% url 'dashboard' %}">Relatórios <br>& Estatísticas</a></li>
                 <li><a href="#">Comunicação <br>& Notificações</a></li>
             </ul>
         </nav>
@@ -42,11 +47,70 @@
             </div>
         </div>
     </header>
-    <section>
-        {% block content %}
 
-        {% endblock %}
+    <!-- Dropdown do Menu Sanduíche -->
+    <nav class="dropdown-menu">
+        <!-- Campo de Pesquisa -->
+        <div class="search-container">
+            <input type="text" placeholder="Pesquise">
+
+        </div>
+
+        <!-- Lista de Itens do Menu -->
+        <ul>
+            <li><a href="#">Alunos & Turmas</a></li>
+            <li><a href="#">Cursos & Disciplinas</a></li>
+            <li><a href="#">Professores & Horários</a></li>
+            <li><a href="#">Avaliações & Notas</a></li>
+            <li><a href="{% url 'dashboard' %}">Relatórios & Estatísticas</a></li>
+            <li><a href="#">Comunicação & Notificações</a></li>
+        </ul>
+    </nav>
+    
+    <section>
+        <div class="flex-container">
+            <div class="flex-item flex-blue">
+                <div class="search-container">
+                    <input type="text" placeholder="Pesquise">
+                    <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
+                </div>
+                {% block left_menu %}
+
+                {% endblock %}
+            </div>
+            
+            <div class="flex-item flex-middle">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+           
+            <!-- Terceira Área -->
+            <div class="flex-item flex-bottom">
+                <div class="calendar-container">
+                    <iframe
+                        src="https://calendar.google.com/calendar/embed?src=a3fe25f4d40b316f9409a332a48403a9427bc8bfbe61ca3f164e5b77aa65a09f%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+                        style="border: none; border-radius: 20px;" width="100%" height="100%" frameborder="0" scrolling="no">
+                    </iframe>
+                </div>
+
+                <!-- Container das Imagens -->
+                <div class="ads-box">
+                    <div class="ads-container">
+                        <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 1">
+                        <img src="{% static 'img/ad-2.png' %}" class="ad-image" alt="Anúncio 2">
+                        <img src="{% static 'img/ad-3.png' %}" class="ad-image" alt="Anúncio 3">
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
+
+    <script src="{% static 'app/navbar_mobile_menu.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scriptchart.js"></script>
+
     <footer class="footer">
         <p>&copy; 2025 Aprova System LTDA. Todos os direitos reservados.</p>
         <p>Contato: contato@aprovasystem.com.br | Telefone: (00) 1234-5679 | @aprovasystem</p>
