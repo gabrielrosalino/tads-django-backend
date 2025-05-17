@@ -1,0 +1,72 @@
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__fieldset-heading {
+    font-size: 1.5rem;
+    margin-block-end: 15px;
+}
+
+.form-fields-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.form-group label {
+    margin-block-end: 8px;
+}
+
+.form-group input[type="date"]::-webkit-datetime-edit{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-group input, select {
+    padding: 10px;
+    border: 1PX solid #c4c4c4;
+    border-radius: 20px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.field-full {
+    flex-basis: 100%;
+}
+
+.field-half {
+    flex-basis: calc(50% - 8px);
+    flex-grow: 0;
+}
+
+.form-group-title {
+    margin-block-end: 12px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin-block-end: 8px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+
+.checkbox-group label input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+
+.btn_wrapper {
+    display: flex;
+    justify-content: center;
+}
