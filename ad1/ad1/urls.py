@@ -22,5 +22,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name = 'index'),
     path('dashboard/', views.dashboard, name = 'dashboard'),
-    path('configNotifications/', views.configNotifications, name='configNotifications')
+    path('configNotifications/', views.configNotifications, name='configNotifications'),
+    path('login/', views.login, name = 'login')
 ]

@@ -8,3 +8,6 @@ def dashboard (request):
 
 def configNotifications(request):
     return render(request, 'configNotifications.html')
+
+def login(request):
+    return render(request, 'login.html')
