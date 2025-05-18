@@ -1015,6 +1015,65 @@ iframe {
 
 
 
+/* ===================================================================
+   Força o container inteiro de atalhos a ocupar 100% dentro do flex
+   =================================================================== */
+.shortcuts-section {
+  width: 100% !important;
+  flex-basis: 100% !important;
+}
+
+/* ===================================================================
+   Grid de links 3 colunas × 2 linhas — preenche todo o espaço pai
+   =================================================================== */
+.shortcuts-section .links-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px 24px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* ===================================================================
+   botões cocupando 100%
+   =================================================================== */
+.shortcuts-section .links-grid .field {
+  display: block !important;
+  width: 100% !important;
+  padding: 12px 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  color: #707070 !important;
+  background-color: #ECECEC !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s !important;
+}
+
+.shortcuts-section .links-grid .field:hover {
+  background-color: #DDDDDD !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Reorganização para Telas Menores */
 @media (max-width: 768px) {
@@ -1231,4 +1290,10 @@ iframe {
         width: 100%;
     }
 
+      .shortcuts-section .links-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px 16px !important; /* opcional: ajustar espaçamento */
+  }
+
 }
+
