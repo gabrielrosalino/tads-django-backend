@@ -29,19 +29,19 @@
         <!-- Menu Central -->
         <nav class="menu-central">
             <ul>
-                <li><a href="#">Alunos <br>& Turmas</a></li>
+                <li><a href="{% url 'add_student' %}">Alunos <br>& Turmas</a></li>
                 <li><a href="#">Cursos <br>& Disciplinas</a></li>
                 <li><a href="#">Professores <br>& Horários</a></li>
                 <li><a href="#">Avaliações <br>& Notas</a></li>
                 <li><a href="{% url 'dashboard' %}">Relatórios <br>& Estatísticas</a></li>
-                <li><a href="#">Comunicação <br>& Notificações</a></li>
+                <li><a href="{% url 'configNotifications' %}">Comunicação <br>& Notificações</a></li>
             </ul>
         </nav>
 
 
         <!-- Foto e Nome/Cargo do Usuário -->
         <div class="user-info">
-                <a href="{% url 'home' %}"><img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário"></a>
+                <a href="{% url 'login' %}"><img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário"></a>
             <div class="user-details">
                 <span class="user-name">Marina Boa Ventura</span>
                 <span class="user-role">Coordenadora</span>
@@ -59,12 +59,12 @@
 
         <!-- Lista de Itens do Menu -->
         <ul>
-            <li><a href="#">Alunos & Turmas</a></li>
+            <li><a href="{% url 'add_student' %}">Alunos & Turmas</a></li>
             <li><a href="#">Cursos & Disciplinas</a></li>
             <li><a href="#">Professores & Horários</a></li>
             <li><a href="#">Avaliações & Notas</a></li>
             <li><a href="{% url 'dashboard' %}">Relatórios & Estatísticas</a></li>
-            <li><a href="#">Comunicação & Notificações</a></li>
+            <li><a href="{% url 'configNotifications' %}">Comunicação & Notificações</a></li>
         </ul>
     </nav>
     
