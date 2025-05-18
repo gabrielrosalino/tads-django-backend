@@ -1,18 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Aprova System | Início {% endblock %}
+{% block title %}Aprova System | Home{% endblock %}
 
 {% block content %}
-<div style="max-width: 900px; margin: 40px auto; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-    <h1 style="color: #003366; font-size: 36px; margin-bottom: 20px;">Bem-vindo ao AprovaSystem</h1>
-    <p style="font-size: 18px; color: #333; line-height: 1.6;">
-        O AprovaSystem é um sistema de gestão acadêmica voltado especialmente para cursinhos pré-vestibulares, com foco inicial no Método Medicina.
-        Desenvolvido por alunos de Análise e Desenvolvimento de Sistemas da UDESC – São José, o sistema busca solucionar problemas comuns de comunicação,
-        organização e acompanhamento pedagógico em instituições de ensino.
-    </p>
-    <p style="font-size: 18px; color: #333; line-height: 1.6; margin-top: 20px;">
-        Nosso objetivo é apoiar a melhoria contínua da educação por meio de dados precisos e relatórios eficientes que subsidiem decisões pedagógicas mais eficazes.
-    </p>
+<div class="flex-container" style="margin-top: 0px; flex-wrap: wrap; max-width: 1100px; margin-inline: auto;">
+    <!-- Saudações -->
+    <div class="flex-middle" style="width: 100%; padding: 5px 20px 0px 20px;">
+        <h2 style="font-size: 32px; margin-bottom: 0;">Olá,</h2>
+        <h2 style="font-size: 32px; color: #00A19A; margin-top: 0;">Marina Boa Ventura</h2>
+        <p style="margin-top: 10px; font-size: 16px; color: #555;">
+            Estamos felizes por ter você aqui! Conte com a nossa plataforma para facilitar o seu dia a dia,
+            com praticidade, organização e tudo o que você precisa para uma gestão mais eficiente.
+        </p>
+    </div>
+
+    <!-- Cards principais -->
+    <div class="cards" style="margin-top: 0px;">
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-plus.png' %}" alt="Matriculados" width="32"></div>
+            <div class="card-number" style="color: #707070;">870</div>
+            <div class="card-title">Total de alunos matriculados</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-check.png' %}" alt="Ativos" width="32"></div>
+            <div class="card-number" style="color: #14AE5C;">674</div>
+            <div class="card-title">Total de alunos ativos</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-x.png' %}" alt="Inativos" width="32"></div>
+            <div class="card-number" style="color: #C40300;">96</div>
+            <div class="card-title">Total de alunos inativos +14 dias</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-users.png' %}" alt="Lista de espera" width="32"></div>
+            <div class="card-number" style="color: #003479;">123</div>
+            <div class="card-title">Total da lista de espera</div>
+        </div>
+    </div>
+
+    <!-- Cards laterais: Resumo + Editais -->
+    <div style="display: flex; gap: 20px; margin-top: 30px; justify-content: center; max-width: 950px; margin-inline: auto;">
+        <div class="box" style="flex: 1; border: 1px solid #ccc; border-radius: 12px; padding: 20px;">
+            <h3>Resumo rápido</h3>
+            <ul style="padding-left: 18px;">
+                <li>Você tem 2 avaliações de professor essa semana</li>
+                <li>Você tem 3 provas agendadas</li>
+                <li>Você tem 2 turmas sem notas lançadas</li>
+            </ul>
+        </div>
+        <div class="box" style="flex: 1; border: 1px solid #ccc; border-radius: 12px; padding: 20px;">
+            <h3>Editais</h3>
+            <ul style="padding-left: 18px;">
+                <li>Edital Vestibular Unificado UFSC/IFSC 2025.2</li>
+                <li>Edital Vestibular de Inverno UDESC 2025.2</li>
+                <li>Edital Vestibular UNISUL</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Atalhos -->
+    <div style="margin-top: 30px;">
+        <h3>Atalhos para ações frequentes</h3>
+        <p style="font-size: 14px; color: #666;">Veja aqui seus links mais acessados na última semana.</p>
+        <div class="field-group" style="margin-top: 10px;">
+            <div class="field">Cadastrar novo aluno</div>
+            <div class="field">Relatório de aprovações</div>
+            <div class="field">Cadastrar cursos</div>
+            <div class="field">Simulados</div>
+            <div class="field">Grade de horários</div>
+            <div class="field">Enviar notificação</div>
+        </div>
+    </div>
 </div>
 {% endblock %}
