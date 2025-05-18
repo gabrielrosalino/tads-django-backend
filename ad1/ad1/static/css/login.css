@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 95vh;
+    align-items: center;
+    background-color: #00172D;
+}
+
+.container {
+    width: 500px;
+    height: 260px;
+    background: #173048;
+    padding: 30px 30px;
+    border-radius: 30px;
+}
+
+form .user-details .input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.user-details .input-box input {
+    height: 45px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 30px;
+    padding-left: 15px;
+}
+
+.container form .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form .button input{
+    height: 45px;
+    width: 125px;
+    font-size: 20px;
+    background-color: #00A19A;
+    border-radius: 30px;
+    color: #fff;
+}

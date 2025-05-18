@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,8 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    
+    <div class="container">
+        <form action="#">
+            <div class="user-details">
+                <div class="input-box">
+                    <input type="text" placeholder="Endereço de e-mail" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Senha" required>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Entrar">
+            </div>
+        </form>
+    </div>
 </body>
