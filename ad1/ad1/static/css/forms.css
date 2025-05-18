@@ -63,6 +63,7 @@ fieldset {
     margin-right: 8px;
     width: 16px;
     height: 16px;
+    accent-color: #00A19A;
 }
 
 
@@ -105,4 +106,29 @@ fieldset {
   .field-half {
     flex-basis: 100%;
   }
+}
+
+
+/* ---------- FORMULÁRIO DE NOTIFICAÇÕES ---------- */
+/* Formatando o cabeçalho do formulário */
+.form__fieldset-heading {
+  margin: 0; 
+}
+.fieldset_heading-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1.5rem 0rem;
+}
+/* Alinhando "Notificar a coordenação" e "Selecionar todos" */
+.checkbox-group .config-notifications-header {
+    margin-block-end: 0px;
+}
+
+/* Reorganização para Telas Menores */
+@media (max-width: 768px) {
+    .fieldset_heading-section {
+        display: grid;
+    }
 }

@@ -1,50 +1,135 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Configuração de notificações | Aprova System {% endblock %}
+{% block title %} Aprova System - Configuração de notificações {% endblock %}
+
+{% block left_menu %}
+    <!-- Inclusão de itens do menu específico de Configurações de Notificações -->
+    <a href="#" class="active">Configurações de Notificações</a>
+    <a href="#">Enviar mensagem</a>
+{% endblock %}
 
 {% block content %}
-
-<div class="flex-container">
-    <!-- Área Azul (Fica oculta no Mobile) -->
-    <div class="flex-item flex-blue">
-        <div class="search-container">
-            <input type="text" placeholder="Pesquise">
-            <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
-        </div>
-        <a href="#" class="active">Configurações de Notificações</a>
-        <a href="#">Enviar mensagem</a>
+    <!-- Título e Subtítulo -->
+    <div class="report-header">
+        <h3 class="report-subtitle">Configuração</h3>
+        <h1 class="report-title">Notificações</h1>
     </div>
+    
+    <!-- Formulário de Cadastro dos Alunos -->
+    <form action="#" method="post">
 
-    <!-- Área do Meio (Campos ficam em colunas no Mobile) -->
-    <div class="flex-item flex-middle">
+        <!-- Dados Pessoais -->                
+        <fieldset class="chart-container">
 
-        <!-- Título e Subtítulo -->
-        <div class="report-header">
-            <h3 class="report-subtitle">Configuração de</h3>
-            <h1 class="report-title">Notificações</h1>
-        </div>
-    </div>
-
-    <!-- Terceira Área -->
-    <div class="flex-item flex-bottom">
-        <div class="calendar-container">
-            <iframe
-                src="https://calendar.google.com/calendar/embed?src=a3fe25f4d40b316f9409a332a48403a9427bc8bfbe61ca3f164e5b77aa65a09f%40group.calendar.google.com&ctz=America%2FSao_Paulo"
-                style="border: none; border-radius: 20px;" width="100%" height="100%" frameborder="0" scrolling="no">
-            </iframe>
-        </div>
-
-        <!-- Container das Imagens -->
-        <div class="ads-box">
-            <div class="ads-container">
-                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 1">
-                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 2">
-                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 3">
+            <!-- Heading com seleção de todos --> 
+            <div class="fieldset_heading-section">
+                <h3 class="form__fieldset-heading">Notificar a Coordenação</h3>
+                <div class="checkbox-group">
+                    <label class="config-notifications-header"><input type="checkbox" id="select-all" />Selecionar todos</label>
+                </div>
             </div>
+
+            
+            <!-- Configuração de notificações de alunos --> 
+            <p class="form-group-title">Quando um aluno:</p>            
+            <div class="form-fields-wrapper">
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="aluno_notif" value="aluno_matriculado" /> For matriculado</label>
+                        <label><input type="checkbox" name="aluno_notif" value="aluno_desmatriculado" /> For desmatriculado</label>
+                    </div>
+                </div>
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="aluno_notif" value="aluno_trocar_período" /> Trocar de período</label>
+                        <label><input type="checkbox" name="aluno_notif" value="aluno_trocar_curso" /> Trocar de curso</label>
+                    </div>
+                </div>
+            </div>
+
+            </br>
+            <!-- Configuração de notificações de turma --> 
+            <p class="form-group-title">Quando uma turma:</p>            
+            <div class="form-fields-wrapper">
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="turma_notif" value="turma_cadastrada" /> For cadastrada</label>
+                    </div>
+                </div>
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="turma_notif" value="turma_cancelada" /> For cancelada</label>
+                    </div>
+                </div>
+            </div>
+
+            </br>
+            <!-- Configuração de notificações de curso --> 
+            <p class="form-group-title">Quando um curso:</p>            
+            <div class="form-fields-wrapper">
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="curso_notif" value="curso_cadastrado" /> For cadastrado</label>
+                    </div>
+                </div>
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="curso_notif" value="curso_cancelado" /> For cancelado</label>
+                    </div>
+                </div>
+            </div>
+
+            </br>
+            <!-- Configuração de notificações de disciplina --> 
+            <p class="form-group-title">Quando uma disciplina:</p>            
+            <div class="form-fields-wrapper">
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="disciplina_notif" value="disciplina_cadastrada" /> For cadastrada</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="disciplina_notif" value="disciplina_cancelada" /> For cancelada</label>
+                    </div>
+                </div>
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="disciplina_notif" value="disciplina_trocar_periodo" /> For trocar de período</label>
+                    </div>
+                </div>
+            </div>
+
+            </br>
+            <!-- Configuração de notificações de coordenador --> 
+            <p class="form-group-title">Quando um coordenador:</p>            
+            <div class="form-fields-wrapper">
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="coordenador_notif" value="coordenador_cadastrado" /> For cadastrado</label>
+                    </div>
+                </div>
+
+                <div class="form-group field-half">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="coordenador_notif" value="coordenador_descadastrado" /> For descadastrado</label>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <!-- Ações -->
+        <div class="btn_wrapper">
+            <button class="btn btn-save" type="button">Salvar</button>
+            <button class="btn btn-cancel" type="reset">Cancelar</button>
         </div>
-    </div>
-
-</div>
-
+        
+    </form>                      
 {% endblock %}
