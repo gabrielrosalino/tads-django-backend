@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Aprova System | Home{% endblock %}
+
+{% block left_menu %}
+<a href="{% url 'dashboard' %}" class="active">Relatório de Aprovações</a>
+<a href="#">Relatório de Desempenho</a>
+<a href="#">Exportar Relatórios</a>
+{% endblock %}
+
+{% block content %}
+<div class="flex-container" style="margin-top: 0px; flex-wrap: wrap; max-width: 1100px; margin-inline: auto;">
+    <!-- Saudação -->
+    <div class="flex-middle" style="width: 100%; padding: 5px 20px 0px 20px;">
+        <h2 style="font-size: 32px; margin-bottom: 0;">Olá,</h2>
+        <h2 style="font-size: 32px; color: #00A19A; margin-top: 0;">Marina Boa Ventura</h2>
+        <p style="margin-top: 10px; font-size: 16px; color: #555;">
+            Estamos felizes por ter você aqui! Conte com a nossa plataforma para facilitar o seu dia a dia,
+            com praticidade, organização e tudo o que você precisa para uma gestão mais eficiente.
+        </p>
+    </div>
+
+    <!-- Cards principais -->
+    <div class="cards" style="margin-top: 0px;">
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-plus.png' %}" alt="Matriculados" width="32"></div>
+            <div class="card-number" style="color: #707070;">870</div>
+            <div class="card-title">Total de alunos matriculados</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-check.png' %}" alt="Ativos" width="32"></div>
+            <div class="card-number" style="color: #14AE5C;">674</div>
+            <div class="card-title">Total de alunos ativos</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-x.png' %}" alt="Inativos" width="32"></div>
+            <div class="card-number" style="color: #C40300;">96</div>
+            <div class="card-title">Total de alunos inativos +14 dias</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background-color: #E0E0E0;">
+                <img src="{% static 'img/user-users.png' %}" alt="Lista de espera" width="32"></div>
+            <div class="card-number" style="color: #003479;">123</div>
+            <div class="card-title">Total da lista de espera</div>
+        </div>
+    </div>
+
+
+    <!-- Cards Resumo + Editais -->
+    <div class="card2s" style="margin-top: 0px;">
+        <div class="card2">
+            <h3 style="margin-top: 0;">Resumo rápido</h3>
+            <ul style="padding-left: 18px; color: #555;">
+                <li>Você tem 2 avaliações de professor essa semana</li>
+                <li>Você tem 3 provas agendadas</li>
+                <li>Você tem 2 turmas sem notas lançadas</li>
+            </ul>
+        </div>
+        <div class="card2">
+            <h3 style="margin-top: 0;">Editais</h3>
+            <ul style="padding-left: 18px; color: #555;">
+                <li>Edital Vestibular Unificado UFSC/IFSC 2025.2</li>
+                <li>Edital Vestibular de Inverno UDESC 2025.2</li>
+                <li>Edital Vestibular UNISUL</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- === Atalhos para ações frequentes === -->
+    <div class="shortcuts-section">
+        <p style="margin-top: 10px; font-size: 24px; color: #555;">
+            <strong>Atalhos para ações frequentes</strong> 
+        </p>
+        <p style="margin-top: 10px; margin-bottom: 10px; font-size: 16px; color: #555;">
+            Veja aqui seus links mais acessados na última semana.
+        </p>
+       
+        <div class="links-grid">
+            <a href="#" class="field">Cadastrar novo aluno</a>
+            <a href="#" class="field">Relatório de aprovações</a>
+            <a href="#" class="field">Cadastrar cursos</a>
+            <a href="#" class="field">Simulados</a>
+            <a href="#" class="field">Grade de horários</a>
+            <a href="#" class="field">Enviar notificação</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    
+</div>
+{% endblock %}
