@@ -11,37 +11,44 @@
 </head>
 <body>
     <div class="container">
-        <form action="#">
-            <div class="user-details">
-                <div class="input-box">
-                    <input type="text" placeholder="Endereço de e-mail" required>
+
+        <img class="logo" src="{% static 'img/Logo.png' %}" alt="Logo"/>
+
+        <div class="form-container">
+
+            <form action="#">
+
+                <div class="user-details">
+
+                    <div class="input-box">
+                        <input type="text" placeholder="Endereço de e-mail" required>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" placeholder="Senha" required>
+                    </div>
+
                 </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Senha" required>
+                
+                <div class="esqueci-senha">
+                    <a href = "http://127.0.0.1:8000/login/">Esqueci a senha</a>
                 </div>
-            </div>
-            <div class="esqueci-senha">
-                <a href = "http://127.0.0.1:8000/login/" style="color: #978E8E;">Esqueci a senha</a>
-            </div>
-            <div class="button">
-                <input type="submit" value="Entrar">
-            </div>
-            
-        </form>
+
+                <div class="button">
+                    <input type="submit" value="Entrar">
+                </div>
+                
+            </form>
+
+        </div>
+
     </div>
 
-    <div style="position: relative;">
-        <img src="{% static 'img/Logo.png' %}" alt="Logo"
-        style="position: absolute; left: -360px; top: -295px;">
-    </div>
+    <!-- ----------- IMAGENS DE FUNDO ----------- -->
 
-    <div style="position: relative;">
-        <img src="{% static 'img/Vector1.png' %}" alt="Bola"
-        style="position: absolute; left: -1209px; top: 177px;">
+    <div>
+        <img class="vetor-gosma" src="{% static 'img/Vector2.png' %}" alt="Gosma">
+        <img class="vetor-bola" src="{% static 'img/Vector1.png' %}" alt="Bola">
     </div>
-    
-    <div style="position: relative;">
-        <img src="{% static 'img/Vector2.png' %}" alt="Gosma"
-        style="position: absolute; left: 194px; top: -484px;">
-    </div>
+ 
 </body>

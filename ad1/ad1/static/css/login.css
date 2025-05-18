@@ -1,7 +1,7 @@
 *  {
 margin: 0;
 padding: 0;
-box-sizing: border-box
+box-sizing: border-box;
 }
 
 body {
@@ -14,29 +14,49 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* ----------------- FORMULÁRIO E LOGO ----------------- */
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.form-container {
     width: 500px;
-    height: 345px;
+    max-width: 90vw;
     background: #173048;
     padding: 30px 30px;
     border-radius: 30px;
     box-shadow: -20px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
-form .user-details .input-box {
+.user-details {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column;
+    gap: 10px;
+    margin-block-end: 10px;
 }
 
-.user-details .input-box input {
-    height: 45px;
+.input-box input {
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 30px;
-    padding-left: 15px;
+    padding: 15px;
     border: none;
+}
+
+.esqueci-senha {
+    display: flex;
+    justify-content: end;
+}
+
+.esqueci-senha a {
+    color: #b6b8b8;
 }
 
 .container form .button {
@@ -56,7 +76,19 @@ form .button input {
     border: none;
 }
 
-.container .esqueci-senha {
-     padding-left: 160px;
-     padding-top: 10px;
+/* ----------------- VETORES DO FUNDO ----------------- */
+.vetor-gosma {
+    max-width: 50vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.vetor-bola {
+    max-width: 50vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
 }
