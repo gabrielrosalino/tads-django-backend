@@ -1086,6 +1086,15 @@ iframe {
 
 
 
+.footer {
+  background-color: #E0E0E0;   /* cinza claro */
+  padding: 12px 0;            
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+
 
 
 
