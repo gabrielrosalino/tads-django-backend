@@ -8,4 +8,5 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('configNotifications/', views.configNotifications, name='configNotifications'),
     path('add_student/', views.add_student, name = 'add_student'),
+    path('login/', views.login, name = 'login'),
 ]
