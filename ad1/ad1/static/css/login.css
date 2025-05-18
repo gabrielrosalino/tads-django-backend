@@ -12,6 +12,7 @@ body {
     background: #173048;
     padding: 30px 30px;
     border-radius: 30px;
+    box-shadow: -20px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
 form .user-details .input-box {
