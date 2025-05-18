@@ -4,6 +4,7 @@ body {
     height: 95vh;
     align-items: center;
     background-color: #00172D;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -37,7 +38,7 @@ form .user-details .input-box {
     padding: 20px;
 }
 
-form .button input{
+form .button input {
     height: 45px;
     width: 125px;
     font-size: 20px;
