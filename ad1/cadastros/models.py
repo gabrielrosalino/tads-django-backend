@@ -1,12 +1,45 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Modelo voluntário.
-class Voluntario(models.Model):
-    nome = models.CharField("Nome completo", max_length = 100)
-    foto = models.ImageField(upload_to='img/voluntarios', null=True, blank=True)
+
+# # Modelo voluntário - Caso queiram criar um novo voluntário como "Cadastros", sem senha.
+# class Voluntario(models.Model):
+#     nome = models.CharField("Nome completo", max_length = 100)
+#     foto = models.ImageField(upload_to='img/voluntarios', null=True, blank=True)
+#     def __str__(self):
+#         return self.nome
+
+# Usuário voluntário
+class Voluntario(models.Model): 
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='voluntario' 
+    )
+    foto = models.ImageField(
+        "Foto Principal",
+        upload_to='voluntarios/perfis/fotos/',
+        null=True,
+        blank=True
+    )
+    telefone_contato = models.CharField(
+        "Telefone de Contato",
+        max_length=20,
+        blank=True
+    )
+    data_nascimento_voluntario = models.DateField(
+        "Data de Nascimento",
+        null=True,
+        blank=True
+    )
+    descricao_atividades = models.TextField(
+        "Descrição das Atividades/Interesses",
+        blank=True
+    )
 
     def __str__(self):
-        return self.nome
+        return self.user.username 
     
 # Modelo estudante.
 class Student(models.Model):
