@@ -2,7 +2,7 @@ from django.db import models
 
 # Modelo voluntário.
 class Voluntario(models.Model):
-    nome = models.CharField("nome do voluntário", max_length = 50)
+    nome = models.CharField("Nome completo", max_length = 100)
     foto = models.ImageField(upload_to='img/voluntarios', null=True, blank=True)
 
     def __str__(self):
