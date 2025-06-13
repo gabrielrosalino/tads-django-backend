@@ -119,6 +119,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / 'ad1/static']
 
+# Encaminhando as fotos para cadastros
+MEDIA_URL = 'cadastros/static/'
+MEDIA_ROOT = BASE_DIR / 'cadastros/static'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
