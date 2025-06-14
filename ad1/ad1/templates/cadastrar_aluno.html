@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Aprova System - Cadastrar Aluno{% endblock %}
+
+{% block content %}
+<div class="flex-container">
+    <!-- Área Azul (Fica oculta no Mobile) -->
+    <div class="flex-item flex-blue">
+        <div class="search-container">
+            <input type="text" placeholder="Pesquise">
+            <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
+        </div>
+        {% block menu_lateral %}
+
+        <a href="#" class="active">Matricular Aluno</a>
+        <a href="#">Editar Aluno</a>
+        <a href="#">Cadastrar Turma</a>
+        <a href="#">Editar Turmas</a>
+        <a href="#">Vincular Alunos/Turmas</a>
+
+        {% endblock %}
+    </div>
+
+
+    <!-- Área do Meio (Campos ficam em colunas no Mobile) -->
+    <div class="flex-item flex-middle">
+
+        <!-- Título e Subtítulo -->
+        <div class="report-header">
+            <h3 class="report-subtitle">Cadastro de</h3>
+            <h1 class="report-title">Aluno</h1>
+        </div>
+
+        <!-- Tabela de aprovação dos cursos -->
+
+
+            <form action="#" method="post">
+    
+                <!-- Dados Pessoais -->                
+                <fieldset class="chart-container">
+
+                    <h3 class="form__fieldset-heading">Dados Pessoais</h3>
+
+                    <div class="form-fields-wrapper">
+
+                        <div class="form-group field-full">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" required />
+                        </div>
+
+                        <div class="form-group field-full">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="contato">Contato</label>
+                            <input type="tel" id="contato" name="contato" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="nascimento">Data de nascimento</label>
+                            <input type="date" id="nascimento" name="nascimento" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="nacionalidade">Nacionalidade</label>
+                            <input type="text" id="nacionalidade" name="nacionalidade" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="naturalidade">Naturalidade</label>
+                            <input type="text" id="naturalidade" name="naturalidade" />
+                        </div>
+
+                        <div class="form-group field-half"> 
+                            <label for="estado_civil">Estado Civil</label>
+                            <select id="estado_civil" name="estado_civil">
+                                <option value="">Selecione</option>
+                                <option value="solteiro">Solteiro(a)</option>
+                                <option value="casado">Casado(a)</option>
+                                <option value="divorciado">Divorciado(a)</option>
+                                <option value="viuvo">Viúvo(a)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+                <!-- Dados Residenciais -->
+                <fieldset class="chart-container">
+
+                    <h3 class="form__fieldset-heading">Dados Residenciais</h3>
+
+                    <div class="form-fields-wrapper">
+
+                        <div class="form-group field-full">
+                            <label for="rua">Rua</label>
+                            <input type="text" id="rua" name="rua" required />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="estado">Estado</label>
+                            <input type="text" id="estado" name="estado" /> <!-- Poderia ser um select aqui também -->
+                        </div>
+
+                        <div class="form-group field-half"> <!-- Ou field-half se achar que cabe bem ao lado de Estado, mas geralmente CEP fica melhor sozinho ou em linha completa -->
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" />
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- Dados Socioeconômicos -->
+                <fieldset class="chart-container">
+
+                    <h3 class="form__fieldset-heading">Dados Socioeconômicos</h3>
+
+                    <div class="form-fields-wrapper">
+
+                        <div class="form-group field-full">
+                            <label for="mae">Nome da Mãe</label>
+                            <input type="text" id="mae" name="mae" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="escolaridade_MAE">Escolaridade da Mãe</label>
+                            
+                            <select id="escolaridade_mae" name="escolaridade_mae">
+                                <option value="">Selecione</option>
+                                <option value="ensino_fundamental_incompleto">Ensino Fundamental Incompleto</option>
+                                <option value="ensino_fundamental_completo">Ensino Fundamental Completo</option>
+                                <option value="ensino_medio_incompleto">Ensino Médio Incompleto</option>
+                                <option value="ensino_medio_completo">Ensino Médio Completo</option>
+                                <option value="ensino_superior_incompleto">Ensino Superior Incompleto</option>
+                                <option value="ensino_superior_completo">Ensino Superior Completo</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="form-group field-full">
+                            <label for="pai">Nome do Pai</label>
+                            <input type="text" id="pai" name="pai" />
+                        </div>
+
+                        <div class="form-group field-half">
+                            <label for="escolaridade_pai">Escolaridade do Pai</label>
+                            
+                            <select id="escolaridade_mae" name="escolaridade_mae">
+                                <option value="">Selecione</option>
+                                <option value="ensino_fundamental_incompleto">Ensino Fundamental Incompleto</option>
+                                <option value="ensino_fundamental_completo">Ensino Fundamental Completo</option>
+                                <option value="ensino_medio_incompleto">Ensino Médio Incompleto</option>
+                                <option value="ensino_medio_completo">Ensino Médio Completo</option>
+                                <option value="ensino_superior_incompleto">Ensino Superior Incompleto</option>
+                                <option value="ensino_superior_completo">Ensino Superior Completo</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- Dados Institucionais -->
+                <fieldset class="chart-container">
+                    <h3 class="form__fieldset-heading">Dados Institucionais</h3>
+                    <div class="form-fields-wrapper">
+
+                        <!-- Para grupos de checkboxes/radios, podemos envolvê-los em um form-group field-full -->
+                        <div class="form-group field-half">
+                            <p class="form-group-title">Curso(s) de Interesse:</p>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="curso[]" value="medicina_integral" /> Medicina Integral</label>
+                                <label><input type="checkbox" name="curso[]" value="medicina_extensivo" /> Medicina Extensivo</label>
+                                <label><input type="checkbox" name="curso[]" value="medicina_intensivo" /> Medicina Intensivo</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group field-half">
+                            <p class="form-group-title">Período(s):</p>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="periodo[]" value="matutino" /> Matutino</label>
+                                <label><input type="checkbox" name="periodo[]" value="vespertino" /> Vespertino</label>
+                                <label><input type="checkbox" name="periodo[]" value="noturno" /> Noturno</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- Ações -->
+                <div class="btn_wrapper">
+                    <button class="btn btn-save" type="submit">Cadastrar</button>
+                    <button class="btn btn-cancel" type="reset">Cancelar</button>
+                </div>
+
+            </form>                               
+            
+    
+
+    </div>
+
+
+    <!-- Terceira Área -->
+    <div class="flex-item flex-bottom">
+        <div class="calendar-container">
+            <iframe
+                src="https://calendar.google.com/calendar/embed?src=a3fe25f4d40b316f9409a332a48403a9427bc8bfbe61ca3f164e5b77aa65a09f%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+                style="border: none; border-radius: 20px;" width="100%" height="100%" frameborder="0" scrolling="no">
+            </iframe>
+        </div>
+
+        <!-- Container das Imagens -->
+        <div class="ads-box">
+            <div class="ads-container">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 1">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 2">
+                <img src="{% static 'img/ad-1.png' %}" class="ad-image" alt="Anúncio 3">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

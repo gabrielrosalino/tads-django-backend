@@ -100,7 +100,7 @@ class Voluntario(models.Model):
     def __str__(self):
         return self.user.username 
     
-# Modelo estudante.
+# Modelo estudante
 class Aluno(models.Model):
     # Dados pessoais
     nome            = models.CharField("Nome completo", max_length=100)
@@ -137,6 +137,7 @@ class Aluno(models.Model):
         return self.nome
 
 
+# Modelo Turma
 class Turma(models.Model):
     STATUS = {
         0: "INATIVO",
@@ -153,3 +154,37 @@ class Turma(models.Model):
 
     def __str__(self):
         return self.nome
+    
+
+
+#Modelo Disciplina
+class Disciplina(models.Model):
+    
+    # Define as opções para as áreas de conhecimento
+    AREA_CONHECIMENTO_CHOICES = (
+        ('CIENCIAS_NATUREZA', 'Ciências da Natureza'),
+        ('CIENCIAS_HUMANAS', 'Ciências Humanas'),
+        ('LINGUAGENS', 'Linguagens'),
+        ('MATEMATICA', 'Matemática'),
+    )
+
+    STATUS_DISCIPLINA_CHOICES = (
+        (0, 'Inativo'),
+        (1, 'Ativo'),
+    )
+
+    nome = models.CharField(max_length=100, unique=True, verbose_name="Nome da Disciplina", help_text="Digite o nome da disciplina. Exemplo: Matemática, Biologia, etc.")
+    area_conhecimento = models.CharField(max_length=50, choices=AREA_CONHECIMENTO_CHOICES, default='MATEMATICA', verbose_name="Área de Conhecimento", help_text="Selecione a área de conhecimento à qual esta disciplina pertence.")
+    curriculo = models.TextField(blank=True, null=True, verbose_name="Currículo", help_text="Opcional: Adicione o currículo da disciplina.")
+    status = models.IntegerField(choices=STATUS_DISCIPLINA_CHOICES, default=1, verbose_name="Status da Disciplina")
+
+    class Meta:
+        verbose_name = "Disciplina"
+        verbose_name_plural = "Disciplinas"
+
+    def __str__(self):
+        return (
+            f"{self.nome} ({self.get_area_conhecimento_display()}) "
+            f"- {self.get_status_display()}"
+        )
+        return f"{self.nome} ({self.get_area_conhecimento_display()})"
