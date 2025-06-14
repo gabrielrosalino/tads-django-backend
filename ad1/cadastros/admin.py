@@ -5,7 +5,6 @@ from .models import *
 
 # Registre seus modelos aqui
 admin.site.register(Voluntario)
-admin.site.register(Aluno)
 admin.site.register(Curso)
 admin.site.register(Turma)
 admin.site.register(TurmaDisciplina)
@@ -117,3 +116,56 @@ class CustomPeriodoLetivoAdmin(admin.ModelAdmin):
 
 # 5. Registre o seu CustomPeriodoLetivoAdmin
 admin.site.register(Periodo_Letivo, CustomPeriodoLetivoAdmin)
+
+
+# --- Customização para o Modelo Alunos ---
+class CustomAlunoAdmin(admin.ModelAdmin):
+    # Divisão dos dados
+    fieldsets = [
+        (
+            "Dados Pessoais",
+            {
+                "fields" : ["nome", "email", "contato", "nascimento", "nacionalidade", "naturalidade", "estado_civil"],
+            }
+        ),
+        (
+            "Dados Familiares",
+            {
+                "fields" : ["nome_pai", "escolaridade_pai", "nome_mae", "escolaridade_mae"]
+            }
+        ),
+        (
+            "Dados Socioeconômicos",
+            {
+                "fields" : ["renda_familiar"]
+            }
+        ),
+        (
+            "Dados Residenciais",
+            {
+                "fields" : ["rua", "numero", "complemento", "bairro", "cidade", "estado", "cep"]
+            }
+        ),
+        (
+            "Dados Institucionais",
+            {
+                "fields" : ["curso_interesse", "periodo_interesse"]
+            }
+        )
+    ]
+
+    # 1. Campos a serem exibidos na lista (colunas)
+    list_display = ('nome', 'contato', 'periodo_interesse', 'curso_interesse')
+
+    # 2. Campos para pesquisa
+    search_fields = ('nome', 'contato', 'periodo_interesse', 'curso_interesse')
+
+    # 3. Mover a barra de ações para a parte inferior
+    actions_on_bottom = True
+    actions_on_top = False
+
+    # 4. Filtro lateral
+    list_filter = ('nome', 'contato')
+
+# 5. Registre o seu CustomAluno
+admin.site.register(Aluno, CustomAlunoAdmin)
