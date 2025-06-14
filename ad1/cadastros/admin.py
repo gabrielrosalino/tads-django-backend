@@ -8,7 +8,6 @@ admin.site.register(Voluntario)
 admin.site.register(Aluno)
 admin.site.register(Turma)
 admin.site.register(Curso)
-admin.site.register(Periodo_Letivo)
 
 
 # Usuário Voluntarios

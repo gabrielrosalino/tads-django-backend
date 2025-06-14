@@ -227,8 +227,8 @@ class Periodo_Letivo(models.Model):
     ano = models.IntegerField("Ano do Período Letivo")
     semestre = models.IntegerField("Semestre do Período Letivo")
     nome = models.CharField("Nome do Período Letivo", max_length=30)
-    data_inicio = models.DateField("Data de Início do Período Letivo")
-    data_fim = models.DateField("Data do Final do Período Letivo")
+    data_inicio = models.DateField("Data de Início")
+    data_fim = models.DateField("Data Final")
     status = models.IntegerField("Status", choices=STATUS)
 
     class Meta:
