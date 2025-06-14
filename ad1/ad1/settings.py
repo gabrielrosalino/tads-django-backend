@@ -63,7 +63,7 @@ ROOT_URLCONF = "ad1.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'ad1/templates'],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,20 +81,20 @@ WSGI_APPLICATION = "ad1.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-#}
-
 DATABASES = {
-    'default': dburl(
-        config('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+   "default": {
+       "ENGINE": "django.db.backends.sqlite3",
+       "NAME": BASE_DIR / "db.sqlite3",
+   }
 }
+
+# DATABASES = {
+#     'default': dburl(
+#         config('DATABASE_URL'),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
 
 
 
@@ -133,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / 'ad1/static']
+# pySTATICFILES_DIRS = [BASE_DIR / 'ad1/static']
 
 # Encaminhando as fotos para cadastros
 MEDIA_URL = 'cadastros/static/'
