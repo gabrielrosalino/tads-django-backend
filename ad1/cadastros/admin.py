@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Voluntario, Student
+from .models import Voluntario, Aluno, Turma
 
 # # Register your models here.
 admin.site.register(Voluntario)
-admin.site.register(Student)
+admin.site.register(Aluno)
 
 # class VoluntarioAdmin(admin.ModelAdmin):
 #     fieldsets = [

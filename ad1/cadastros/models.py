@@ -42,7 +42,7 @@ class Voluntario(models.Model):
         return self.user.username 
     
 # Modelo estudante.
-class Student(models.Model):
+class Aluno(models.Model):
     # Dados pessoais
     nome            = models.CharField("Nome completo", max_length=100)
     email           = models.EmailField("E-mail", unique=True)
