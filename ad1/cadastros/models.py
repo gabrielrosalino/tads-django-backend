@@ -102,6 +102,12 @@ class Voluntario(models.Model):
     
 # Modelo estudante
 class Aluno(models.Model):
+    PERIODO_INTERESSE = (
+        (0, "Matutino"),
+        (1, "Vespertino"),
+        (2, "Noturno"),
+    )
+
     # Dados pessoais
     nome            = models.CharField("Nome completo", max_length=100)
     email           = models.EmailField("E-mail", unique=True)
@@ -130,8 +136,21 @@ class Aluno(models.Model):
     cep             = models.CharField("CEP", max_length=9, blank=True)
 
     # Institucionais
-    cursos_interesse= models.JSONField("Cursos de Interesse", null=True, blank=True)
-    periodos        = models.JSONField("Períodos", null=True, blank=True)
+    curso_interesse = models.ForeignKey(
+        'Curso',
+        verbose_name="Curso de Interesse",
+        on_delete=models.SET_NULL,  # ou PROTECT, dependendo de como queira tratar exclusão
+        null=True,                  # permite que inicialmente não tenha valor
+        blank=False                 # torne obrigatório no formulário (pode mudar para True, se quiser opcional)
+    )
+
+    periodo_interesse = models.IntegerField(
+        "Período de Interesse",
+        choices=PERIODO_INTERESSE,
+        default=0,            # <— define MATUTINO como padrão
+    )
+
+    # TODO: id_curso = models.ForeignKey(Curso)
 
     def __str__(self):
         return self.nome
@@ -188,3 +207,33 @@ class Disciplina(models.Model):
             f"- {self.get_status_display()}"
         )
         return f"{self.nome} ({self.get_area_conhecimento_display()})"
+class Curso(models.Model):
+    id_curso = models.AutoField(primary_key=True)
+    nome = models.CharField("Nome do curso", max_length=30, unique=True)
+
+    def __str__(self):
+        return self.nome
+
+
+
+# Modelo Periodo Letivo
+class Periodo_Letivo(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    id_periodo_letivo = models.AutoField(primary_key=True)
+    ano = models.IntegerField("Ano do Período Letivo")
+    semestre = models.IntegerField("Semestre do Período Letivo")
+    nome = models.CharField("Nome do Período Letivo", max_length=30)
+    data_inicio = models.DateField("Data de Início do Período Letivo")
+    data_fim = models.DateField("Data do Final do Período Letivo")
+    status = models.IntegerField("Status", choices=STATUS)
+
+    class Meta:
+        verbose_name = "Período Letivo"
+        verbose_name_plural = "Períodos Letivos"
+    
+    def __str__(self):
+        return self.nome
