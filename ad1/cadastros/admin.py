@@ -1,14 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import Voluntario, Aluno, Turma, Curso, Disciplina, Periodo_Letivo
+from .models import *
 
 # Registre seus modelos aqui
 admin.site.register(Voluntario)
 admin.site.register(Aluno)
-admin.site.register(Turma)
 admin.site.register(Curso)
 admin.site.register(Periodo_Letivo)
+admin.site.register(Turma)
+admin.site.register(TurmaDisciplina)
+admin.site.register(TurmaAluno)
+admin.site.register(TurmaDisciplinaProfessor)
 
 
 # Usuário Voluntarios
