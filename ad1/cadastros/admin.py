@@ -1,8 +1,7 @@
 from django.contrib import admin
-# Importa a classe UserAdmin padrão do Django Admin com o apelido BaseUserAdmin, permitindo personalizá-la sem conflito de nomes
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import Voluntario, Aluno, Turma, Curso, Periodo_Letivo
+from .models import Voluntario, Aluno, Turma, Curso, Disciplina, Periodo_Letivo
 
 # Registre seus modelos aqui
 admin.site.register(Voluntario)
@@ -10,6 +9,7 @@ admin.site.register(Aluno)
 admin.site.register(Turma)
 admin.site.register(Curso)
 admin.site.register(Periodo_Letivo)
+
 
 # Usuário Voluntarios
 # Definir como os campos do modelo de cada 'Voluntario' será exibido e editado
@@ -56,3 +56,25 @@ admin.site.unregister(User)
 # 4. Registre o seu CustomUserAdmin
 admin.site.register(User, CustomUserAdmin)
 
+
+
+# --- Customização para o Modelo Disciplina ---
+class CustomDisciplinaAdmin(admin.ModelAdmin):
+    # 1. Campos a serem exibidos na lista (colunas)
+    list_display = ('nome', 'area_conhecimento', 'status', 'curriculo')
+
+    # 2. Campos para pesquisa
+    search_fields = ('nome', 'area_conhecimento', 'status')
+
+    # 3. Mover a barra de ações para a parte inferior
+    actions_on_bottom = True
+    actions_on_top = False
+
+    # 4. Filtro lateral
+    list_filter = ('area_conhecimento', 'status')
+
+    # 5. ORDENAÇÃO PADRÃO: Exibir ativos primeiro, depois inativos.
+    ordering = ('-status', 'nome')
+
+# 5. Registre o seu CustomDisciplinaAdmin
+admin.site.register(Disciplina, CustomDisciplinaAdmin)
