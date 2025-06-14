@@ -5,6 +5,7 @@ from .models import Voluntario, Aluno, Turma
 # # Register your models here.
 admin.site.register(Voluntario)
 admin.site.register(Aluno)
+admin.site.register(Turma)
 
 # class VoluntarioAdmin(admin.ModelAdmin):
 #     fieldsets = [

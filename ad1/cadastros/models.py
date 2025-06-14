@@ -76,3 +76,21 @@ class Aluno(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Turma(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    id_turma = models.AutoField(primary_key=True)
+    nome = models.CharField("Nome da Turma", max_length=30, unique=True)
+    capacidade = models.IntegerField("Capacidade de total de alunos na turma")
+    data_inicio = models.DateField("Data de início da turma")
+    data_fim = models.DateField("Data final da turma")
+    status = models.IntegerField("0 - Inativo; 1 - Ativo", choices=STATUS)
+    # TODO: id_periodo_letivo = models.ForeignKey(PeriodoLetivo)
+
+    def __str__(self):
+        return self.nome
