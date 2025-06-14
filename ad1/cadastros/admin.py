@@ -77,3 +77,40 @@ class CustomDisciplinaAdmin(admin.ModelAdmin):
 
 # 5. Registre o seu CustomDisciplinaAdmin
 admin.site.register(Disciplina, CustomDisciplinaAdmin)
+
+# --- Customização para o Modelo Período Letivo ---
+class CustomPeriodoLetivoAdmin(admin.ModelAdmin):
+    # Divisão dos dados
+    fieldsets = [
+        (
+            "Dados do Período Letivo",
+            {
+                "fields" : ["nome", "ano", "semestre", "status"],
+            }
+        ),
+        (
+            "Data de início e final do Período Letivo",
+            {
+                "fields" : ["data_inicio", "data_fim"]
+            }
+        )
+    ]
+
+    # 1. Campos a serem exibidos na lista (colunas)
+    list_display = ('nome', 'ano', 'semestre', 'status')
+
+    # 2. Campos para pesquisa
+    search_fields = ('nome', 'ano', 'semestre', 'status')
+
+    # 3. Mover a barra de ações para a parte inferior
+    actions_on_bottom = True
+    actions_on_top = False
+
+    # 4. Filtro lateral
+    list_filter = ('ano', 'status')
+
+    # 5. ORDENAÇÃO PADRÃO: Exibir ativos primeiro, depois inativos.
+    ordering = ('-status', 'nome')
+
+# 5. Registre o seu CustomPeriodoLetivoAdmin
+admin.site.register(Periodo_Letivo, CustomPeriodoLetivoAdmin)
