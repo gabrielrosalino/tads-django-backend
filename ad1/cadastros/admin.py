@@ -158,7 +158,7 @@ class CustomAlunoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'contato', 'periodo_interesse', 'curso_interesse')
 
     # 2. Campos para pesquisa
-    search_fields = ('nome', 'contato', 'periodo_interesse', 'curso_interesse')
+    search_fields = ('nome', 'contato')
 
     # 3. Mover a barra de ações para a parte inferior
     actions_on_bottom = True
