@@ -167,7 +167,7 @@ class Turma(models.Model):
     capacidade = models.IntegerField("Capacidade de total de alunos na turma")
     data_inicio = models.DateField("Data de início da turma")
     data_fim = models.DateField("Data final da turma")
-    status = models.IntegerField("0 - Inativo; 1 - Ativo", choices=STATUS)
+    status = models.IntegerField("Status", choices=STATUS)
     # TODO: id_periodo_letivo = models.ForeignKey(PeriodoLetivo)
 
     def __str__(self):
