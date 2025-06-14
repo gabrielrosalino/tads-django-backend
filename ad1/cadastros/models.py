@@ -87,8 +87,7 @@ class Voluntario(models.Model):
         null=False,
         blank=False 
     )
-    # TODO Criar uma foreignKey que puxe as disciplinas listadas, caso o tipo_voluntario seja TIPO_PROFESSOR.
-
+    disciplina = models.ManyToManyField('Disciplina')
     data_inicio_processo = models.DateTimeField(
         "Data de Início do Processo",
         default=timezone.now, 
@@ -153,28 +152,7 @@ class Aluno(models.Model):
     # TODO: id_curso = models.ForeignKey(Curso)
 
     def __str__(self):
-        return self.nome
-
-
-# Modelo Turma
-class Turma(models.Model):
-    STATUS = {
-        0: "INATIVO",
-        1: "ATIVO"
-    }
-
-    id_turma = models.AutoField(primary_key=True)
-    nome = models.CharField("Nome da Turma", max_length=30, unique=True)
-    capacidade = models.IntegerField("Capacidade de total de alunos na turma")
-    data_inicio = models.DateField("Data de início da turma")
-    data_fim = models.DateField("Data final da turma")
-    status = models.IntegerField("0 - Inativo; 1 - Ativo", choices=STATUS)
-    # TODO: id_periodo_letivo = models.ForeignKey(PeriodoLetivo)
-
-    def __str__(self):
-        return self.nome
-    
-
+        return self.nome  
 
 #Modelo Disciplina
 class Disciplina(models.Model):
@@ -234,6 +212,147 @@ class Periodo_Letivo(models.Model):
     class Meta:
         verbose_name = "Período Letivo"
         verbose_name_plural = "Períodos Letivos"
+    
+    def __str__(self):
+        return self.nome
+
+# Modelo Turma
+class Turma(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    id_turma = models.AutoField(primary_key=True)
+    nome = models.CharField("Nome da Turma", max_length=30, unique=True)
+    capacidade = models.IntegerField("Capacidade total de alunos na turma")
+    data_inicio = models.DateField("Data de início da turma")
+    data_fim = models.DateField("Data final da turma")
+    status = models.IntegerField("Status", choices=STATUS)
+    periodo_letivo = models.ForeignKey(
+        Periodo_Letivo,
+        on_delete=models.CASCADE,
+        verbose_name="Período Letivo",
+        null=True,
+        blank=False
+    )
+
+    def __str__(self):
+        return self.nome
+
+
+class TurmaDisciplina(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    turma = models.ForeignKey(
+        Turma,
+        on_delete=models.CASCADE,
+        verbose_name="Turma",
+        null=True,
+        blank=False
+    )
+
+    disciplina = models.ForeignKey(
+        Disciplina,
+        on_delete=models.CASCADE,
+        verbose_name="Disciplina",
+        null=True,
+        blank=False
+    )
+
+    status = models.IntegerField(
+        "Status", 
+        choices=STATUS, 
+        default=1,
+        null=True,
+        blank=False
+    )
+    
+    class Meta:
+        verbose_name = "Turma Disciplina"
+        verbose_name_plural = "Disciplinas das Turmas"
+        unique_together = ('turma', 'disciplina')
+    
+    def __str__(self):
+        return self.nome
+
+
+class TurmaAluno(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE,
+        verbose_name="Aluno",
+        null=True,
+        blank=False
+    )
+
+    turma = models.ForeignKey(
+        Turma,
+        on_delete=models.CASCADE,
+        verbose_name="Turma",
+        null=True,
+        blank=False
+    )
+
+    status = models.IntegerField(
+        "Status", 
+        choices=STATUS, 
+        default=1,
+        null=True,
+        blank=False
+    )
+    
+    class Meta:
+        verbose_name = "Aluno Turma"
+        verbose_name_plural = "Alunos das Turmas"
+        unique_together = ('turma', 'aluno')
+    
+    def __str__(self):
+        return self.nome
+
+
+class TurmaDisciplinaProfessor(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    turma_disciplina = models.ForeignKey(
+        TurmaDisciplina,
+        on_delete=models.CASCADE,
+        verbose_name="Turma Disciplina",
+        null=True,
+        blank=False
+    )
+
+    voluntario = models.ForeignKey(
+        Voluntario,
+        on_delete=models.CASCADE,
+        verbose_name="Turma",
+        null=True,
+        blank=False
+    )
+
+    status = models.IntegerField(
+        "Status", 
+        choices=STATUS, 
+        default=1,
+        null=True,
+        blank=False
+    )
+    
+    class Meta:
+        verbose_name = "Voluntário Disicplina"
+        verbose_name_plural = "Professores das Disciplinas nas Turmas"
+        unique_together = ('turma_disciplina', 'voluntario')
     
     def __str__(self):
         return self.nome
