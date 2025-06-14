@@ -2,13 +2,14 @@ from django.contrib import admin
 # Importa a classe UserAdmin padrão do Django Admin com o apelido BaseUserAdmin, permitindo personalizá-la sem conflito de nomes
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import Voluntario, Aluno, Turma, Curso
+from .models import Voluntario, Aluno, Turma, Curso, Periodo_Letivo
 
 # Registre seus modelos aqui
 admin.site.register(Voluntario)
 admin.site.register(Aluno)
 admin.site.register(Turma)
 admin.site.register(Curso)
+admin.site.register(Periodo_Letivo)
 
 # Usuário Voluntarios
 # Definir como os campos do modelo de cada 'Voluntario' será exibido e editado

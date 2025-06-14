@@ -180,3 +180,25 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.nome
+
+# Modelo Periodo Letivo
+class Periodo_Letivo(models.Model):
+    STATUS = {
+        0: "INATIVO",
+        1: "ATIVO"
+    }
+
+    id_periodo_letivo = models.AutoField(primary_key=True)
+    ano = models.IntegerField("Ano do Período Letivo")
+    semestre = models.IntegerField("Semestre do Período Letivo")
+    nome = models.CharField("Nome do Período Letivo", max_length=30)
+    data_inicio = models.DateField("Data de Início do Período Letivo")
+    data_fim = models.DateField("Data do Final do Período Letivo")
+    status = models.IntegerField("Status", choices=STATUS)
+
+    class Meta:
+        verbose_name = "Período Letivo"
+        verbose_name_plural = "Períodos Letivos"
+    
+    def __str__(self):
+        return self.nome
