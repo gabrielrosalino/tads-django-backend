@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-
-# # Modelo voluntário - Caso queiram criar um novo voluntário como "Cadastros", sem senha.
-# class Voluntario(models.Model):
-#     nome = models.CharField("Nome completo", max_length = 100)
-#     foto = models.ImageField(upload_to='img/voluntarios', null=True, blank=True)
-#     def __str__(self):
-#         return self.nome
+from django.utils import timezone 
 
 # Usuário voluntário
 class Voluntario(models.Model): 
@@ -17,25 +10,91 @@ class Voluntario(models.Model):
         primary_key=True,
         related_name='voluntario' 
     )
-    foto = models.ImageField(
-        "Foto Principal",
-        upload_to='voluntarios/perfis/fotos/',
-        null=True,
-        blank=True
+    nome = models.CharField(
+        "Nome completo", 
+        max_length=100
+    )
+    nascimento = models.DateField("Data de nascimento", null=True, blank=True)
+    cpf = models.CharField(
+        "CPF",
+        max_length=14,
+        # unique=True,
+        null=False,
+        blank=False
+    )
+    email = models.EmailField(
+        "E-mail", 
+        # unique=True
     )
     telefone_contato = models.CharField(
         "Telefone de Contato",
         max_length=20,
         blank=True
     )
-    data_nascimento_voluntario = models.DateField(
-        "Data de Nascimento",
-        null=True,
-        blank=True
-    )
+    # Endereço
+    rua = models.CharField("Rua", max_length=200)
+    numero = models.CharField("Número", max_length=20)
+    complemento = models.CharField("Complemento", max_length=100, blank=True)
+    bairro = models.CharField("Bairro", max_length=100, blank=True)
+    cidade = models.CharField("Cidade", max_length=100, blank=True)
+    estado = models.CharField("Estado", max_length=2, blank=True)
+    cep = models.CharField("CEP", max_length=9, blank=True)
     descricao_atividades = models.TextField(
         "Descrição das Atividades/Interesses",
         blank=True
+    )
+    foto = models.ImageField(
+        "Foto Principal",
+        upload_to='voluntarios/perfis/fotos/',
+        null=True,
+        blank=True
+    )
+
+    # Status do voluntário
+    STATUS_AGUARDANDO_DOCUMENTOS = 'AGUARDANDO_DOCUMENTOS'
+    STATUS_ATIVO = 'ATIVO'
+    STATUS_INATIVO = 'INATIVO'
+    STATUS_PROCESSO_CHOICES = [
+        (STATUS_AGUARDANDO_DOCUMENTOS, 'Aguardando Documentos'),
+        (STATUS_ATIVO, 'Ativo'),
+        (STATUS_INATIVO, 'Inativo'),
+    ]
+    status_processo_voluntario = models.CharField(
+        "Status do Processo",
+        max_length=50,  
+        choices=STATUS_PROCESSO_CHOICES,
+        default=STATUS_AGUARDANDO_DOCUMENTOS, 
+        null=False,  
+        blank=False 
+    )
+
+    #Tipo de voluntário
+    TIPO_APOIO_ADMINISTRATIVO = 'APOIO_ADMINISTRATIVO'
+    TIPO_PROFESSOR = 'PROFESSOR'
+    TIPO_MONITOR = 'MONITOR'
+    TIPO_OUTRO = 'OUTRO' 
+    TIPO_VOLUNTARIO_CHOICES = [
+        (TIPO_APOIO_ADMINISTRATIVO, 'Apoio Administrativo'),
+        (TIPO_PROFESSOR, 'Professor(a)'),
+        (TIPO_MONITOR, 'Monitor(a)'),
+        (TIPO_OUTRO, 'Outro / Não especificado'), 
+    ]
+    tipo_voluntario = models.CharField(
+        "Tipo de Voluntário",
+        max_length=50,  
+        choices=TIPO_VOLUNTARIO_CHOICES,
+        default=TIPO_OUTRO, 
+        null=False,
+        blank=False 
+    )
+    # TODO Criar uma foreignKey que puxe as disciplinas listadas, caso o tipo_voluntario seja TIPO_PROFESSOR.
+
+    data_inicio_processo = models.DateTimeField(
+        "Data de Início do Processo",
+        default=timezone.now, 
+        null=False,            
+        blank=True,           
+        editable=False        
     )
 
     def __str__(self):

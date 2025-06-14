@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
-from decouple import config
-from dj_database_url import parse as dburl
+# from decouple import config
+# from dj_database_url import parse as dburl
 
-# DEBUG: imprima no console para ver se está lendo do .env
-print(">>> DATABASE_URL =", config("DATABASE_URL"))
+# # DEBUG: imprima no console para ver se está lendo do .env
+# print(">>> DATABASE_URL =", config("DATABASE_URL"))
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
