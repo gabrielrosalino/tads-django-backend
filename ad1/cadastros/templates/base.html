@@ -43,8 +43,8 @@
         <div class="user-info">
                 <a href="{% url 'login' %}"><img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário"></a>
             <div class="user-details">
-                <span class="user-name">Marina Boa Ventura</span>
-                <span class="user-role">Coordenadora</span>
+                <span class="user-name">{{ user.voluntario.nome }}</span>
+                <span class="user-role">{{ user.voluntario.tipo_voluntario}}</span>
             </div>
         </div>
     </header>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'index.html')
@@ -15,5 +16,6 @@ def configNotifications(request):
 def login(request):
     return render(request, 'login.html')
 
+@login_required #para apernas usuarios autenticados acessem a home
 def home(request):
     return render(request, "home.html")
