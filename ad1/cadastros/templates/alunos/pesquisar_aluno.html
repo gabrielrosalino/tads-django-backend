@@ -4,13 +4,11 @@
 {% block title %}Aprova System | Pesquisar Aluno{% endblock %}
 
 {% block content %}
-  <!-- Cabeçalho -->
   <div class="report-header">
     <h3 class="report-subtitle">Pesquisar</h3>
     <h1 class="report-title">Aluno</h1>
   </div>
 
-  <!-- Campo de Pesquisa (enter envia, × limpa) -->
   <form
     id="search-form"
     action="{% url 'pesquisar_aluno' %}"
@@ -22,7 +20,7 @@
       type="text"
       name="q"
       placeholder="Pesquise por um aluno"
-      value="{{ q }}"
+      value="{{ q|urlencode }}"
       autocomplete="off"
     >
     <button
@@ -33,21 +31,28 @@
     >&times;</button>
   </form>
 
-  <!-- Tabela de resultados -->
   <table>
     <thead>
       <tr>
-        <th>Aluno</th>
-        <th>Status</th>
+        <th class="sortable" data-field="nome">
+          <span>Aluno</span>
+          {% if order == 'nome' %}
+            <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+          {% endif %}
+        </th>
+        <th class="sortable" data-field="status">
+          <span>Status</span>
+          {% if order == 'status' %}
+            <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+          {% endif %}
+        </th>
       </tr>
     </thead>
     <tbody>
       {% if alunos %}
         {% for aluno in alunos %}
           <tr>
-            <td>
-              <a href="">{{ aluno.nome }}</a>
-            </td>
+            <td>{{ aluno.nome }}</td>
             <td>{{ aluno.get_status_display }}</td>
           </tr>
         {% endfor %}
@@ -59,24 +64,46 @@
     </tbody>
   </table>
 
-  <!-- JS: só Enter envia o form; × limpa e recarrega tudo -->
   <script>
-    (function() {
-      const form    = document.getElementById('search-form');
-      const input   = document.getElementById('search-input');
-      const clearBtn= document.getElementById('clear-btn');
+    // executa só depois que o HTML todo for inserido
+    document.addEventListener('DOMContentLoaded', function(){
+      const form     = document.getElementById('search-form');
+      const input    = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const qParam   = "{{ q|escapejs }}";
+      let orderParam= "{{ order }}";
+      let dirParam  = "{{ dir }}";
 
-      input.addEventListener('keydown', function(e) {
+      // Enter dispara busca
+      input.addEventListener('keydown', e => {
         if (e.key === 'Enter') {
           e.preventDefault();
           form.submit();
         }
       });
 
-      clearBtn.addEventListener('click', function() {
+      // × limpa e recarrega
+      clearBtn.addEventListener('click', () => {
         input.value = '';
         form.submit();
       });
-    })();
+
+      // cabeçalhos clicáveis
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.style.cursor = 'pointer';
+        th.addEventListener('click', () => {
+          const field = th.dataset.field;
+          let newDir = 'asc';
+          if (field === orderParam) {
+            newDir = dirParam === 'asc' ? 'desc' : 'asc';
+          }
+          const params = new URLSearchParams();
+          if (qParam) params.set('q', qParam);
+          params.set('order', field);
+          params.set('dir', newDir);
+          window.location.search = params.toString();
+        });
+      });
+    });
   </script>
 {% endblock %}

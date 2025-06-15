@@ -67,22 +67,37 @@ def home(request):
 def matricular_aluno(request):
     return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
 
-@login_required
-#def pesquisar_aluno(request):
-#    return render(request, 'alunos/pesquisar_aluno.html', {'active_menu': 'alunos'})
 
+
+
+@login_required
 def pesquisar_aluno(request):
+    # busca
     q = request.GET.get('q', '').strip()
+    alunos = Aluno.objects.all()
     if q:
-        alunos = Aluno.objects.filter(nome__icontains=q)
-    else:
-        alunos = Aluno.objects.all()
+        alunos = alunos.filter(nome__icontains=q)
+
+    # ordenação
+    # campos permitidos para ordenar
+    allowed = {'nome': 'nome', 'status': 'status'}
+    order = request.GET.get('order', 'nome')
+    direction = request.GET.get('dir', 'asc')
+    if order not in allowed:
+        order = 'nome'
+    # prefixo '-' para desc
+    prefix = '' if direction == 'asc' else '-'
+    alunos = alunos.order_by(f"{prefix}{allowed[order]}")
 
     return render(request, 'alunos/pesquisar_aluno.html', {
-        'active_menu': 'alunos',
         'alunos': alunos,
         'q': q,
+        'order': order,
+        'dir': direction,
+        'active_menu': 'alunos',
     })
+
+
 
 
 # --------- Disciplina ----------
