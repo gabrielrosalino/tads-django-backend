@@ -26,19 +26,6 @@
             <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Aprova System"></a>
         </div>
 
-        <!-- Menu Central -->
-        <nav class="menu-central">
-            <ul>
-                <li><a href="{% url 'add_student' %}">Alunos <br>& Turmas</a></li>
-                <li><a href="#">Cursos <br>& Disciplinas</a></li>
-                <li><a href="#">Professores <br>& Horários</a></li>
-                <li><a href="#">Avaliações <br>& Notas</a></li>
-                <li><a href="{% url 'dashboard' %}">Relatórios <br>& Estatísticas</a></li>
-                <li><a href="{% url 'configNotifications' %}">Comunicação <br>& Notificações</a></li>
-            </ul>
-        </nav>
-
-
         <!-- Foto e Nome/Cargo do Usuário -->
         <div class="user-info">
                 <a href="{% url 'login' %}"><img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário"></a>
@@ -49,22 +36,54 @@
         </div>
     </header>
 
-    <!-- Dropdown do Menu Sanduíche -->
+    <!-- Dropdown do Menu Sanduíche - Apenas Mobile -->
     <nav class="dropdown-menu">
         <!-- Campo de Pesquisa -->
         <div class="search-container">
             <input type="text" placeholder="Pesquise">
-
         </div>
-
         <!-- Lista de Itens do Menu -->
         <ul>
-            <li><a href="{% url 'add_student' %}">Alunos & Turmas</a></li>
-            <li><a href="#">Cursos & Disciplinas</a></li>
-            <li><a href="#">Professores & Horários</a></li>
-            <li><a href="#">Avaliações & Notas</a></li>
-            <li><a href="{% url 'dashboard' %}">Relatórios & Estatísticas</a></li>
-            <li><a href="{% url 'configNotifications' %}">Comunicação & Notificações</a></li>
+            <li>
+                <a class="menu-title" href="#">Alunos</a>
+                <ul class="submenu">
+                    <li class="{% if request.resolver_match.url_name == 'matricular_aluno' %} link-ativo {% endif %}"><a href="{% url 'matricular_aluno' %}">Matricular Aluno</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'pesquisar_aluno' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_aluno' %}">Pesquisar Aluno</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="menu-title" href="#">Disciplina</a>
+                <ul class="submenu">
+                    <li class="{% if request.resolver_match.url_name == 'cadastrar_disciplina' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_disciplina' %}">Cadastrar Disciplina</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'pesquisar_disciplina' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_disciplina' %}">Pesquisar Disciplina</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="menu-title" href="#">Período Letivo</a>
+                <ul class="submenu">
+                    <li class="{% if request.resolver_match.url_name == 'cadastrar_periodo' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_periodo' %}">Cadastrar Período</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'pesquisar_periodo' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_periodo' %}">Pesquisar Período</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="menu-title" href="#">Turmas</a>
+                <ul class="submenu">
+                    <li class="{% if request.resolver_match.url_name == 'cadastrar_turma' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_turma' %}">Cadastrar Turma</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'pesquisar_turma' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_turma' %}">Pesquisar Turma</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a class="menu-title" href="#">Voluntários</a>
+                <ul class="submenu">
+                    <li class="{% if request.resolver_match.url_name == 'cadastrar_voluntario' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_voluntario' %}">Cadastrar Voluntário</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'pesquisar_voluntario' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_voluntario' %}">Pesquisar Voluntário</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
     
@@ -75,9 +94,49 @@
                     <input type="text" placeholder="Pesquise">
                     <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
                 </div>
-                {% block left_menu %}
 
-                {% endblock %}
+                <ul class="main-menu">
+                    <li>
+                        <a class="menu-title" href="#">Alunos</a>
+                        <ul class="submenu">
+                            <li class="{% if request.resolver_match.url_name == 'matricular_aluno' %} link-ativo {% endif %}"><a href="{% url 'matricular_aluno' %}">Matricular Aluno</a></li>
+                            <li class="{% if request.resolver_match.url_name == 'pesquisar_aluno' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_aluno' %}">Pesquisar Aluno</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="menu-title" href="#">Disciplina</a>
+                        <ul class="submenu">
+                            <li class="{% if request.resolver_match.url_name == 'cadastrar_disciplina' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_disciplina' %}">Cadastrar Disciplina</a></li>
+                            <li class="{% if request.resolver_match.url_name == 'pesquisar_disciplina' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_disciplina' %}">Pesquisar Disciplina</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="menu-title" href="#">Período Letivo</a>
+                        <ul class="submenu">
+                            <li class="{% if request.resolver_match.url_name == 'cadastrar_periodo' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_periodo' %}">Cadastrar Período</a></li>
+                            <li class="{% if request.resolver_match.url_name == 'pesquisar_periodo' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_periodo' %}">Pesquisar Período</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="menu-title" href="#">Turmas</a>
+                        <ul class="submenu">
+                            <li class="{% if request.resolver_match.url_name == 'cadastrar_turma' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_turma' %}">Cadastrar Turma</a></li>
+                            <li class="{% if request.resolver_match.url_name == 'pesquisar_turma' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_turma' %}">Pesquisar Turma</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a class="menu-title" href="#">Voluntários</a>
+                        <ul class="submenu">
+                            <li class="{% if request.resolver_match.url_name == 'cadastrar_voluntario' %} link-ativo {% endif %}"><a href="{% url 'cadastrar_voluntario' %}">Cadastrar Voluntário</a></li>
+                            <li class="{% if request.resolver_match.url_name == 'pesquisar_voluntario' %} link-ativo {% endif %}"><a href="{% url 'pesquisar_voluntario' %}">Pesquisar Voluntário</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             
             <div class="flex-item flex-middle">
@@ -108,15 +167,17 @@
         </div>
     </section>
 
+    <footer class="footer">
+        <p>&copy; 2025 Aprova System LTDA. Todos os direitos reservados.</p>
+        <p>Contato: contato@aprovasystem.com.br | Telefone: (00) 1234-5678 | @aprovasystem</p>
+    </footer>
+
+    
     <script src="{% static 'app/navbar_mobile_menu.js' %}"></script>
     <script src="{% static 'app/script.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="scriptchart.js"></script>
 
-    <footer class="footer">
-        <p>&copy; 2025 Aprova System LTDA. Todos os direitos reservados.</p>
-        <p>Contato: contato@aprovasystem.com.br | Telefone: (00) 1234-5678 | @aprovasystem</p>
-    </footer>
 </body>
 
 </html>

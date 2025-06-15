@@ -5,506 +5,59 @@
     box-sizing: border-box;
 }
 
+/* --------------------------------------------------
+                    GLOBAL
+-------------------------------------------------- */
+
 /* Corpo da Página */
+/* Desktop + Mobile */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F5F5F5;
     /* Cor de fundo da página */
 }
 
-/* Barra de Navegação */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    /* Espaçamento entre os itens */
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #F5F5F5;
-    /* Fundo branco */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Logotipo */
-.logo img {
-    height: 50px;
-}
-
-.stats {
-    display: block;
-    /* Transforma a imagem em um bloco, permitindo centralizá-la */
-    margin: 0 auto;
-    /* Aplica margens automáticas para centralizar a imagem */
-    width: 200px;
-    /* Define a largura da imagem */
-    height: auto;
-    /* A altura se ajusta automaticamente de acordo com a proporção da imagem */
-}
-
-/* Menu Central (Desktop) */
-.menu-central {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-    /* Espaçamento entre os itens */
-    border-radius: 50px;
-    padding: 1px 1px;
-    background-color: #E0E0E0;
-}
-
-.menu-central ul {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-}
-
-.menu-central li {
-    text-align: center;
-}
-
-.menu-central a {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    /* Texto em duas linhas */
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    /* Espaçamento interno */
-    font-size: 14px;
-    color: black;
-    border-radius: 50px;
-    /* Botões arredondados */
-    background-color: #E0E0E0;
-    /* Fundo cinza claro */
-    transition: all 0.3s ease-in-out;
-}
-
-/* Hover */
-.menu-central a:hover {
-    background-color: #005599;
-    /* Cor de hover */
-}
-
-/* Item Ativo */
-.menu-central a.active {
-    background-color: #003366;
-    /* Fundo azul escuro */
-    color: white;
-    /* Texto branco */
-}
-
-/* Menu Lateral */
-.menu-lateral {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Botão de Mensagens */
-.msg-button {
-    position: relative;
-    width: 48px;
-    height: 48px;
-    background: white;
-    border: none;
-    border-radius: 50%;
-    /* Botão circular */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.msg-button img {
-    width: 24px;
-    height: 24px;
-}
-
-.notification-dot {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 10px;
-    height: 10px;
-    background-color: #00C853;
-    /* Verde do indicador */
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
-/* Foto e Detalhes do Usuário */
-.user-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Garante o alinhamento centralizado */
-    padding: 0 10px;
-    height: 48px;
-    /* Altura igual ao botão de mensagens */
-    background: white;
-    /* Fundo branco ao redor */
-    border-radius: 50px;
-    /* Oblongo no desktop */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    /* Transição suave entre layouts */
-}
-
-.user-info img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    /* Mantém a imagem circular */
-    object-fit: cover;
-    /* Garante o corte correto da imagem */
-}
-
-/* Detalhes do usuário (nome e cargo) */
-.user-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-name {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-}
-
-.user-role {
-    font-size: 12px;
-    color: #666;
-}
-
-/* Menu Sanduíche (Hambúrguer) */
-.hamburger-menu {
-    display: none;
-    /* Esconde no desktop */
-    flex-direction: column;
-    gap: 4px;
-    background: #003366;
-    /* Fundo azul */
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-}
-
-.hamburger-menu span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 3px;
-}
-
-/* Dropdown do Menu Sanduíche */
-.dropdown-menu {
-    position: absolute;
-    top: 70px;
-    /* Posicionado abaixo do header */
-    left: 0;
-    width: 80%;
-    /* Define que o menu ocupa 80% da largura */
-    height: calc(100% - 70px);
-    /* Altura ajustada para não cobrir completamente */
-    background-color: #003366;
-    /* Fundo azul */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: none;
-    /* Escondido por padrão */
-    z-index: 1000;
-    border-top-right-radius: 30px;
-    /* Bordas arredondadas para um design mais limpo */
-    border-bottom-right-radius: 30px;
-    overflow-y: auto;
-    /* Permite rolagem caso o conteúdo exceda o tamanho */
-}
-
-.dropdown-menu.active {
-    display: block;
-    /* Mostra o menu quando ativo */
-}
-
-.dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    padding-left: 30px;
-    /* afasta da lateral */
-    margin: 0;
-}
-
-.dropdown-menu li a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
-    border-bottom: none;
-    /* Remove divisões principais */
-}
-
-.dropdown-menu li a:hover {
-    background-color: #005599;
-    display: inline-block;
-    border-radius: 30px;
-}
-
-
-/* Submenu */
-.submenu {
-    /*  display: none; /* Escondido por padrão */
-    list-style: none;
-    position: absolute;
-    top: 100%;
-    /* Posicionado abaixo do item pai */
-    left: 0;
-    background-color: #003366;
-    /* Fundo azul escuro */
-    padding: 0;
-    margin: 0;
-    border-radius: 8px;
-    z-index: 10;
-    /* Para aparecer acima dos outros elementos */
-}
-
-.has-submenu.active .submenu {
-    display: none;
-    /* Mostra o submenu quando o pai estiver ativo */
-}
-
-.submenu li {
-    border-bottom: none;
-    /* Remove as divisões */
-    padding-left: 40px;
-    /* Espaçamento da borda esquerda */
-}
-
-.submenu li:last-child {
-    border-bottom: none;
-    /* Remove a borda do último item */
-}
-
-.submenu li a {
-    color: white;
-    padding: 10px 15px;
-    display: block;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin-left: 20px;
-    /* Adiciona margem interna nos itens */
-}
-
-.submenu li a:hover {
-    background-color: #005599;
-    /* Cor ao passar o mouse */
-    display: inline-block;
-}
-
-/* Mostrar Submenu somente quando ativo */
-.has-submenu.active>a {
-    display: none;
-    font-weight: bold;
-    /* Texto em negrito */
-    color: white;
-    /* Cor do texto */
-    background-color: transparent;
-    /* Sem fundo */
-}
-
-.submenu a.active {
-    background-color: #00A19A;
-    /* Fundo verde */
-    color: white;
-    /* Texto branco */
-    font-weight: bold;
-    /* Texto em negrito */
-    border-radius: 30px;
-    /* Oblongo */
-    padding: 10px 20px;
-    /* Espaçamento interno */
-    margin-left: 10;
-    /* Remove deslocamento lateral, se necessário */
-    display: inline-block;
-    /* Garante que o tamanho seja ajustado ao conteúdo */
-}
-
-
-/* Dropdown no Mobile */
-.hamburger-menu {
-
-    flex-direction: column;
-    gap: 4px;
-    background: #003366;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-}
-
-.hamburger-menu span {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-}
-
-
-
-/* Contêiner de Pesquisa no Menu Hambúrguer */
-.dropdown-menu .search-container {
-    padding: 10px;
-    /* Espaçamento interno */
-    background-color: #003366;
-    /* Fundo igual ao menu */
-}
-
-.dropdown-menu .search-container input {
-    width: calc(100% - 40px);
-    /* Largura do campo menos o botão de limpar */
-    padding: 10px 15px;
-    /* Espaçamento interno */
-    border: none;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 20px;
-    /* Bordas arredondadas */
-    background-color: white;
-    /* Fundo branco */
-    color: #333;
-    /* Texto escuro */
-    font-size: 14px;
-    /* Tamanho da fonte */
-    outline: none;
-    /* Remove borda de foco padrão */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra leve */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Container Flexível */
+/* Desktop + Mobile */
 .flex-container {
     display: flex;
     gap: 20px;
-    /* Espaçamento entre os itens */
     margin: 20px 0;
 }
 
 /* Itens Flexíveis com Proporções */
+/* Desktop + Mobile */
 .flex-item {
     padding: 20px;
-    border-radius: 8px;
     background-color: #f9f9f9;
 }
 
-/* Área Azul (1/5) */
-.flex-blue {
-    flex: 1;
-    /* Ocupa 1/5 do espaço */
-    background-color: #003366;
-    /* Fundo azul escuro */
-    color: white;
-    /* Texto em branco */
-    border-radius: 0 20px 20px 0;
-    /* Bordas arredondadas */
-    padding: 20px;
-    /* Espaçamento interno */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Sombra para destaque */
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    /* Espaçamento entre os elementos internos */
-    justify-content: top;
-}
-
-/* Estilo dos links ou itens na área azul */
-.flex-blue a {
-    text-decoration: none;
-    /* Remove sublinhado */
-    color: white;
-    /* Texto em branco */
-    font-size: 16px;
-    /* Tamanho da fonte */
-    line-height: 1.5;
-    /* Altura da linha para espaçamento */
-    border-radius: 20px;
-    /* Bordas arredondadas dos links */
-    padding: 10px 15px;
-    /* Espaçamento interno */
-}
-
-/* Hover nos links */
-.flex-blue a:hover {
-    background-color: #005599;
-    /* Cor de destaque no hover */
-    border-radius: 50px;
-}
-
-/* Link ativo */
-.flex-blue a.active {
-    background-color: #00A19A;
-    /* Cor diferente para o item ativo */
-    color: white;
-    /* Texto em branco */
-    border-radius: 50px;
-}
-
-/* Contêiner de Pesquisa */
+/* Contêiner de Pesquisa (Geral) */
+/* Desktop + Mobile */
 .search-container {
     position: relative;
     margin-bottom: 15px;
-    /* Espaçamento abaixo do campo */
 }
 
+/* Desktop + Mobile */
 .search-container input {
     width: 100%;
-    /* Ocupa toda a largura do contêiner */
     padding: 10px 40px 10px 15px;
-    /* Espaçamento interno (inclui espaço para o botão de limpar) */
     border: none;
     border-radius: 20px;
-    /* Bordas arredondadas */
     background-color: white;
-    /* Fundo branco */
     color: #333;
-    /* Texto escuro */
     font-size: 14px;
-    /* Tamanho da fonte */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra leve */
     outline: none;
-    /* Remove borda de foco padrão */
 }
 
-/* Botão de Limpar */
+/* Botão de Limpar (Geral) */
+/* Desktop + Mobile */
 .clear-button {
     position: absolute;
     top: 50%;
     right: 10px;
-    /* Alinhado à direita */
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -513,59 +66,305 @@ body {
     cursor: pointer;
 }
 
+/* Desktop + Mobile */
 .clear-button:hover {
     color: #333;
-    /* Cor mais escura ao passar o mouse */
 }
 
-/* Links ou itens na área azul */
+
+/* --------------------------------------------------
+                    HEADER
+-------------------------------------------------- */
+
+/* Barra de Navegação */
+/* Desktop + Mobile */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #F5F5F5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logotipo */
+/* Desktop + Mobile */
+.logo img {
+    height: 50px;
+}
+
+/* Nota: .stats foi mantido aqui como estava, embora não pareça estar no HTML do header.
+   Se ele não pertence ao header, você pode movê-lo para uma seção mais apropriada (ex: BLOCK CONTENT). */
+/* Desktop + Mobile */
+.stats {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+}
+
+/* Ícone do botão do Menu Hambúrguer (Estilos Base - escondido no desktop, aparece no mobile via media query) */
+/* Desktop + Mobile */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: #003366;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Desktop + Mobile */
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/* Foto e Detalhes do Usuário */
+/* Desktop + Mobile */
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    height: 48px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Desktop + Mobile */
+.user-info img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Detalhes do usuário (nome e cargo) */
+/* Desktop + Mobile */
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Desktop + Mobile */
+.user-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Desktop + Mobile */
+.user-role {
+    font-size: 12px;
+    color: #666;
+}
+
+
+/* --------------------------------------------------
+                    MENU
+-------------------------------------------------- */
+
+/* Dropdown do Menu Hambúrguer no Mobile */
+/* Mobile */
+.dropdown-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 80%;
+    height: calc(100% - 70px);
+    background-color: #003366;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    overflow-y: auto;
+}
+
+/* Mobile - exibe o menu ao clicar no ícone de exibir menu */
+.dropdown-menu.active {
+    display: block;
+}
+
+/* Mobile */
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    padding-left: 30px;
+    padding-right: 20px;
+    margin: 0;
+}
+
+/* Mobile */
+.dropdown-menu li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    border-bottom: none;
+}
+
+/* Mobile */
+.dropdown-menu li a:hover {
+    background-color: #005599;
+    display: inline-block;
+    border-radius: 30px;
+}
+
+/* Contêiner de Pesquisa no Menu Hambúrguer (Mobile) - Estilos específicos para mobile */
+/* Mobile */
+.dropdown-menu .search-container {
+    padding: 10px;
+    background-color: #003366;
+}
+
+/* Mobile */
+.dropdown-menu .search-container input {
+    width: calc(100% - 40px);
+    padding: 10px 15px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos específicos de Submenu no Mobile (ex: quando ativo) */
+/* Desktop + Mobile (Estilos gerais para submenus) */
+.submenu {
+    list-style: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+    margin-left: 20px;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Desktop + Mobile */
+.submenu li {
+    border-bottom: none;
+    padding-left: 0;
+}
+
+/* Desktop + Mobile */
+.submenu li:last-child {
+    border-bottom: none;
+}
+
+/* Desktop + Mobile */
+.submenu li a {
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Desktop + Mobile */
+.submenu li a:hover {
+    background-color: #005599;
+    display: block;
+    border-radius: 50px;
+}
+
+/* Área Azul (Menu Esquerdo / 1/5) */
+/* Desktop */
+.flex-blue {
+    flex: 1;
+    background-color: #003366;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: top;
+}
+
+/* Estilo unificado dos links ou itens na área azul (Menu Desktop) */
+/* Desktop */
 .flex-blue a {
     text-decoration: none;
     color: white;
     font-size: 16px;
     line-height: 1.5;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px 15px;
     transition: background-color 0.3s ease;
 }
 
-/* Hover nos links */
+/* Desktop */
 .flex-blue a:hover {
     background-color: #005599;
-}
-
-/* Link ativo */
-.flex-blue a.active {
-    background-color: #00A19A;
-    color: white;
+    border-radius: 50px;
 }
 
 
+/* Estilos para a lista principal do menu esquerdo (Desktop) */
+/* Desktop */
+.main-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Desktop */
+.main-menu > li {
+    margin-bottom: 5px;
+}
+
+/* Desktop */
+.main-menu > li > a {
+    display: block;
+    padding: 8px 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 
+/* Removendo a função link dos menus-titles */
+.menu-title {
+    pointer-events: none;
+    cursor: default;
+    color: inherit;
+    text-decoration: none;/
+}
 
+/* --------------------------------------------------
+                    BLOCK CONTENT
+-------------------------------------------------- */
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* Área do Meio (3/5) */
+/* Área do Meio (Conteúdo Principal / 3/5) */
+/* Desktop + Mobile */
 .flex-middle {
     flex: 3;
-    /* Ocupa 3/5 do espaço */
+
     background-color: white;
     border-radius: 20px;
 }
 
-/* Container dos Campos */
+/* Container dos Campos (field-group) */
+/* Desktop + Mobile */
 .field-group {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -578,82 +377,39 @@ body {
     /* Define a largura máxima do container */
 }
 
-/* Estilo dos Campos */
+/* Estilo dos Campos (field) */
+/* Desktop + Mobile */
 .field {
     padding: 15px 20px;
     border: none;
     border-radius: 12px;
-    /* Bordas arredondadas */
     background-color: #E0E0E0;
-    /* Cor de fundo */
     color: #333;
-    /* Cor do texto */
     font-size: 14px;
     font-family: Arial, sans-serif;
     text-align: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra leve */
     cursor: pointer;
-    /* Estilo de ponteiro ao passar o mouse */
     transition: background-color 0.3s ease;
 }
 
-/* Efeito Hover */
+/* Desktop + Mobile */
 .field:hover {
     background-color: #005599;
-    /* Cor ao passar o mouse */
     color: white;
 }
 
 /* Botão Ativo */
-.field.active {
+/* Desktop + Mobile */
+.link-ativo {
     background-color: #00A19A;
-    /* Cor de fundo para o ativo */
+    border-radius: 999px;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
 }
 
-
-
-/* Estilo do cabeçalho do relatório */
-.report-header {
-    text-align: left;
-    /* Centraliza o texto */
-    margin-bottom: 20px;
-    /* Espaço abaixo do cabeçalho */
-    margin-left: 10px;
-}
-
-.report-subtitle {
-    font-size: 20px;
-    color: #464646;
-    /* Cor do subtítulo */
-    margin-bottom: 5px;
-    text-align: left;
-    margin-left: 10px;
-}
-
-.report-title {
-    font-size: 60px;
-    color: #00A19A;
-    /* Cor principal do título */
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-.report-description {
-    font-size: 16px;
-    color: #979797;
-    /* Cor secundária para o texto */
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-
-
-
+/* Container de Cards (cards) */
+/* Desktop + Mobile */
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -667,6 +423,7 @@ body {
     padding: 10px;
 }
 
+/* Desktop + Mobile */
 .card {
     background: #F5F5F5;
     /* Fundo padrão */
@@ -682,6 +439,7 @@ body {
     /* Alinha o texto à esquerda */
 }
 
+/* Desktop + Mobile */
 .card-icon {
     width: 40px;
     height: 40px;
@@ -700,6 +458,7 @@ body {
     /* Evita qualquer conteúdo extra fora do círculo */
 }
 
+/* Desktop + Mobile */
 .card-icon img {
     width: 60%;
     /* Ajuste para deixar o ícone proporcional à bolinha */
@@ -708,6 +467,7 @@ body {
     /* Evita distorção do ícone */
 }
 
+/* Desktop + Mobile */
 .card-number {
     font-size: 24px;
     font-weight: bold;
@@ -716,6 +476,7 @@ body {
     margin-bottom: 5px;
 }
 
+/* Desktop + Mobile */
 .card-title {
     font-size: 16px;
     font-weight: 600;
@@ -724,16 +485,93 @@ body {
     margin-bottom: 8px;
 }
 
+/* Desktop + Mobile */
 .card-detail {
     font-size: 12px;
     color: #979797;
     /* Cor do detalhe */
 }
 
+/* Cards com 2 colunas */
+/* Desktop + Mobile */
+.card2s {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 42 colunas no desktop */
+    gap: 20px;
+    /* Espaçamento entre os cards */
+    width: 100% !important;
+    flex-basis: 100% !important;
+    margin: 5px auto;
+    /* Centraliza e adiciona margem */
+    padding: 10px;
+}
 
+/* Desktop + Mobile */
+.card2 {
+    background-color: transparent;
+    /* sem cor de fundo */
+    border: 1px solid #DDD;
+    /* borda cinza clara */
+    border-radius: 15px;
+    /* mantém o radius */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Alinha os elementos à esquerda */
+    padding: 20px;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    /* Sombra leve */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+}
 
+/* --------------------------------------------------
+                    RELATÓRIOS E GRÁFICOS
+-------------------------------------------------- */
+
+/* Estilo do cabeçalho do relatório */
+/* Desktop + Mobile */
+.report-header {
+    text-align: left;
+    /* Centraliza o texto */
+    margin-bottom: 20px;
+    /* Espaço abaixo do cabeçalho */
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-subtitle {
+    font-size: 20px;
+    color: #464646;
+    /* Cor do subtítulo */
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-title {
+    font-size: 60px;
+    color: #00A19A;
+    /* Cor principal do título */
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-description {
+    font-size: 16px;
+    color: #979797;
+    /* Cor secundária para o texto */
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
 
 /* GRAFICOOO */
+/* Desktop + Mobile */
 .chart-container {
     margin: 30px auto;
     max-width: 1050px;
@@ -743,6 +581,7 @@ body {
     border-radius: 20px;
 }
 
+/* Desktop + Mobile */
 .chart-title {
     font-size: 18px;
     font-weight: bold;
@@ -750,6 +589,7 @@ body {
     text-align: left;
 }
 
+/* Desktop + Mobile */
 .chart-description {
     font-size: 14px;
     color: #00A19A;
@@ -757,12 +597,8 @@ body {
     margin-bottom: 20px;
 }
 
-
-
-
-
-
-/* Container geral para os dois boxes */
+/* Container geral para os dois boxes (dual-box-container) */
+/* Desktop + Mobile */
 .dual-box-container {
     display: flex;
     justify-content: space-between;
@@ -774,6 +610,7 @@ body {
 }
 
 /* Estilo padrão para os boxes */
+/* Desktop + Mobile */
 .box {
     flex: 1;
     /* Cada box ocupa metade do espaço */
@@ -785,7 +622,8 @@ body {
 
 }
 
-/*Barra de progresso*/
+/* Barras de progresso */
+/* Desktop + Mobile */
 .progress1 {
     background: #E0E0E0;
     border-radius: 13px;
@@ -794,6 +632,7 @@ body {
     padding: 0px;
 }
 
+/* Desktop + Mobile */
 .progress1:after {
     content: '';
     display: block;
@@ -803,6 +642,7 @@ body {
     border-radius: 9px;
 }
 
+/* Desktop + Mobile */
 .progress2 {
     background: #E0E0E0;
     border-radius: 13px;
@@ -811,6 +651,7 @@ body {
     padding: 0px;
 }
 
+/* Desktop + Mobile */
 .progress2:after {
     content: '';
     display: block;
@@ -820,6 +661,7 @@ body {
     border-radius: 9px;
 }
 
+/* Desktop + Mobile */
 .progress3 {
     background: #E0E0E0;
     border-radius: 13px;
@@ -828,6 +670,7 @@ body {
     padding: 0px;
 }
 
+/* Desktop + Mobile */
 .progress3:after {
     content: '';
     display: block;
@@ -837,6 +680,7 @@ body {
     border-radius: 9px;
 }
 
+/* Desktop + Mobile */
 .progress4 {
     background: #E0E0E0;
     border-radius: 13px;
@@ -845,6 +689,7 @@ body {
     padding: 0px;
 }
 
+/* Desktop + Mobile */
 .progress4:after {
     content: '';
     display: block;
@@ -854,18 +699,8 @@ body {
     border-radius: 9px;
 }
 
-
-
-/* Para a tabela na Lista de Aprovados */
-.approved-list table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-
-
-
-/* ESTILOS" */
+/* ESTILOS DE LISTAS (Melhores Disciplinas, Aprovados) */
+/* Desktop + Mobile */
 .best-disciplines h3 {
     font-size: 18px;
     font-weight: bold;
@@ -873,13 +708,15 @@ body {
     margin-bottom: 10px;
 }
 
+/* Desktop + Mobile */
 .best-disciplines p {
     font-size: 14px;
     color: #00A19A;
     margin-bottom: 20px;
 }
 
-
+/* Para a tabela na Lista de Aprovados */
+/* Desktop + Mobile */
 .approved-list h3 {
     font-size: 18px;
     font-weight: bold;
@@ -887,13 +724,20 @@ body {
     margin-bottom: 10px;
 }
 
+/* Desktop + Mobile */
 .approved-list p {
     font-size: 14px;
     color: #00A19A;
     margin-bottom: 20px;
 }
 
+/* Desktop + Mobile */
+.approved-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
+/* Desktop + Mobile */
 .approved-list th,
 .approved-list td {
     padding: 10px;
@@ -901,28 +745,27 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+/* Desktop + Mobile */
 .approved-list th {
     font-size: 14px;
     font-weight: bold;
     color: #979797;
 }
 
+/* Desktop + Mobile */
 .approved-list td {
     font-size: 14px;
     color: #333;
 }
 
 
-
-
-
-
-
-
-
+/* --------------------------------------------------
+                    ASIDE CALENDÁRIO
+-------------------------------------------------- */
 
 /* Container geral da Terceira Área */
-.flex-bottom {
+/* Desktop + Mobile */
+.flex-bottom { /* Esta é a área que contém o calendário e as propagandas no HTML */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -934,6 +777,7 @@ body {
     /* Garante que o container ocupe todo o espaço disponível */
 }
 
+/* Desktop + Mobile */
 .calendar-container {
     width: 100%;
     /* Garante que ocupe toda a largura disponível */
@@ -947,6 +791,7 @@ body {
     /* Sombra leve */
 }
 
+/* Desktop + Mobile */
 iframe {
     width: 100%;
     height: 100%;
@@ -954,7 +799,12 @@ iframe {
     border-radius: 20px;
 }
 
+/* --------------------------------------------------
+                    ASIDE PROPAGANDAS
+-------------------------------------------------- */
+
 /* Box Cinza para as Imagens */
+/* Desktop + Mobile */
 .ads-box {
     width: 100%;
     max-width: 600px;
@@ -972,6 +822,7 @@ iframe {
 }
 
 /* Container das Imagens */
+/* Desktop + Mobile */
 .ads-container {
     display: flex;
     flex-direction: column;
@@ -982,6 +833,7 @@ iframe {
 }
 
 /* Estilo para cada imagem */
+/* Desktop + Mobile */
 .ad-image {
     width: 100%;
     max-width: 100%;
@@ -991,203 +843,150 @@ iframe {
     transition: transform 0.3s ease;
 }
 
-
-
-
-
-.card2s {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 42 colunas no desktop */
-    gap: 20px;
-    /* Espaçamento entre os cards */
+/* --------------------------------------------------
+                    ATALHOS (SHORCUTS)
+-------------------------------------------------- */
+/* ===================================================================
+    Força o container inteiro de atalhos a ocupar 100% dentro do flex
+    =================================================================== */
+/* Desktop + Mobile */
+.shortcuts-section {
     width: 100% !important;
     flex-basis: 100% !important;
-    margin: 5px auto;
-    /* Centraliza e adiciona margem */
-    padding: 10px;
-}
-
-.card2 {
-    background-color: transparent;    /* sem cor de fundo */
-    border: 1px solid #DDD;            /* borda cinza clara */
-    border-radius: 15px;               /* mantém o radius */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* Alinha os elementos à esquerda */
-    padding: 20px;
-    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-    /* Sombra leve */
-    text-align: left;
-    /* Alinha o texto à esquerda */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ===================================================================
-   Força o container inteiro de atalhos a ocupar 100% dentro do flex
-   =================================================================== */
-.shortcuts-section {
-  width: 100% !important;
-  flex-basis: 100% !important;
 }
 
 /* ===================================================================
-   Grid de links 3 colunas × 2 linhas — preenche todo o espaço pai
-   =================================================================== */
+    Grid de links 3 colunas × 2 linhas — preenche todo o espaço pai
+    =================================================================== */
+/* Desktop + Mobile */
 .shortcuts-section .links-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 16px 24px !important;
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px 24px !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 /* ===================================================================
-   botões cocupando 100%
-   =================================================================== */
+    botões cocupando 100%
+    =================================================================== */
+/* Desktop + Mobile */
 .shortcuts-section .links-grid .field {
-  display: block !important;
-  width: 100% !important;
-  padding: 12px 0 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  color: #707070 !important;
-  background-color: #ECECEC !important;
-  border-radius: 8px !important;
-  transition: background-color 0.2s !important;
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    color: #707070 !important;
+    background-color: #ECECEC !important;
+    border-radius: 8px !important;
+    transition: background-color 0.2s !important;
 }
 
+/* Desktop + Mobile */
 .shortcuts-section .links-grid .field:hover {
-  background-color: #DDDDDD !important;
+    background-color: #DDDDDD !important;
 }
 
 
+/* --------------------------------------------------
+                    FOOTER
+-------------------------------------------------- */
 
-
-
+/* Desktop + Mobile */
 .footer {
-  background-color: #E0E0E0;   /* cinza claro */
-  padding: 12px 0;            
-  text-align: center;
-  font-size: 0.9rem;
-  color: #555555;
+    background-color: #E0E0E0;
+    /* cinza claro */
+    padding: 12px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555555;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* --------------------------------------------------
+                    MEDIA QUERIES (RESPONSIVIDADE)
+-------------------------------------------------- */
 
 /* Reorganização para Telas Menores */
 @media (max-width: 768px) {
 
-    /* Menu Sanduíche Aparece */
+    /* Ícone para abrir o Menu Sanduíche Aparece */
+    /* Mobile */
     .hamburger-menu {
-        display: flex;
-    }
-
-    /* Esconde o Menu Central */
-    .menu-central {
-        display: none;
+        display: flex; /* Sobrescreve o display: none para mostrar no mobile */
     }
 
     /* Centraliza a Logo */
+    /* Mobile */
     .logo {
         flex: 1;
         text-align: center;
     }
 
-    /* Botões de Mensagem e Usuário à Direita */
-    .menu-lateral {
-        gap: 10px;
+
+    /* Menu (Mobile) */
+    /* Mobile */
+    .dropdown-menu {
+        font-size: 20px;
     }
 
+    /* Submenu (Mobile) */
+    /* Mobile */
     .submenu {
         position: static;
-        /* Remove a posição absoluta no mobile */
         border-radius: 0;
-        /* Remove bordas no mobile */
     }
 
+    .submenu li a {
+        font-size: 20PX;
+    }
+
+    /* user-info (Mobile) */
+    /* Mobile */
     .user-info {
         justify-content: center;
-        /* Centraliza a imagem no círculo */
         padding: 0;
-        /* Remove o padding extra */
         width: 48px;
         height: 48px;
-        /* Redefine a altura para círculo perfeito */
         border-radius: 50%;
-        /* Transforma em círculo */
     }
 
+    /* Mobile */
     .user-info img {
         margin-right: 0;
-        /* Remove o espaçamento lateral */
     }
 
+    /* Mobile */
     .user-details {
         display: none;
         /* Esconde nome e cargo */
     }
 
-
-
     /* Tornar as áreas em coluna no mobile */
+    /* Mobile */
     .flex-container {
         flex-direction: column;
     }
 
     /* Ocultar Área Azul */
+    /* Mobile */
     .flex-blue {
         display: none;
         /* Oculta a área azul no mobile */
     }
 
+    /* field-group (Mobile) */
+    /* Mobile */
     .field-group {
         grid-template-columns: repeat(4, 1fr);
         /* 4 colunas no mobile */
     }
 
+    /* Mobile */
     .field {
         padding: 12px 18px;
         /* Reduz o tamanho para mobile */
@@ -1195,49 +994,57 @@ iframe {
         /* Reduz o tamanho da fonte */
     }
 
-
+    /* cards (Mobile) */
+    /* Mobile */
     .cards {
         grid-template-columns: repeat(2, 1fr);
         /* 2 colunas no mobile */
     }
 
+    /* Mobile */
     .card {
         padding: 15px;
     }
 
+    /* Mobile */
     .card-number {
         font-size: 20px;
     }
 
+    /* Mobile */
     .card-title {
         font-size: 14px;
     }
 
+    /* Mobile */
     .card-detail {
         font-size: 12px;
     }
 
-
-
-
+    /* report (Mobile) */
+    /* Mobile */
     .report-title {
         font-size: 48px;
         /* Reduz tamanho do título no mobile */
         text-align: center;
     }
 
+    /* Mobile */
     .report-subtitle {
         font-size: 24px;
         /* Ajusta o subtítulo */
         text-align: center;
     }
 
+    /* Mobile */
     .report-description {
         font-size: 12px;
         /* Ajusta o texto descritivo */
         text-align: center;
     }
 
+    /* Chart (Mobile) */
+    /* Mobile */
     .chart-title {
         font-size: 18px;
         font-weight: bold;
@@ -1245,6 +1052,7 @@ iframe {
         text-align: center;
     }
 
+    /* Mobile */
     .chart-description {
         font-size: 14px;
         color: #00A19A;
@@ -1252,9 +1060,8 @@ iframe {
         margin-bottom: 20px;
     }
 
-
-
-
+    /* Dual Box (Mobile) */
+    /* Mobile */
     .dual-box-container {
         flex-direction: column;
         /* Empilha os boxes no mobile */
@@ -1262,17 +1069,14 @@ iframe {
         /* Ajusta o espaçamento entre os boxes */
     }
 
+    /* Mobile */
     .box {
         width: 100%;
         /* Cada box ocupa toda a largura */
     }
 
-
-
-
-
-
-
+    /* Ads (Mobile) */
+    /* Mobile */
     .ads-container {
         display: flex;
         flex-direction: row;
@@ -1287,6 +1091,7 @@ iframe {
         /* Alinha à esquerda */
     }
 
+    /* Mobile */
     .ad-image {
         flex-shrink: 0;
         /* Impede que a imagem encolha */
@@ -1307,24 +1112,27 @@ iframe {
         /* Adiciona animação */
     }
 
-
+    /* Calendar (Mobile) */
+    /* Mobile */
     .calendar-section iframe {
         max-width: 100%;
         /* Garante que o calendário ocupe toda a largura */
     }
 
-
-
+    /* Tabela de Aprovados (Mobile) */
+    /* Mobile */
     .chart-container .approved-list {
         overflow-x: auto;
         display: block;
     }
 
+    /* Mobile */
     .chart-container .approved-list table {
         min-width: 600px;
         display: block;
     }
 
+    /* Mobile */
     .chart-container .approved-list table thead,
     .chart-container .approved-list table tbody,
     .chart-container .approved-list table tr {
@@ -1332,15 +1140,19 @@ iframe {
         width: 100%;
     }
 
-      .shortcuts-section .links-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px 16px !important; /* opcional: ajustar espaçamento */
-  }
+    /* Shortcuts (Mobile) */
+    /* Mobile */
+    .shortcuts-section .links-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px 16px !important;
+        /* opcional: ajustar espaçamento */
+    }
 
+    /* Cards2 (Mobile) */
+    /* Mobile */
     .card2s {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important; /* ou o espaçamento que preferir */
-  }
-
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        /* ou o espaçamento que preferir */
+    }
 }
-
