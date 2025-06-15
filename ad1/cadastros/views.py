@@ -3,6 +3,30 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .models import Aluno
 
+from functools import wraps
+from django.shortcuts import redirect
+from django.http import HttpResponseForbidden
+
+
+def role_required(allowed_roles):
+    #Decorator que só permite acesso se request.user.voluntario.tipo_voluntario
+    #estiver em allowed_roles. Caso contrário, 403.
+    def decorator(view_func):
+        @wraps(view_func)
+        def _wrapped(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                return redirect('login')
+            # garante que exista perfil Voluntario
+            if not hasattr(request.user, 'voluntario'):
+                return HttpResponseForbidden()
+            if request.user.voluntario.tipo_voluntario not in allowed_roles:
+                return HttpResponseForbidden()
+            return view_func(request, *args, **kwargs)
+        return _wrapped
+    return decorator
+
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -38,6 +62,8 @@ def home(request):
 
 
 # --------- Alunos ----------
+@role_required(['COORDENADOR'])
+@login_required
 def matricular_aluno(request):
     return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
 
@@ -60,32 +86,46 @@ def pesquisar_aluno(request):
 
 
 # --------- Disciplina ----------
+@role_required(['COORDENADOR'])
+@login_required
 def cadastrar_disciplina(request):
     return render(request, 'disciplinas/cadastrar_disciplina.html', {'active_menu': 'disciplina'})
 
+@login_required
 def pesquisar_disciplina(request):
     return render(request, 'disciplinas/pesquisar_disciplina.html', {'active_menu': 'disciplina'})
 
 
 # --------- Período Letivo ----------
+@role_required(['COORDENADOR'])
+@login_required
 def cadastrar_periodo(request):
     return render(request, 'periodos_letivos/cadastrar_periodo.html', {'active_menu': 'periodo'})
 
+@role_required(['COORDENADOR'])
+@login_required
 def pesquisar_periodo(request):
     return render(request, 'periodos_letivos/pesquisar_periodo.html', {'active_menu': 'periodo'})
 
 
 # --------- Turmas ----------
+@role_required(['COORDENADOR'])
+@login_required
 def cadastrar_turma(request):
     return render(request, 'turmas/cadastrar_turma.html', {'active_menu': 'turmas'})
 
+@login_required
 def pesquisar_turma(request):
     return render(request, 'turmas/pesquisar_turma.html', {'active_menu': 'turmas'})
 
 
 # --------- Voluntários ----------
+@role_required(['COORDENADOR'])
+@login_required
 def cadastrar_voluntario(request):
     return render(request, 'voluntarios/cadastrar_voluntario.html', {'active_menu': 'voluntarios'})
 
+@role_required(['COORDENADOR'])
+@login_required
 def pesquisar_voluntario(request):
     return render(request, 'voluntarios/pesquisar_voluntario.html', {'active_menu': 'voluntarios'})

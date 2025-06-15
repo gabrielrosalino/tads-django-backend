@@ -70,11 +70,13 @@ class Voluntario(models.Model):
 
     #Tipo de voluntário
     TIPO_APOIO_ADMINISTRATIVO = 'APOIO_ADMINISTRATIVO'
+    TIPO_COORDENADOR = "COORDENADOR"
     TIPO_PROFESSOR = 'PROFESSOR'
     TIPO_MONITOR = 'MONITOR'
     TIPO_OUTRO = 'OUTRO' 
     TIPO_VOLUNTARIO_CHOICES = [
         (TIPO_APOIO_ADMINISTRATIVO, 'Apoio Administrativo'),
+        (TIPO_COORDENADOR, 'Coordenador'),
         (TIPO_PROFESSOR, 'Professor(a)'),
         (TIPO_MONITOR, 'Monitor(a)'),
         (TIPO_OUTRO, 'Outro / Não especificado'), 
