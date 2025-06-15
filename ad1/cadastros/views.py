@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
-from .models import Aluno
+from .models import Aluno, Voluntario
 
 from functools import wraps
 from django.shortcuts import redirect
@@ -144,6 +144,40 @@ def cadastrar_voluntario(request):
     return render(request, 'voluntarios/cadastrar_voluntario.html', {'active_menu': 'voluntarios'})
 
 @role_required(['COORDENADOR'])
-@login_required
+# @login_required
+# def pesquisar_voluntario(request):
+#     return render(request, 'voluntarios/pesquisar_voluntario.html', {'active_menu': 'voluntarios'})
+@login_required 
 def pesquisar_voluntario(request):
-    return render(request, 'voluntarios/pesquisar_voluntario.html', {'active_menu': 'voluntarios'})
+    q = request.GET.get('q', '').strip()
+    order = request.GET.get('order', 'nome')
+    direction = request.GET.get('dir', 'asc')
+
+    voluntarios = Voluntario.objects.all()
+
+    if q:
+        voluntarios = voluntarios.filter(
+            Q(nome__icontains=q) | Q(email__icontains=q)
+        )
+
+    allowed_sort_fields = {
+        'nome': 'nome',
+        'email': 'email',
+        'tipo_voluntario': 'tipo_voluntario',
+        'status': 'status_processo_voluntario' # Mapeia 'status' para o nome real do campo
+    }
+    sort_field = allowed_sort_fields.get(order, 'nome')
+
+    if direction == 'desc':
+        sort_field = f'-{sort_field}'
+
+    voluntarios = voluntarios.order_by(sort_field)
+
+    context = {
+        'voluntarios': voluntarios,
+        'q': q,
+        'order': order,
+        'dir': direction,
+        'active_menu': 'voluntarios'
+    }
+    return render(request, 'voluntarios/pesquisar_voluntario.html', context)
