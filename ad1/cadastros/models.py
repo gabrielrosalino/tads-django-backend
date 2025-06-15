@@ -107,6 +107,11 @@ class Aluno(models.Model):
         (2, "Noturno"),
     )
 
+    STATUS_CHOICES = (
+      (0, 'Inativo'),
+      (1, 'Ativo'),
+    )
+
     # Dados pessoais
     nome            = models.CharField("Nome completo", max_length=100)
     email           = models.EmailField("E-mail", unique=True)
@@ -142,6 +147,8 @@ class Aluno(models.Model):
         null=True,                  # permite que inicialmente não tenha valor
         blank=False                 # torne obrigatório no formulário (pode mudar para True, se quiser opcional)
     )
+
+    status = models.IntegerField('Status', choices=STATUS_CHOICES, default=1)
 
     periodo_interesse = models.IntegerField(
         "Período de Interesse",

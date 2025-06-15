@@ -429,7 +429,7 @@ body {
 /* Desktop + Mobile */
 .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* alterei para 3 colunas no desktop */
     /* 4 colunas no desktop */
     gap: 20px;
     /* Espaçamento entre os cards */

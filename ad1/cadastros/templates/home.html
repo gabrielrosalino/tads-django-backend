@@ -26,26 +26,20 @@
         <div class="card">
             <div class="card-icon" style="background-color: #E0E0E0;">
                 <img src="{% static 'img/user-plus.png' %}" alt="Matriculados" width="32"></div>
-            <div class="card-number" style="color: #707070;">870</div>
-            <div class="card-title">Total de alunos matriculados</div>
+            <div class="card-number" style="color: #707070;">{{ user.voluntario.turma_alunos|default:"0" }}</div>
+            <div class="card-title">Total de alunos</div>
         </div>
         <div class="card">
             <div class="card-icon" style="background-color: #E0E0E0;">
                 <img src="{% static 'img/user-check.png' %}" alt="Ativos" width="32"></div>
-            <div class="card-number" style="color: #14AE5C;">674</div>
-            <div class="card-title">Total de alunos ativos</div>
+            <div class="card-number" style="color: #14AE5C;">{{ user.voluntario.turma|default:"0" }}</div>
+            <div class="card-title">Disciplinas ministradas</div>
         </div>
         <div class="card">
             <div class="card-icon" style="background-color: #E0E0E0;">
                 <img src="{% static 'img/user-x.png' %}" alt="Inativos" width="32"></div>
-            <div class="card-number" style="color: #C40300;">96</div>
-            <div class="card-title">Total de alunos inativos +14 dias</div>
-        </div>
-        <div class="card">
-            <div class="card-icon" style="background-color: #E0E0E0;">
-                <img src="{% static 'img/user-users.png' %}" alt="Lista de espera" width="32"></div>
-            <div class="card-number" style="color: #003479;">123</div>
-            <div class="card-title">Total da lista de espera</div> <!-- teste se ta rodando --> 
+            <div class="card-number" style="color: #C40300;">{{ user.voluntario.turma_disciplina|default:"0" }}</div>
+            <div class="card-title">Turmas vinculadas</div>
         </div>
     </div>
 
@@ -55,9 +49,9 @@
         <div class="card2">
             <h3 style="margin-top: 0;">Resumo rápido</h3>
             <ul style="padding-left: 18px; color: #555;">
-                <li>Você tem 2 avaliações de professor essa semana</li>
-                <li>Você tem 3 provas agendadas</li>
-                <li>Você tem 2 turmas sem notas lançadas</li>
+                <li>Você tem {{ user.voluntario.turma_alunos|default:"0" }} alunos</li>
+                <li>Você tem {{ user.voluntario.turma|default:"0" }} disciplinas</li>
+                <li>Você pode ministrar {{ user.voluntario.turma_disciplina|default:"0" }} tipos de materias distintas</li>
             </ul>
         </div>
         <div class="card2">
@@ -86,12 +80,9 @@
         </p>
        
         <div class="links-grid">
-            <a href="{% url 'add_student' %}" class="field">Cadastrar novo aluno</a>
-            <a href="#" class="field">Relatório de aprovações</a>
-            <a href="#" class="field">Cadastrar cursos</a>
-            <a href="#" class="field">Simulados</a>
-            <a href="#" class="field">Grade de horários</a>
-            <a href="#" class="field">Enviar notificação</a>
+            <a href="{% url 'pesquisar_aluno' %}" class="field">Meus alunos</a>
+            <a href="{% url 'pesquisar_turma' %}" class="field">Minhas turmas</a>
+            <a href="{% url 'pesquisar_disciplina' %}" class="field">Minhas disciplinas</a>
         </div>
     </div>
 

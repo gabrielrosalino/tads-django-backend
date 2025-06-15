@@ -1,49 +1,82 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Aprova System | Pesquisar Aluno {% endblock %}
-
+{% block title %}Aprova System | Pesquisar Aluno{% endblock %}
 
 {% block content %}
-<!-- Título e Subtítulo -->
-<div class="report-header">
+  <!-- Cabeçalho -->
+  <div class="report-header">
     <h3 class="report-subtitle">Pesquisar</h3>
     <h1 class="report-title">Aluno</h1>
-</div>
+  </div>
 
+  <!-- Campo de Pesquisa (enter envia, × limpa) -->
+  <form
+    id="search-form"
+    action="{% url 'pesquisar_aluno' %}"
+    method="get"
+    class="search-container search-container-table"
+  >
+    <input
+      id="search-input"
+      type="text"
+      name="q"
+      placeholder="Pesquise por um aluno"
+      value="{{ q }}"
+      autocomplete="off"
+    >
+    <button
+      id="clear-btn"
+      type="button"
+      class="clear-button"
+      aria-label="Limpar pesquisa"
+    >&times;</button>
+  </form>
 
-<!-- Campo de Pesquisa -->
-<div class="search-container search-container-table">
-    <input type="text" placeholder="Pesquise por um aluno">
-    <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
-</div>
-
-
-<!-- Tabela -->
-<table>
+  <!-- Tabela de resultados -->
+  <table>
     <thead>
-        <tr>
-            <th>Aluno</th>
-            <th>Status</th>
-        </tr>
+      <tr>
+        <th>Aluno</th>
+        <th>Status</th>
+      </tr>
     </thead>
     <tbody>
+      {% if alunos %}
+        {% for aluno in alunos %}
+          <tr>
+            <td>
+              <a href="">{{ aluno.nome }}</a>
+            </td>
+            <td>{{ aluno.get_status_display }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
         <tr>
-            <td><a href="">Aluno A</a></td>
-            <td>Ativo</td>
+          <td colspan="2">Nenhum aluno encontrado.</td>
         </tr>
-        <tr>
-            <td><a href="">Aluno B</a></td>
-            <td>Ativo</td>
-        </tr>
-        <tr>
-            <td><a href="">Aluno C</a></td>
-            <td>Ativo</td>
-        </tr>
+      {% endif %}
     </tbody>
-</table>
+  </table>
 
+  <!-- JS: só Enter envia o form; × limpa e recarrega tudo -->
+  <script>
+    (function() {
+      const form    = document.getElementById('search-form');
+      const input   = document.getElementById('search-input');
+      const clearBtn= document.getElementById('clear-btn');
 
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          form.submit();
+        }
+      });
 
-
+      clearBtn.addEventListener('click', function() {
+        input.value = '';
+        form.submit();
+      });
+    })();
+  </script>
 {% endblock %}

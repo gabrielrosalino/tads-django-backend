@@ -149,23 +149,23 @@ class CustomAlunoAdmin(admin.ModelAdmin):
         (
             "Dados Institucionais",
             {
-                "fields" : ["curso_interesse", "periodo_interesse"]
+                "fields" : ["status", "curso_interesse", "periodo_interesse"]
             }
         )
     ]
 
     # 1. Campos a serem exibidos na lista (colunas)
-    list_display = ('nome', 'contato', 'periodo_interesse', 'curso_interesse')
+    list_display = ('nome', 'contato', 'status', 'curso_interesse')
 
     # 2. Campos para pesquisa
-    search_fields = ('nome', 'contato')
+    search_fields = ('nome', 'status')
 
     # 3. Mover a barra de ações para a parte inferior
     actions_on_bottom = True
     actions_on_top = False
 
     # 4. Filtro lateral
-    list_filter = ('nome', 'contato')
+    list_filter = ('nome', 'status')
 
 # 5. Registre o seu CustomAluno
 admin.site.register(Aluno, CustomAlunoAdmin)

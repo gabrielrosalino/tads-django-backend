@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
+from .models import Aluno
 
 def index(request):
     return render(request, 'index.html')
@@ -40,8 +41,22 @@ def home(request):
 def matricular_aluno(request):
     return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
 
+@login_required
+#def pesquisar_aluno(request):
+#    return render(request, 'alunos/pesquisar_aluno.html', {'active_menu': 'alunos'})
+
 def pesquisar_aluno(request):
-    return render(request, 'alunos/pesquisar_aluno.html', {'active_menu': 'alunos'})
+    q = request.GET.get('q', '').strip()
+    if q:
+        alunos = Aluno.objects.filter(nome__icontains=q)
+    else:
+        alunos = Aluno.objects.all()
+
+    return render(request, 'alunos/pesquisar_aluno.html', {
+        'active_menu': 'alunos',
+        'alunos': alunos,
+        'q': q,
+    })
 
 
 # --------- Disciplina ----------
