@@ -14,6 +14,9 @@ def role_required(allowed_roles):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped(request, *args, **kwargs):
+            # Incluir super usuário como habilitado pra acessar todas as partes do site.
+            if request.user.is_superuser:
+                return view_func(request, *args, **kwargs)
             if not request.user.is_authenticated:
                 return redirect('login')
             # garante que exista perfil Voluntario
