@@ -14,6 +14,10 @@ def configNotifications(request):
     return render(request, 'configNotifications.html')
 
 def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+    
     return render(request, 'registration/login.html')
 
 @login_required #para apernas usuarios autenticados acessem a home
