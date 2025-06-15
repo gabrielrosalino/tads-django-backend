@@ -33,11 +33,18 @@
                 {% csrf_token %}
                 <button type="submit" style="background:none; border:none; padding:0;">
                     <img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário">
+
                 </button>
             </form>
             <div class="user-details">
-                <span class="user-name">{{ user.voluntario.nome }}</span>
-                <span class="user-role">{{ user.voluntario.tipo_voluntario }}</span>
+                <!-- Se o super usuário entrar, declarar seu papel como Administrador, se nenhum for atribuído a ele -->
+                {% if user.is_superuser and user.voluntario.tipo_voluntario == "OUTRO" %}
+                    <span class="user-name">{{ user.voluntario.nome }}</span>
+                    <span class="user-role">Administrador</span>
+                {% else %}
+                    <span class="user-name">{{ user.voluntario.nome }}</span>
+                    <span class="user-role">{{ user.voluntario.get_tipo_voluntario_display }}</span>
+                {% endif %}
             </div>
         </div>
     </header>
