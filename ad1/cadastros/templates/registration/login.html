@@ -16,16 +16,17 @@
 
         <div class="form-container">
 
-            <form action="#">
+            <form method="post">
+                {% csrf_token %}
 
                 <div class="user-details">
 
-                    <div class="input-box">
-                        <input type="text" placeholder="Endereço de e-mail" required>
+                    <div class="input-box" >
+                        {{ form.username }}
                     </div>
 
                     <div class="input-box">
-                        <input type="text" placeholder="Senha" required>
+                        {{ form.password }}
                     </div>
 
                 </div>

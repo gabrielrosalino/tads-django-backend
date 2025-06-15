@@ -11,7 +11,8 @@ urlpatterns = [
     path('add_student/', views.add_student, name = 'add_student'),
     path('login/', views.login, name = 'login'),
     path('home/', views.home, name="home"),
-
+    path('accounts/', include('django.contrib.auth.urls')),
+    
     # --------- Alunos ----------
     path('alunos/matricular/', views.matricular_aluno, name='matricular_aluno'),
     path('alunos/pesquisar/', views.pesquisar_aluno, name='pesquisar_aluno'),

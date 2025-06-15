@@ -14,9 +14,9 @@ def configNotifications(request):
     return render(request, 'configNotifications.html')
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'registration/login.html')
 
-# @login_required #para apernas usuarios autenticados acessem a home
+@login_required #para apernas usuarios autenticados acessem a home
 def home(request):
     return render(request, "home.html")
 
