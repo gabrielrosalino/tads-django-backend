@@ -5,6 +5,24 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color-light: #F5F5F5; /* Cor de fundo clara */
+    --bg-color-containers: #ffffff; /* Cor de fundo dos containers */
+    --bg-color-dark: #333; /* Cor de fundo escura */
+    --bg-menu: #003366; /* Cor de fundo do menu */
+    --bg-menu-hover: #005599; /* Cor de fundo do menu ao passar o mouse */
+    --bg-menu-active: #00A19A; /* Cor de fundo do menu ativo */
+    --text-color-light: #F5F5F5; /* Cor do texto claro */
+    --text-color-medium: #96A5B8; /* Cor do texto médio */
+    --text-color-dark: #333; /* Cor do texto escuro */
+    --border-color: #ccc; /* Cor da borda */
+    --primary-color: #003366; /* Cor primária quando precisa de azul mas não é o menu */
+    --secondary-color: #00A19A; /* Cor secundária */
+    --grey-dark: #333; /* Cinza escuro */
+    --grey-medium: #999; /* Cinza médio */
+    --grey-light: #f3f3f3; /* Cinza claro */
+}
+
 /* --------------------------------------------------
                     GLOBAL
 -------------------------------------------------- */
@@ -13,7 +31,7 @@
 /* Desktop + Mobile */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F5F5F5;
+    background-color: var(--bg-color-light);
     /* Cor de fundo da página */
 }
 
@@ -29,7 +47,7 @@ body {
 /* Desktop + Mobile */
 .flex-item {
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color-containers);
 }
 
 /* Contêiner de Pesquisa (Geral) */
@@ -46,7 +64,7 @@ body {
     border: none;
     border-radius: 20px;
     background-color: white;
-    color: #333;
+    color: var(--bg-color-dark);
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     outline: none;
@@ -62,13 +80,13 @@ body {
     background: none;
     border: none;
     font-size: 16px;
-    color: #999;
+    color: var(--grey-medium);
     cursor: pointer;
 }
 
 /* Desktop + Mobile */
 .clear-button:hover {
-    color: #333;
+    color: var(--grey-dark);
 }
 
 
@@ -76,14 +94,14 @@ body {
                     HEADER
 -------------------------------------------------- */
 
-/* Barra de Navegação */
+/* Barra de Navegação*/
 /* Desktop + Mobile */
-.navbar {
+.header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #F5F5F5;
+    background-color: var(--bg-color-containers);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -109,7 +127,7 @@ body {
     display: none;
     flex-direction: column;
     gap: 4px;
-    background: #003366;
+    background: var(--bg-menu);
     border: none;
     cursor: pointer;
     padding: 10px;
@@ -162,13 +180,13 @@ body {
 .user-name {
     font-size: 14px;
     font-weight: bold;
-    color: #333;
+    color: var(--grey-dark);
 }
 
 /* Desktop + Mobile */
 .user-role {
     font-size: 12px;
-    color: #666;
+    color: var(--grey-medium);
 }
 
 
@@ -184,7 +202,7 @@ body {
     left: 0;
     width: 80%;
     height: calc(100% - 70px);
-    background-color: #003366;
+    background-color: var(--bg-menu);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     display: none;
     z-index: 1000;
@@ -212,13 +230,13 @@ body {
     display: block;
     padding: 15px;
     text-decoration: none;
-    color: white;
+    color: var(--text-color-light);
     border-bottom: none;
 }
 
 /* Mobile */
 .dropdown-menu li a:hover {
-    background-color: #005599;
+    background-color: var(--bg-menu-hover);
     display: inline-block;
     border-radius: 30px;
 }
@@ -227,7 +245,7 @@ body {
 /* Mobile */
 .dropdown-menu .search-container {
     padding: 10px;
-    background-color: #003366;
+    background-color: var(--bg-menu);
 }
 
 /* Mobile */
@@ -239,7 +257,7 @@ body {
     margin-left: 20px;
     border-radius: 20px;
     background-color: white;
-    color: #333;
+    color: var(--text-color-dark);
     font-size: 14px;
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -270,7 +288,7 @@ body {
 
 /* Desktop + Mobile */
 .submenu li a {
-    color: white;
+    color: var(--bg-color-light);
     padding: 10px 15px;
     display: block;
     text-decoration: none;
@@ -280,7 +298,7 @@ body {
 
 /* Desktop + Mobile */
 .submenu li a:hover {
-    background-color: #005599;
+    background-color: var(--bg-menu-hover);
     display: block;
     border-radius: 50px;
 }
@@ -289,8 +307,8 @@ body {
 /* Desktop */
 .flex-blue {
     flex: 1;
-    background-color: #003366;
-    color: white;
+    background-color: var(--bg-menu);
+    color: var(--text-color-light);
     border-radius: 0 20px 20px 0;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -304,7 +322,7 @@ body {
 /* Desktop */
 .flex-blue a {
     text-decoration: none;
-    color: white;
+    color: var(--text-color-light);
     font-size: 16px;
     line-height: 1.5;
     border-radius: 20px;
@@ -314,7 +332,7 @@ body {
 
 /* Desktop */
 .flex-blue a:hover {
-    background-color: #005599;
+    background-color: var(--bg-menu-hover);
     border-radius: 50px;
 }
 
@@ -336,7 +354,7 @@ body {
 .main-menu > li > a {
     display: block;
     padding: 8px 15px;
-    color: #fff;
+    color: var(--text-color-light);
     text-decoration: none;
     font-weight: bold;
 }
@@ -358,8 +376,7 @@ body {
 /* Desktop + Mobile */
 .flex-middle {
     flex: 3;
-
-    background-color: white;
+    background-color: var(--bg-color-containers);
     border-radius: 20px;
 }
 
@@ -383,8 +400,8 @@ body {
     padding: 15px 20px;
     border: none;
     border-radius: 12px;
-    background-color: #E0E0E0;
-    color: #333;
+    background-color: #E0E0E0;     /* Essa classe aqui deveria estar num arquivo css separado! */
+    color: var(--grey-dark);
     font-size: 14px;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -760,7 +777,7 @@ body {
 
 
 /* --------------------------------------------------
-                    ASIDE CALENDÁRIO
+                    ASIDE
 -------------------------------------------------- */
 
 /* Container geral da Terceira Área */
@@ -771,12 +788,16 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-color: white;
+    background-color: var(--bg-color-containers);
     border-radius: 20px;
     width: 100%;
     /* Garante que o container ocupe todo o espaço disponível */
 }
 
+
+/* --------------------------------------------------
+                    ASIDE CALENDÁRIO
+-------------------------------------------------- */
 /* Desktop + Mobile */
 .calendar-container {
     width: 100%;
@@ -809,7 +830,7 @@ iframe {
     width: 100%;
     max-width: 600px;
     /* Limite no desktop */
-    background-color: #f0f0f0;
+    background-color: var(--bg-color-light);
     /* Fundo cinza */
     border-radius: 20px;
     /* Bordas arredondadas */

@@ -5,5 +5,45 @@
 
 
 {% block content %}
-<h1>Pesquisar Aluno</h1>
+<!-- Título e Subtítulo -->
+<div class="report-header">
+    <h3 class="report-subtitle">Pesquisar</h3>
+    <h1 class="report-title">Aluno</h1>
+</div>
+
+
+<!-- Campo de Pesquisa -->
+<div class="search-container search-container-table">
+    <input type="text" placeholder="Pesquise por um aluno">
+    <button class="clear-button" aria-label="Limpar pesquisa">&times;</button>
+</div>
+
+
+<!-- Tabela -->
+<table>
+    <thead>
+        <tr>
+            <th>Aluno</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="">Aluno A</a></td>
+            <td>Ativo</td>
+        </tr>
+        <tr>
+            <td><a href="">Aluno B</a></td>
+            <td>Ativo</td>
+        </tr>
+        <tr>
+            <td><a href="">Aluno C</a></td>
+            <td>Ativo</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
 {% endblock %}

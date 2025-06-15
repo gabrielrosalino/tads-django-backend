@@ -1,0 +1,65 @@
+/* --------------------------------------------------
+                    BARRA DE PESQUISA DA PÁGINA
+-------------------------------------------------- */
+.search-container-table {
+    max-width: 300px;
+    margin-block-start: 40px;
+    margin-block-end: 20px;
+}
+
+.search-container-table input {
+    border: 1px solid var(--grey-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+/* --------------------------------------------------
+                    TABELA DE PESQUISA
+-------------------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 7px 15px;
+}
+
+th {
+    color: var(--text-color-medium);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--text-color-medium);
+    text-align: start;
+}
+
+td {
+    text-align: left;
+    border-bottom: 1px solid #f3f3f3;
+    color: var(--text-color-dark);
+    font-size: 0.95em;
+}
+
+td a, td a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+td a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+
+/* Removendo a borda inferior da última linha para parecer com a imagem */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* --------------------------------------------------
+                    MEDIA QUERIES (RESPONSIVIDADE)
+-------------------------------------------------- */
+@media (max-width: 768px) {
+    .search-container-table {
+        max-width: 100%;
+    }
+}
