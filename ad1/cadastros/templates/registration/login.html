@@ -19,6 +19,12 @@
             <form method="post">
                 {% csrf_token %}
 
+                {% if error %}
+                    <p style="color: red; text-align: center; margin-bottom: 10px;">
+                        {{ error }}
+                    </p>
+                {% endif %}
+
                 <div class="user-details">
 
                     <div class="input-box" >

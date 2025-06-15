@@ -1,16 +1,18 @@
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
+from django.contrib.auth.views import LogoutView
 
 from . import views
 
 
 urlpatterns = [
-    path('', views.home, name = 'home'),
+    path('', RedirectView.as_view(url='/login/', permanent=False)),
+    path('login/', views.login, name = 'login'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('home/', views.home, name="home"),
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('configNotifications/', views.configNotifications, name='configNotifications'),
     path('add_student/', views.add_student, name = 'add_student'),
-    path('login/', views.login, name = 'login'),
-    path('home/', views.home, name="home"),
     path('accounts/', include('django.contrib.auth.urls')),
     
     # --------- Alunos ----------

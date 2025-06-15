@@ -29,7 +29,12 @@
 
         <!-- Foto e Nome/Cargo do Usuário -->
         <div class="user-info">
-                <a href="{% url 'login' %}"><img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário"></a>
+                <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; padding:0;">
+                        <img src="{% static 'img/user-photo.png' %}" alt="Foto do Usuário">
+                    </button>
+                </form>
             <div class="user-details">
                 <span class="user-name">{{ user.voluntario.nome }}</span>
                 <span class="user-role">{{ user.voluntario.tipo_voluntario}}</span>
