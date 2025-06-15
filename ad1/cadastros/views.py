@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .models import Aluno, Voluntario
 
+from django.db.models import Q 
+
 from functools import wraps
 from django.shortcuts import redirect
 from django.http import HttpResponseForbidden
