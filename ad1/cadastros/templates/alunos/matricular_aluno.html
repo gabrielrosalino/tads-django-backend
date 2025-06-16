@@ -9,8 +9,24 @@
     <h1 class="report-title">Aluno</h1>
   </div>
 
+{% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field in form %}
+        {% for err in field.errors %}
+          <li><strong>{{ field.label }}:</strong> {{ err }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for err in form.non_field_errors %}
+        <li>{{ err }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
   <form method="post" action="{% url 'matricular_aluno' %}">
     {% csrf_token %}
+    {{ form.status.as_hidden }}
 
     <!-- Dados Pessoais -->
     <fieldset class="chart-container">
@@ -130,6 +146,11 @@
     <fieldset class="chart-container">
       <h3 class="form__fieldset-heading">Dados Institucionais</h3>
       <div class="form-fields-wrapper">
+
+        <div class="form-group field-half">
+          {{ form.status.label_tag }}
+          {{ form.status }}
+        </div>
 
         <div class="form-group field-half">
           {{ form.curso_interesse.label_tag }}
