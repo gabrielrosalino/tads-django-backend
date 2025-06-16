@@ -1,11 +1,14 @@
-from django import forms
-from .models import Aluno
-
 # cadastros/forms.py
 from django import forms
 from .models import Aluno
 
 class AlunoForm(forms.ModelForm):
+    status = forms.ChoiceField(
+        label="Status",
+        choices=Aluno.STATUS_CHOICES,
+        widget=forms.Select(attrs={"class": "form-control"}),
+        initial=1,  # 1 = “Ativo” por default
+    )
     class Meta:
         model = Aluno
         fields = [

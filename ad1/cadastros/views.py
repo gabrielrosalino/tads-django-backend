@@ -83,6 +83,8 @@ def pesquisar_aluno(request):
     if q:
         alunos = alunos.filter(nome__icontains=q)
 
+    componentes = Aluno.objects.all()
+
     # ordenação
     # campos permitidos para ordenar
     allowed = {'nome': 'nome', 'status': 'status'}
@@ -109,7 +111,7 @@ def matricular_aluno(request):
         form = AlunoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('matricular_aluno')
+            return redirect('pesquisar_aluno')
     else:
         form = AlunoForm()
 
@@ -117,8 +119,6 @@ def matricular_aluno(request):
         'form': form,
         'active_menu': 'alunos'
     })
-
-
 
 
 
