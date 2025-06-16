@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
-from .models import Aluno, Voluntario, Disciplina, Periodo_Letivo, Turma
+from .models import *
 from .forms import AlunoForm
 
 from django.db.models import Q 
@@ -68,41 +68,45 @@ def home(request):
 
 
 # --------- Alunos ----------
-
-#@role_required(['COORDENADOR'])
-#@login_required
-#def matricular_aluno(request):
-#    return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
-
-
 @login_required
 def pesquisar_aluno(request):
-    # busca
-    q = request.GET.get('q', '').strip()
-    alunos = Aluno.objects.all()
-    if q:
-        alunos = alunos.filter(nome__icontains=q)
-
-    componentes = Aluno.objects.all()
-
-    # ordenação
-    # campos permitidos para ordenar
-    allowed = {'nome': 'nome', 'status': 'status'}
+    query = request.GET.get('q', '')
     order = request.GET.get('order', 'nome')
-    direction = request.GET.get('dir', 'asc')
-    if order not in allowed:
-        order = 'nome'
-    # prefixo '-' para desc
-    prefix = '' if direction == 'asc' else '-'
-    alunos = alunos.order_by(f"{prefix}{allowed[order]}")
+    dir = request.GET.get('dir', 'asc')
 
-    return render(request, 'alunos/pesquisar_aluno.html', {
+    voluntario = getattr(request.user, 'voluntario', None)
+
+    alunos = Aluno.objects.all()
+
+    if voluntario and voluntario.tipo_voluntario == 'PROFESSOR':
+        turmas_ids = TurmaDisciplinaProfessor.objects.filter(
+            voluntario=voluntario,
+            status=1,
+            turma_disciplina__status=1
+        ).values_list('turma_disciplina__turma_id', flat=True).distinct()
+
+        alunos_ids = TurmaAluno.objects.filter(
+            turma_id__in=turmas_ids,
+            status=1
+        ).values_list('aluno_id', flat=True).distinct()
+
+        alunos = Aluno.objects.filter(id__in=alunos_ids)
+
+    if query:
+        alunos = alunos.filter(nome__icontains=query)
+
+    if dir == 'desc':
+        order = f'-{order}'
+    alunos = alunos.order_by(order)
+
+    context = {
         'alunos': alunos,
-        'q': q,
-        'order': order,
-        'dir': direction,
-        'active_menu': 'alunos',
-    })
+        'q': query,
+        'order': request.GET.get('order', 'nome'),
+        'dir': request.GET.get('dir', 'asc')
+    }
+
+    return render(request, 'alunos/pesquisar_aluno.html', context)
 
 @role_required(['COORDENADOR'])
 @login_required
