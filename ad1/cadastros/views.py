@@ -134,15 +134,25 @@ def cadastrar_disciplina(request):
 
 @login_required
 def pesquisar_disciplina(request):
-    return render(request, 'disciplinas/pesquisar_disciplina.html', {'active_menu': 'disciplina'})
-
-@login_required
-def pesquisar_disciplina(request):
     q = request.GET.get('q', '').strip()
+    voluntario = getattr(request.user, 'voluntario', None)
+
     disciplinas = Disciplina.objects.all()
 
+    if voluntario and voluntario.tipo_voluntario == 'PROFESSOR':
+        # Disciplinas vinculadas ao professor via TurmaDisciplinaProfessor
+        disciplina_ids = TurmaDisciplinaProfessor.objects.filter(
+            voluntario=voluntario,
+            status=1,
+            turma_disciplina__status=1
+        ).values_list('turma_disciplina__disciplina_id', flat=True).distinct()
+        disciplinas = disciplinas.filter(id__in=disciplina_ids)
+
     if q:
-        disciplinas = disciplinas.filter(Q(nome__icontains=q) | Q(area_conhecimento__icontains=q))
+        disciplinas = disciplinas.filter(
+            Q(nome__icontains=q) |
+            Q(area_conhecimento__icontains=q)
+        )
 
     allowed_fields = {'nome': 'nome', 'area_conhecimento': 'area_conhecimento', 'status': 'status'}
     order = request.GET.get('order', 'nome')
@@ -206,8 +216,6 @@ def pesquisar_periodo(request):
     })
 
 
-
-
 # --------- Turmas ----------
 @role_required(['COORDENADOR'])
 @login_required
@@ -217,10 +225,24 @@ def cadastrar_turma(request):
 @login_required
 def pesquisar_turma(request):
     q = request.GET.get('q', '').strip()
+    voluntario = getattr(request.user, 'voluntario', None)
+
     turmas = Turma.objects.all()
 
+    if voluntario and voluntario.tipo_voluntario == 'PROFESSOR':
+        # Filtra turmas onde o professor leciona via TurmaDisciplinaProfessor
+        turmas_ids = TurmaDisciplinaProfessor.objects.filter(
+            voluntario=voluntario,
+            status=1,
+            turma_disciplina__status=1
+        ).values_list('turma_disciplina__turma_id', flat=True).distinct()
+        turmas = turmas.filter(id_turma__in=turmas_ids)
+
     if q:
-        turmas = turmas.filter(Q(nome__icontains=q) | Q(periodo_letivo__nome__icontains=q))
+        turmas = turmas.filter(
+            Q(nome__icontains=q) |
+            Q(periodo_letivo__nome__icontains=q)
+        )
 
     allowed_fields = {
         'nome': 'nome',
@@ -248,18 +270,13 @@ def pesquisar_turma(request):
     })
 
 
-
-
 # --------- Voluntários ----------
 @role_required(['COORDENADOR'])
 @login_required
 def cadastrar_voluntario(request):
     return render(request, 'voluntarios/cadastrar_voluntario.html', {'active_menu': 'voluntarios'})
 
-@role_required(['COORDENADOR'])
-# @login_required
-# def pesquisar_voluntario(request):
-#     return render(request, 'voluntarios/pesquisar_voluntario.html', {'active_menu': 'voluntarios'})
+
 @login_required 
 def pesquisar_voluntario(request):
     q = request.GET.get('q', '').strip()

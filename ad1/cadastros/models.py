@@ -319,9 +319,6 @@ class TurmaDisciplina(models.Model):
         verbose_name = "Turma Disciplina"
         verbose_name_plural = "Disciplinas das Turmas"
         unique_together = ('turma', 'disciplina')
-    
-    def __str__(self):
-        return self.nome
 
 
 class TurmaAluno(models.Model):
@@ -359,8 +356,6 @@ class TurmaAluno(models.Model):
         verbose_name_plural = "Alunos das Turmas"
         unique_together = ('turma', 'aluno')
     
-    def __str__(self):
-        return self.nome
 
 
 class TurmaDisciplinaProfessor(models.Model):
@@ -398,5 +393,3 @@ class TurmaDisciplinaProfessor(models.Model):
         verbose_name_plural = "Professores das Disciplinas nas Turmas"
         unique_together = ('turma_disciplina', 'voluntario')
     
-    def __str__(self):
-        return self.nome
