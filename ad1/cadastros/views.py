@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .models import *
-from .forms import AlunoForm
+from .forms import AlunoForm, PeriodoLetivoForm
 
 from django.db.models import Q 
 
@@ -178,7 +178,14 @@ def pesquisar_disciplina(request):
 @role_required(['COORDENADOR'])
 @login_required
 def cadastrar_periodo(request):
-    return render(request, 'periodos_letivos/cadastrar_periodo.html', {'active_menu': 'periodo'})
+    if request.method == 'POST':
+        form = PeriodoLetivoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cadastrar_periodo')
+    else:
+        form = PeriodoLetivoForm()
+    return render(request, 'periodos_letivos/cadastrar_periodo.html', {'form': form})
 
 @role_required(['COORDENADOR'])
 @login_required

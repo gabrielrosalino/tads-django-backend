@@ -1,6 +1,6 @@
 # cadastros/forms.py
 from django import forms
-from .models import Aluno
+from .models import Aluno, Periodo_Letivo
 
 class AlunoForm(forms.ModelForm):
     status = forms.ChoiceField(
@@ -23,3 +23,12 @@ class AlunoForm(forms.ModelForm):
             # Dados Institucionais
             "status", "curso_interesse", "periodo_interesse",
         ]
+
+
+class PeriodoLetivoForm(forms.ModelForm):
+    class Meta:
+        model = Periodo_Letivo
+        fields = ['nome', 'data_inicio', 'data_fim', 'ano', 'semestre', 'status']
+        widgets = {
+            'nome': forms.HiddenInput(),
+        }
