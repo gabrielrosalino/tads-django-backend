@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .models import Aluno, Voluntario
+from .forms import AlunoForm
 
 from django.db.models import Q 
 
@@ -67,12 +68,11 @@ def home(request):
 
 
 # --------- Alunos ----------
-@role_required(['COORDENADOR'])
-@login_required
-def matricular_aluno(request):
-    return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
 
-
+#@role_required(['COORDENADOR'])
+#@login_required
+#def matricular_aluno(request):
+#    return render(request, 'alunos/matricular_aluno.html', {'active_menu': 'alunos'})
 
 
 @login_required
@@ -101,6 +101,23 @@ def pesquisar_aluno(request):
         'dir': direction,
         'active_menu': 'alunos',
     })
+
+@role_required(['COORDENADOR'])
+@login_required
+def matricular_aluno(request):
+    if request.method == 'POST':
+        form = AlunoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('matricular_aluno')
+    else:
+        form = AlunoForm()
+
+    return render(request, 'alunos/matricular_aluno.html', {
+        'form': form,
+        'active_menu': 'alunos'
+    })
+
 
 
 
