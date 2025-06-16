@@ -16,8 +16,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     
     # --------- Alunos ----------
-    path('alunos/matricular/', views.matricular_aluno, name='matricular_aluno'),
+    #path('alunos/matricular/', views.matricular_aluno, name='matricular_aluno'),
     path('alunos/pesquisar/', views.pesquisar_aluno, name='pesquisar_aluno'),
+    path('matricular_aluno/', views.matricular_aluno, name = 'matricular_aluno'),
 
     # --------- Disciplina ----------
     path('disciplinas/cadastrar/', views.cadastrar_disciplina, name='cadastrar_disciplina'),

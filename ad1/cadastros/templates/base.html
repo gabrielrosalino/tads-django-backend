@@ -48,11 +48,20 @@
             <div class="user-details">
                 <!-- Se o super usuário entrar, declarar seu papel como Administrador, se nenhum for atribuído a ele -->
                 {% if user.is_superuser and user.voluntario.tipo_voluntario == "OUTRO" %}
-                    <span class="user-name">{{ user.voluntario.nome }}</span>
+                    {% if user.get_full_name %}
+                        <span class="user-name">{{ user.get_full_name }}</span>
+                    {% else %}
+                        <span class="user-name">{{ user.voluntario.nome }}</span>
+                    {% endif %}
                     <span class="user-role">Administrador</span>
                 {% else %}
-                    <span class="user-name">{{ user.voluntario.nome }}</span>
+                    {% if user.get_full_name %}
+                        <span class="user-name">{{ user.get_full_name }}</span>
+                    {% else %}
+                        <span class="user-name">{{ user.voluntario.nome }}</span>
+                    {% endif %}
                     <span class="user-role">{{ user.voluntario.get_tipo_voluntario_display }}</span>
+
                 {% endif %}
             </div>
         </div>

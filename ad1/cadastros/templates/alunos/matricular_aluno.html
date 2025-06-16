@@ -1,9 +1,174 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block title %}Aprova System | Matricular Aluno {% endblock %}
-
+{% block title %}Aprova System | Matricular Aluno{% endblock %}
 
 {% block content %}
-<h2>Matricular Aluno</h2>
+  <div class="report-header">
+    <h3 class="report-subtitle">Matricular</h3>
+    <h1 class="report-title">Aluno</h1>
+  </div>
+
+{% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field in form %}
+        {% for err in field.errors %}
+          <li><strong>{{ field.label }}:</strong> {{ err }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for err in form.non_field_errors %}
+        <li>{{ err }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+  <form method="post" action="{% url 'matricular_aluno' %}">
+    {% csrf_token %}
+    {{ form.status.as_hidden }}
+
+    <!-- Dados Pessoais -->
+    <fieldset class="chart-container">
+      <h3 class="form__fieldset-heading">Dados Pessoais</h3>
+      <div class="form-fields-wrapper">
+
+        <div class="form-group field-full">
+          {{ form.nome.label_tag }}
+          {{ form.nome }}
+        </div>
+
+        <div class="form-group field-full">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.contato.label_tag }}
+          {{ form.contato }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.nascimento.label_tag }}
+          {{ form.nascimento }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.nacionalidade.label_tag }}
+          {{ form.nacionalidade }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.naturalidade.label_tag }}
+          {{ form.naturalidade }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.estado_civil.label_tag }}
+          {{ form.estado_civil }}
+        </div>
+
+      </div>
+    </fieldset>
+
+    <!-- Dados Residenciais -->
+    <fieldset class="chart-container">
+      <h3 class="form__fieldset-heading">Dados Residenciais</h3>
+      <div class="form-fields-wrapper">
+
+        <div class="form-group field-full">
+          {{ form.rua.label_tag }}
+          {{ form.rua }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.numero.label_tag }}
+          {{ form.numero }}
+        </div>
+        <div class="form-group field-half">
+          {{ form.complemento.label_tag }}
+          {{ form.complemento }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.bairro.label_tag }}
+          {{ form.bairro }}
+        </div>
+        <div class="form-group field-half">
+          {{ form.cidade.label_tag }}
+          {{ form.cidade }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.estado.label_tag }}
+          {{ form.estado }}
+        </div>
+        <div class="form-group field-half">
+          {{ form.cep.label_tag }}
+          {{ form.cep }}
+        </div>
+
+      </div>
+    </fieldset>
+
+    <!-- Dados Socioeconômicos -->
+    <fieldset class="chart-container">
+      <h3 class="form__fieldset-heading">Dados Socioeconômicos</h3>
+      <div class="form-fields-wrapper">
+
+        <div class="form-group field-full">
+          {{ form.nome_mae.label_tag }}
+          {{ form.nome_mae }}
+        </div>
+        <div class="form-group field-half">
+          {{ form.escolaridade_mae.label_tag }}
+          {{ form.escolaridade_mae }}
+        </div>
+
+        <div class="form-group field-full">
+          {{ form.nome_pai.label_tag }}
+          {{ form.nome_pai }}
+        </div>
+        <div class="form-group field-half">
+          {{ form.escolaridade_pai.label_tag }}
+          {{ form.escolaridade_pai }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.renda_familiar.label_tag }}
+          {{ form.renda_familiar }}
+        </div>
+
+      </div>
+    </fieldset>
+
+    <!-- Dados Institucionais -->
+    <fieldset class="chart-container">
+      <h3 class="form__fieldset-heading">Dados Institucionais</h3>
+      <div class="form-fields-wrapper">
+
+        <div class="form-group field-half">
+          {{ form.status.label_tag }}
+          {{ form.status }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.curso_interesse.label_tag }}
+          {{ form.curso_interesse }}
+        </div>
+
+        <div class="form-group field-half">
+          {{ form.periodo_interesse.label_tag }}
+          {{ form.periodo_interesse }}
+        </div>
+
+      </div>
+    </fieldset>
+
+    <!-- Botões -->
+    <div class="btn_wrapper">
+      <button type="submit" class="btn btn-save">Cadastrar</button>
+      <button type="reset"  class="btn btn-cancel">Cancelar</button>
+    </div>
+  </form>
 {% endblock %}

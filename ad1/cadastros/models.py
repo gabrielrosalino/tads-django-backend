@@ -101,7 +101,6 @@ class Voluntario(models.Model):
     def __str__(self):
         return self.user.username 
     
-# Modelo estudante
 class Aluno(models.Model):
     PERIODO_INTERESSE = (
         (0, "Matutino"),
@@ -110,8 +109,24 @@ class Aluno(models.Model):
     )
 
     STATUS_CHOICES = (
-      (0, 'Inativo'),
-      (1, 'Ativo'),
+        (0, 'Inativo'),
+        (1, 'Ativo'),
+    )
+
+    ESTADO_CIVIL_CHOICES = (
+        ("solteiro", "Solteiro(a)"),
+        ("casado", "Casado(a)"),
+        ("divorciado", "Divorciado(a)"),
+        ("viuvo", "Viúvo(a)"),
+    )
+
+    ESCOLARIDADE_CHOICES = (
+        ("ensino_fundamental_incompleto", "Ensino Fundamental Incompleto"),
+        ("ensino_fundamental_completo",   "Ensino Fundamental Completo"),
+        ("ensino_medio_incompleto",       "Ensino Médio Incompleto"),
+        ("ensino_medio_completo",         "Ensino Médio Completo"),
+        ("ensino_superior_incompleto",    "Ensino Superior Incompleto"),
+        ("ensino_superior_completo",      "Ensino Superior Completo"),
     )
 
     # Dados pessoais
@@ -121,16 +136,35 @@ class Aluno(models.Model):
     nascimento      = models.DateField("Data de nascimento", null=True, blank=True)
     nacionalidade   = models.CharField("Nacionalidade", max_length=50, blank=True)
     naturalidade    = models.CharField("Naturalidade", max_length=50, blank=True)
-    estado_civil    = models.CharField("Estado Civil", max_length=20, blank=True)
+    estado_civil    = models.CharField(
+                         "Estado Civil",
+                         max_length=20,
+                         choices=ESTADO_CIVIL_CHOICES,
+                         default="solteiro"
+                      )
 
     # Dados familiares
     nome_pai        = models.CharField("Nome do Pai", max_length=100, blank=True)
-    escolaridade_pai= models.CharField("Escolaridade do Pai", max_length=50, blank=True)
+    escolaridade_pai = models.CharField(
+                         "Escolaridade do Pai",
+                         max_length=50,
+                         choices=ESCOLARIDADE_CHOICES,
+                         blank=True
+                       )
     nome_mae        = models.CharField("Nome da Mãe", max_length=100, blank=True)
-    escolaridade_mae= models.CharField("Escolaridade da Mãe", max_length=50, blank=True)
+    escolaridade_mae = models.CharField(
+                         "Escolaridade da Mãe",
+                         max_length=50,
+                         choices=ESCOLARIDADE_CHOICES,
+                         blank=True
+                       )
 
     # Sócio-econômicos
-    renda_familiar  = models.DecimalField("Renda familiar média", max_digits=10, decimal_places=2, null=True, blank=True)
+    renda_familiar  = models.DecimalField(
+                         "Renda familiar média",
+                         max_digits=10, decimal_places=2,
+                         null=True, blank=True
+                      )
 
     # Endereço
     rua             = models.CharField("Rua", max_length=200)
@@ -143,25 +177,26 @@ class Aluno(models.Model):
 
     # Institucionais
     curso_interesse = models.ForeignKey(
-        'Curso',
-        verbose_name="Curso de Interesse",
-        on_delete=models.SET_NULL,  # ou PROTECT, dependendo de como queira tratar exclusão
-        null=True,                  # permite que inicialmente não tenha valor
-        blank=False                 # torne obrigatório no formulário (pode mudar para True, se quiser opcional)
-    )
-
-    status = models.IntegerField('Status', choices=STATUS_CHOICES, default=1)
-
+                         'Curso',
+                         verbose_name="Curso de Interesse",
+                         on_delete=models.SET_NULL,
+                         null=True, blank=False
+                       )
+    status          = models.IntegerField(
+                         "Status",
+                         choices=STATUS_CHOICES,
+                         default=1
+                       )
     periodo_interesse = models.IntegerField(
-        "Período de Interesse",
-        choices=PERIODO_INTERESSE,
-        default=0,            # <— define MATUTINO como padrão
-    )
-
-    # TODO: id_curso = models.ForeignKey(Curso)
+                            "Período de Interesse",
+                            choices=PERIODO_INTERESSE,
+                            default=0
+                         )
 
     def __str__(self):
-        return self.nome  
+        return self.nome
+    
+    
 
 #Modelo Disciplina
 class Disciplina(models.Model):
