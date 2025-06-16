@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Aprova System{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     <link rel="stylesheet" href="{% static 'css/search_tables.css' %}">
 </head>
@@ -154,6 +156,8 @@
     
     <section>
         <div class="flex-container">
+
+            <!-- Menu Desktop -->
             <div class="flex-item flex-blue">
                 <div class="search-container">
                     <input type="text" placeholder="Pesquise">
@@ -246,6 +250,7 @@
                 </ul>
             </div>
             
+            <!-- Bloco Content -->
             <div class="flex-item flex-middle">
                 {% block content %}{% endblock %}
             </div>

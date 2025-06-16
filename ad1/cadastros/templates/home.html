@@ -1,97 +1,86 @@
-{% extends 'base.html' %}
-{% load static %}
+    {% extends 'base.html' %}
+    {% load static %}
 
-{% block title %}Aprova System | Home{% endblock %}
+    {% block title %}Aprova System | Home{% endblock %}
 
-{% block left_menu %}
-<a href="{% url 'dashboard' %}" class="active">Relatório de Aprovações</a>
-<a href="#">Relatório de Desempenho</a>
-<a href="#">Exportar Relatórios</a>
-{% endblock %}
+    {% block left_menu %}
+    <a href="{% url 'dashboard' %}" class="active">Relatório de Aprovações</a>
+    <a href="#">Relatório de Desempenho</a>
+    <a href="#">Exportar Relatórios</a>
+    {% endblock %}
 
-{% block content %}
-<div class="flex-container" style="margin-top: 0px; flex-wrap: wrap; max-width: 1100px; margin-inline: auto;">
-    <!-- Saudação -->
-    <div class="flex-middle" style="width: 100%; padding: 5px 20px 0px 20px;">
-        <h2 style="font-size: 32px; margin-bottom: 0;">Olá,</h2>
-        <h2 style="font-size: 32px; color: #00A19A; margin-top: 0;">{{ user.voluntario.nome }}</h2>
-        <p style="margin-top: 10px; font-size: 16px; color: #555;">
-            Estamos felizes por ter você aqui! Conte com a nossa plataforma para facilitar o seu dia a dia,
-            com praticidade, organização e tudo o que você precisa para uma gestão mais eficiente.
-        </p>
+    {% block content %}
+    <div class="flex-container" style="margin-top: 0px; flex-wrap: wrap; max-width: 1100px; margin-inline: auto;">
+        <!-- Saudação -->
+        <div class="flex-middle" style="width: 100%; padding: 5px 20px 0px 20px;">
+            <h2 style="font-size: 32px; margin-bottom: 0;">Olá,</h2>
+            <h2 style="font-size: 32px; color: #00A19A; margin-top: 0;">{{ user.voluntario.nome }}</h2>
+            <p style="margin-top: 10px; font-size: 16px; color: #555;">
+                Estamos felizes por ter você aqui! Conte com a nossa plataforma para facilitar o seu dia a dia,
+                com praticidade, organização e tudo o que você precisa para uma gestão mais eficiente.
+            </p>
+        </div>
+
+        <!-- Cards principais -->
+        <div class="cards" style="margin-top: 0px;">
+            <div class="card">
+                <div class="card-icon" style="background-color: #E0E0E0;">
+                    <img src="{% static 'img/user-plus.png' %}" alt="Matriculados" width="32"></div>
+                <div class="card-number" style="color: #707070;">{{ user.voluntario.turma_alunos|default:"0" }}</div>
+                <div class="card-title">Total de alunos</div>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background-color: #E0E0E0;">
+                    <img src="{% static 'img/user-check.png' %}" alt="Ativos" width="32"></div>
+                <div class="card-number" style="color: #14AE5C;">{{ user.voluntario.turma|default:"0" }}</div>
+                <div class="card-title">Disciplinas ministradas</div>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background-color: #E0E0E0;">
+                    <img src="{% static 'img/user-x.png' %}" alt="Inativos" width="32"></div>
+                <div class="card-number" style="color: #C40300;">{{ user.voluntario.turma_disciplina|default:"0" }}</div>
+                <div class="card-title">Turmas vinculadas</div>
+            </div>
+        </div>
+
+
+        <!-- Cards Resumo + Editais -->
+        <div class="card2s" style="margin-top: 0px;">
+            <div class="card2">
+                <h3 style="margin-top: 0;">Resumo rápido</h3>
+                <ul style="padding-left: 18px; color: #555;">
+                    <li>Você tem {{ user.voluntario.turma_alunos|default:"0" }} alunos</li>
+                    <li>Você tem {{ user.voluntario.turma|default:"0" }} disciplinas</li>
+                    <li>Você pode ministrar {{ user.voluntario.turma_disciplina|default:"0" }} tipos de materias distintas</li>
+                </ul>
+            </div>
+            <div class="card2">
+                <h3 style="margin-top: 0;">Editais</h3>
+                <ul style="padding-left: 18px; color: #555;">
+                    <li>Edital Vestibular Unificado UFSC/IFSC 2025.2</li>
+                    <li>Edital Vestibular de Inverno UDESC 2025.2</li>
+                    <li>Edital Vestibular UNISUL</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- === Atalhos para ações frequentes === -->
+        <div class="shortcuts-section">
+            <p style="margin-top: 10px; font-size: 24px; color: #555;">
+                <strong>Atalhos para ações frequentes</strong> 
+            </p>
+            <p style="margin-top: 10px; margin-bottom: 10px; font-size: 16px; color: #555;">
+                Veja aqui seus links mais acessados na última semana.
+            </p>
+        
+            <div class="links-grid">
+                <a href="{% url 'pesquisar_aluno' %}" class="field">Meus alunos</a>
+                <a href="{% url 'pesquisar_turma' %}" class="field">Minhas turmas</a>
+                <a href="{% url 'pesquisar_disciplina' %}" class="field">Minhas disciplinas</a>
+            </div>
+        </div>
+        
     </div>
-
-    <!-- Cards principais -->
-    <div class="cards" style="margin-top: 0px;">
-        <div class="card">
-            <div class="card-icon" style="background-color: #E0E0E0;">
-                <img src="{% static 'img/user-plus.png' %}" alt="Matriculados" width="32"></div>
-            <div class="card-number" style="color: #707070;">{{ user.voluntario.turma_alunos|default:"0" }}</div>
-            <div class="card-title">Total de alunos</div>
-        </div>
-        <div class="card">
-            <div class="card-icon" style="background-color: #E0E0E0;">
-                <img src="{% static 'img/user-check.png' %}" alt="Ativos" width="32"></div>
-            <div class="card-number" style="color: #14AE5C;">{{ user.voluntario.turma|default:"0" }}</div>
-            <div class="card-title">Disciplinas ministradas</div>
-        </div>
-        <div class="card">
-            <div class="card-icon" style="background-color: #E0E0E0;">
-                <img src="{% static 'img/user-x.png' %}" alt="Inativos" width="32"></div>
-            <div class="card-number" style="color: #C40300;">{{ user.voluntario.turma_disciplina|default:"0" }}</div>
-            <div class="card-title">Turmas vinculadas</div>
-        </div>
-    </div>
-
-
-    <!-- Cards Resumo + Editais -->
-    <div class="card2s" style="margin-top: 0px;">
-        <div class="card2">
-            <h3 style="margin-top: 0;">Resumo rápido</h3>
-            <ul style="padding-left: 18px; color: #555;">
-                <li>Você tem {{ user.voluntario.turma_alunos|default:"0" }} alunos</li>
-                <li>Você tem {{ user.voluntario.turma|default:"0" }} disciplinas</li>
-                <li>Você pode ministrar {{ user.voluntario.turma_disciplina|default:"0" }} tipos de materias distintas</li>
-            </ul>
-        </div>
-        <div class="card2">
-            <h3 style="margin-top: 0;">Editais</h3>
-            <ul style="padding-left: 18px; color: #555;">
-                <li>Edital Vestibular Unificado UFSC/IFSC 2025.2</li>
-                <li>Edital Vestibular de Inverno UDESC 2025.2</li>
-                <li>Edital Vestibular UNISUL</li>
-            </ul>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <!-- === Atalhos para ações frequentes === -->
-    <div class="shortcuts-section">
-        <p style="margin-top: 10px; font-size: 24px; color: #555;">
-            <strong>Atalhos para ações frequentes</strong> 
-        </p>
-        <p style="margin-top: 10px; margin-bottom: 10px; font-size: 16px; color: #555;">
-            Veja aqui seus links mais acessados na última semana.
-        </p>
-       
-        <div class="links-grid">
-            <a href="{% url 'pesquisar_aluno' %}" class="field">Meus alunos</a>
-            <a href="{% url 'pesquisar_turma' %}" class="field">Minhas turmas</a>
-            <a href="{% url 'pesquisar_disciplina' %}" class="field">Minhas disciplinas</a>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    
-</div>
-{% endblock %}
+    {% endblock %}

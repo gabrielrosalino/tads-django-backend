@@ -3,7 +3,110 @@
 
 {% block title %}Aprova System | Pesquisar Disciplina {% endblock %}
 
-
 {% block content %}
-<h1>Pesquisar Disciplina</h1>
+<div class="report-header">
+    <h3 class="report-subtitle">Pesquisar</h3>
+    <h1 class="report-title">Disciplina</h1>
+</div>
+
+<form
+    id="search-form"
+    action="{% url 'pesquisar_disciplina' %}"
+    method="get"
+    class="search-container search-container-table"
+>
+    <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder="Pesquise por uma disciplina"
+        value="{{ q|urlencode }}"
+        autocomplete="off"
+    >
+    <button
+        id="clear-btn"
+        type="button"
+        class="clear-button"
+        aria-label="Limpar pesquisa"
+    >&times;</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th class="sortable" data-field="nome">
+                <span>Disciplina</span>
+                {% if order == 'nome' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="area_conhecimento">
+                <span>Área de Conhecimento</span>
+                {% if order == 'area_conhecimento' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="status">
+                <span>Status</span>
+                {% if order == 'status' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if disciplinas %}
+            {% for disciplina in disciplinas %}
+                <tr>
+                    <td>{{ disciplina.nome }}</td>
+                    <td>{{ disciplina.get_area_conhecimento_display }}</td>
+                    <td>{{ disciplina.get_status_display }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3">Nenhuma disciplina encontrada.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const form     = document.getElementById('search-form');
+      const input    = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const qParam   = "{{ q|escapejs }}";
+      let orderParam = "{{ order }}";
+      let dirParam   = "{{ dir }}";
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          form.submit();
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        form.submit();
+      });
+
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.style.cursor = 'pointer';
+        th.addEventListener('click', () => {
+          const field = th.dataset.field;
+          let newDir = 'asc';
+          if (field === orderParam) {
+            newDir = dirParam === 'asc' ? 'desc' : 'asc';
+          }
+          const params = new URLSearchParams();
+          if (qParam) params.set('q', qParam);
+          params.set('order', field);
+          params.set('dir', newDir);
+          window.location.search = params.toString();
+        });
+      });
+    });
+</script>
 {% endblock %}

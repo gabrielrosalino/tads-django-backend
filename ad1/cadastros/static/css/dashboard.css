@@ -1,0 +1,387 @@
+/* --------------------------------------------------
+                    RELATÓRIOS E GRÁFICOS
+-------------------------------------------------- */
+
+/* Container dos Campos (field-group) */
+/* Desktop + Mobile */
+.field-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 colunas para desktop */
+    gap: 15px;
+    /* Espaçamento entre os itens */
+    margin: 20px auto;
+    /* Centraliza horizontalmente */
+    max-width: 1050px;
+    /* Define a largura máxima do container */
+}
+
+
+/* Estilo dos Campos (field) */
+/* Desktop + Mobile */
+.field {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #E0E0E0;     /* Essa classe aqui deveria estar num arquivo css separado! */
+    color: var(--grey-dark);
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Desktop + Mobile */
+.field:hover {
+    background-color: #005599;
+    color: white;
+}
+
+
+/* Nota: .stats foi mantido aqui como estava, embora não pareça estar no HTML do header.
+   Se ele não pertence ao header, você pode movê-lo para uma seção mais apropriada (ex: BLOCK CONTENT). */
+/* Desktop + Mobile */
+.stats {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+}
+
+
+/* Desktop + Mobile */
+.card-detail {
+    font-size: 12px;
+    color: #979797;
+    /* Cor do detalhe */
+}
+
+
+
+/* Estilo do cabeçalho do relatório */
+/* Desktop + Mobile */
+.report-header {
+    text-align: left;
+    /* Centraliza o texto */
+    margin-bottom: 20px;
+    /* Espaço abaixo do cabeçalho */
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-subtitle {
+    font-size: 20px;
+    color: #464646;
+    /* Cor do subtítulo */
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-title {
+    font-size: 60px;
+    color: #00A19A;
+    /* Cor principal do título */
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* Desktop + Mobile */
+.report-description {
+    font-size: 16px;
+    color: #979797;
+    /* Cor secundária para o texto */
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* GRAFICOOO */
+/* Desktop + Mobile */
+.chart-container {
+    margin: 30px auto;
+    max-width: 1050px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1PX solid #c4c4c4;
+    border-radius: 20px;
+}
+
+/* Desktop + Mobile */
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    text-align: left;
+}
+
+/* Desktop + Mobile */
+.chart-description {
+    font-size: 14px;
+    color: #00A19A;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Container geral para os dois boxes (dual-box-container) */
+/* Desktop + Mobile */
+.dual-box-container {
+    display: flex;
+    justify-content: space-between;
+    /* Espaçamento entre os boxes */
+    gap: 20px;
+    /* Espaçamento horizontal */
+    align-items: flex-start;
+    /* Alinha os boxes no topo */
+}
+
+/* Estilo padrão para os boxes */
+/* Desktop + Mobile */
+.box {
+    flex: 1;
+    /* Cada box ocupa metade do espaço */
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1PX solid #c4c4c4;
+    border-radius: 20px;
+
+}
+
+/* Barras de progresso */
+/* Desktop + Mobile */
+.progress1 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+/* Desktop + Mobile */
+.progress1:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 80%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+/* Desktop + Mobile */
+.progress2 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+/* Desktop + Mobile */
+.progress2:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 65%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+/* Desktop + Mobile */
+.progress3 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+/* Desktop + Mobile */
+.progress3:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 60%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+/* Desktop + Mobile */
+.progress4 {
+    background: #E0E0E0;
+    border-radius: 13px;
+    height: 5px;
+    width: 300px;
+    padding: 0px;
+}
+
+/* Desktop + Mobile */
+.progress4:after {
+    content: '';
+    display: block;
+    background: #20A09F;
+    width: 25%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+/* ESTILOS DE LISTAS (Melhores Disciplinas, Aprovados) */
+/* Desktop + Mobile */
+.best-disciplines h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    margin-bottom: 10px;
+}
+
+/* Desktop + Mobile */
+.best-disciplines p {
+    font-size: 14px;
+    color: #00A19A;
+    margin-bottom: 20px;
+}
+
+/* Para a tabela na Lista de Aprovados */
+/* Desktop + Mobile */
+.approved-list h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    margin-bottom: 10px;
+}
+
+/* Desktop + Mobile */
+.approved-list p {
+    font-size: 14px;
+    color: #00A19A;
+    margin-bottom: 20px;
+}
+
+/* Desktop + Mobile */
+.approved-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Desktop + Mobile */
+.approved-list th,
+.approved-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* Desktop + Mobile */
+.approved-list th {
+    font-size: 14px;
+    font-weight: bold;
+    color: #979797;
+}
+
+/* Desktop + Mobile */
+.approved-list td {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* --------------------------------------------------
+                    MEDIA QUERIES (RESPONSIVIDADE)
+-------------------------------------------------- */
+
+/* Reorganização para Telas Menores */
+@media (max-width: 768px) {
+
+    /* Mobile */
+    .card-detail {
+        font-size: 12px;
+    }
+
+       /* field-group (Mobile) */
+    /* Mobile */
+    .field-group {
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 colunas no mobile */
+    }
+
+   /* report (Mobile) */
+    /* Mobile */
+    .report-title {
+        font-size: 48px;
+        /* Reduz tamanho do título no mobile */
+        text-align: center;
+    }
+
+    /* Mobile */
+    .report-subtitle {
+        font-size: 24px;
+        /* Ajusta o subtítulo */
+        text-align: center;
+    }
+
+    /* Mobile */
+    .report-description {
+        font-size: 12px;
+        /* Ajusta o texto descritivo */
+        text-align: center;
+    }
+
+    /* Chart (Mobile) */
+    /* Mobile */
+    .chart-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #464646;
+        text-align: center;
+    }
+
+    /* Mobile */
+    .chart-description {
+        font-size: 14px;
+        color: #00A19A;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+    
+    /* Dual Box (Mobile) */
+    /* Mobile */
+    .dual-box-container {
+        flex-direction: column;
+        /* Empilha os boxes no mobile */
+        gap: 20px;
+        /* Ajusta o espaçamento entre os boxes */
+    }
+
+    /* Mobile */
+    .box {
+        width: 100%;
+        /* Cada box ocupa toda a largura */
+    }
+    
+    /* Tabela de Aprovados (Mobile) */
+    /* Mobile */
+    .chart-container .approved-list {
+        overflow-x: auto;
+        display: block;
+    }
+
+    /* Mobile */
+    .chart-container .approved-list table {
+        min-width: 600px;
+        display: block;
+    }
+
+    /* Mobile */
+    .chart-container .approved-list table thead,
+    .chart-container .approved-list table tbody,
+    .chart-container .approved-list table tr {
+        display: table;
+        width: 100%;
+    }
+}

@@ -1,9 +1,137 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Aprova System | Pesquisar Período Letivo {% endblock %}
-
+{% block title %}Aprova System | Pesquisar Período Letivo{% endblock %}
 
 {% block content %}
-<h1>Pesquisar Período Letivo</h1>
+<div class="report-header">
+    <h3 class="report-subtitle">Pesquisar</h3>
+    <h1 class="report-title">Período Letivo</h1>
+</div>
+
+<form
+    id="search-form"
+    action="{% url 'pesquisar_periodo' %}" {# Aponta para a URL de pesquisa de período #}
+    method="get"
+    class="search-container search-container-table"
+>
+    <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder="Pesquise por um período letivo"
+        value="{{ q|urlencode }}"
+        autocomplete="off"
+    >
+    <button
+        id="clear-btn"
+        type="button"
+        class="clear-button"
+        aria-label="Limpar pesquisa"
+    >&times;</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th class="sortable" data-field="nome">
+                <span>Nome</span>
+                {% if order == 'nome' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="ano">
+                <span>Ano</span>
+                {% if order == 'ano' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="semestre">
+                <span>Semestre</span>
+                {% if order == 'semestre' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="data_inicio">
+                <span>Início</span>
+                {% if order == 'data_inicio' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="data_fim">
+                <span>Fim</span>
+                {% if order == 'data_fim' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="status">
+                <span>Status</span>
+                {% if order == 'status' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if periodos %}
+            {% for periodo in periodos %}
+                <tr>
+                    <td>{{ periodo.nome }}</td>
+                    <td>{{ periodo.ano }}</td>
+                    <td>{{ periodo.semestre }}</td>
+                    <td>{{ periodo.data_inicio|date:"d/m/Y" }}</td> {# Formata a data #}
+                    <td>{{ periodo.data_fim|date:"d/m/Y" }}</td>   {# Formata a data #}
+                    <td>{{ periodo.get_status_display }}</td>      {# Usa o display para o status #}
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">Nenhum período letivo encontrado.</td> {# Colspan ajustado #}
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    // executa só depois que o HTML todo for inserido
+    document.addEventListener('DOMContentLoaded', function(){
+      const form     = document.getElementById('search-form');
+      const input    = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const qParam   = "{{ q|escapejs }}";
+      let orderParam = "{{ order }}";
+      let dirParam   = "{{ dir }}";
+
+      // Enter dispara busca
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          form.submit();
+        }
+      });
+
+      // × limpa e recarrega
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        form.submit();
+      });
+
+      // cabeçalhos clicáveis
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.style.cursor = 'pointer';
+        th.addEventListener('click', () => {
+          const field = th.dataset.field;
+          let newDir = 'asc';
+          if (field === orderParam) {
+            newDir = dirParam === 'asc' ? 'desc' : 'asc';
+          }
+          const params = new URLSearchParams();
+          if (qParam) params.set('q', qParam);
+          params.set('order', field);
+          params.set('dir', newDir);
+          window.location.search = params.toString();
+        });
+      });
+    });
+</script>
 {% endblock %}

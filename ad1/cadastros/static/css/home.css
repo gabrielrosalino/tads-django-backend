@@ -1,0 +1,223 @@
+/* Container de Cards (cards) */
+/* Desktop + Mobile */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* alterei para 3 colunas no desktop */
+    /* 4 colunas no desktop */
+    gap: 20px;
+    /* Espaçamento entre os cards */
+    justify-content: center;
+    /* Centraliza os cards */
+    margin: 20px auto;
+    /* Centraliza e adiciona margem */
+    padding: 10px;
+}
+
+/* Desktop + Mobile */
+.card {
+    background: #F5F5F5;
+    /* Fundo padrão */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Alinha os elementos à esquerda */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra leve */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+}
+
+/* Desktop + Mobile */
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    /* Espaçamento abaixo da bolinha */
+    display: flex;
+    /* Flexbox para centralização */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    position: relative;
+    /* Garante que o conteúdo dentro da bolinha esteja alinhado */
+    overflow: hidden;
+    /* Evita qualquer conteúdo extra fora do círculo */
+}
+
+/* Desktop + Mobile */
+.card-icon img {
+    width: 60%;
+    /* Ajuste para deixar o ícone proporcional à bolinha */
+    height: 60%;
+    object-fit: contain;
+    /* Evita distorção do ícone */
+}
+
+/* Desktop + Mobile */
+.card-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    /* Cor do número */
+    margin-bottom: 5px;
+}
+
+/* Desktop + Mobile */
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    /* Cor do título */
+    margin-bottom: 8px;
+}
+
+
+
+/* Cards com 2 colunas */
+/* Desktop + Mobile */
+.card2s {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 42 colunas no desktop */
+    gap: 20px;
+    /* Espaçamento entre os cards */
+    width: 100% !important;
+    flex-basis: 100% !important;
+    margin: 5px auto;
+    /* Centraliza e adiciona margem */
+    padding: 10px;
+}
+
+/* Desktop + Mobile */
+.card2 {
+    background-color: transparent;
+    /* sem cor de fundo */
+    border: 1px solid #DDD;
+    /* borda cinza clara */
+    border-radius: 15px;
+    /* mantém o radius */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Alinha os elementos à esquerda */
+    padding: 20px;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    /* Sombra leve */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+}
+
+
+/* --------------------------------------------------
+                    ATALHOS (SHORCUTS)
+-------------------------------------------------- */
+/* ===================================================================
+    Força o container inteiro de atalhos a ocupar 100% dentro do flex
+    =================================================================== */
+/* Desktop + Mobile */
+.shortcuts-section {
+    width: 100% !important;
+    flex-basis: 100% !important;
+}
+
+/* ===================================================================
+    Grid de links 3 colunas × 2 linhas — preenche todo o espaço pai
+    =================================================================== */
+/* Desktop + Mobile */
+.shortcuts-section .links-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px 24px !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ===================================================================
+    botões cocupando 100%
+    =================================================================== */
+/* Desktop + Mobile */
+.shortcuts-section .links-grid .field {
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    color: #707070 !important;
+    background-color: #ECECEC !important;
+    border-radius: 8px !important;
+    transition: background-color 0.2s !important;
+}
+
+/* Desktop + Mobile */
+.shortcuts-section .links-grid .field:hover {
+    background-color: #DDDDDD !important;
+}
+
+
+
+/* --------------------------------------------------
+                    MEDIA QUERIES (RESPONSIVIDADE)
+-------------------------------------------------- */
+
+/* Reorganização para Telas Menores */
+@media (max-width: 768px) {
+
+    /* cards (Mobile) */
+    /* Mobile */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 colunas no mobile */
+    }
+
+    /* Mobile */
+    .card {
+        padding: 15px;
+    }
+
+    /* Mobile */
+    .card-number {
+        font-size: 20px;
+    }
+
+    /* Mobile */
+    .card-title {
+        font-size: 14px;
+    }
+
+    
+
+     
+
+    /* Mobile */
+    .field {
+        padding: 12px 18px;
+        /* Reduz o tamanho para mobile */
+        font-size: 12px;
+        /* Reduz o tamanho da fonte */
+    }
+
+
+    /* Shortcuts (Mobile) */
+    /* Mobile */
+    .shortcuts-section .links-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px 16px !important;
+        /* opcional: ajustar espaçamento */
+    }
+
+    /* Cards2 (Mobile) */
+    /* Mobile */
+    .card2s {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        /* ou o espaçamento que preferir */
+    }
+
+}

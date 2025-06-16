@@ -1,9 +1,133 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Aprova System | Pesquisar Turma {% endblock %}
-
+{% block title %}Aprova System | Pesquisar Turma{% endblock %}
 
 {% block content %}
-<h1>Pesquisar Turma</h1>
+<div class="report-header">
+    <h3 class="report-subtitle">Pesquisar</h3>
+    <h1 class="report-title">Turma</h1>
+</div>
+
+<form
+    id="search-form"
+    action="{% url 'pesquisar_turma' %}" {# Aponta para a URL de pesquisa de turma #}
+    method="get"
+    class="search-container search-container-table"
+>
+    <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder="Pesquise por uma turma"
+        value="{{ q|urlencode }}"
+        autocomplete="off"
+    >
+    <button
+        id="clear-btn"
+        type="button"
+        class="clear-button"
+        aria-label="Limpar pesquisa"
+    >&times;</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th class="sortable" data-field="nome">
+                <span>Nome</span>
+                {% if order == 'nome' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="capacidade">
+                <span>Capacidade</span>
+                {% if order == 'capacidade' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="data_inicio">
+                <span>Início</span>
+                {% if order == 'data_inicio' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="data_fim">
+                <span>Fim</span>
+                {% if order == 'data_fim' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="status">
+                <span>Status</span>
+                {% if order == 'status' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+            <th class="sortable" data-field="periodo_letivo">
+                <span>Período Letivo</span>
+                {% if order == 'periodo_letivo' %}
+                    <span>{% if dir == 'asc' %}▲{% else %}▼{% endif %}</span>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if turmas %}
+            {% for turma in turmas %}
+                <tr>
+                    <td>{{ turma.nome }}</td>
+                    <td>{{ turma.capacidade }}</td>
+                    <td>{{ turma.data_inicio|date:"d/m/Y" }}</td> {# Formata a data #}
+                    <td>{{ turma.data_fim|date:"d/m/Y" }}</td>   {# Formata a data #}
+                    <td>{{ turma.get_status_display }}</td>      {# Usa o display para o status #}
+                    <td>{{ turma.periodo_letivo.nome }}</td>     {# Acessa o nome do período letivo #}
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">Nenhuma turma encontrada.</td> {# Colspan ajustado #}
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const form     = document.getElementById('search-form');
+      const input    = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const qParam   = "{{ q|escapejs }}";
+      let orderParam = "{{ order }}";
+      let dirParam   = "{{ dir }}";
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          form.submit();
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        form.submit();
+      });
+
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.style.cursor = 'pointer';
+        th.addEventListener('click', () => {
+          const field = th.dataset.field;
+          let newDir = 'asc';
+          if (field === orderParam) {
+            newDir = dirParam === 'asc' ? 'desc' : 'asc';
+          }
+          const params = new URLSearchParams();
+          if (qParam) params.set('q', qParam);
+          params.set('order', field);
+          params.set('dir', newDir);
+          window.location.search = params.toString();
+        });
+      });
+    });
+</script>
 {% endblock %}

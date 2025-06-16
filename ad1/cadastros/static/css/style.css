@@ -90,6 +90,8 @@ body {
 }
 
 
+
+
 /* --------------------------------------------------
                     HEADER
 -------------------------------------------------- */
@@ -109,16 +111,6 @@ body {
 /* Desktop + Mobile */
 .logo img {
     height: 50px;
-}
-
-/* Nota: .stats foi mantido aqui como estava, embora não pareça estar no HTML do header.
-   Se ele não pertence ao header, você pode movê-lo para uma seção mais apropriada (ex: BLOCK CONTENT). */
-/* Desktop + Mobile */
-.stats {
-    display: block;
-    margin: 0 auto;
-    width: 200px;
-    height: auto;
 }
 
 /* Ícone do botão do Menu Hambúrguer (Estilos Base - escondido no desktop, aparece no mobile via media query) */
@@ -188,6 +180,7 @@ body {
     font-size: 12px;
     color: var(--grey-medium);
 }
+
 
 
 /* --------------------------------------------------
@@ -336,7 +329,6 @@ body {
     border-radius: 50px;
 }
 
-
 /* Estilos para a lista principal do menu esquerdo (Desktop) */
 /* Desktop */
 .main-menu {
@@ -359,7 +351,6 @@ body {
     font-weight: bold;
 }
 
-
 /* Removendo a função link dos menus-titles */
 .menu-title {
     pointer-events: none;
@@ -367,6 +358,8 @@ body {
     color: inherit;
     text-decoration: none;/
 }
+
+
 
 /* --------------------------------------------------
                     BLOCK CONTENT
@@ -380,42 +373,6 @@ body {
     border-radius: 20px;
 }
 
-/* Container dos Campos (field-group) */
-/* Desktop + Mobile */
-.field-group {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    /* 5 colunas para desktop */
-    gap: 15px;
-    /* Espaçamento entre os itens */
-    margin: 20px auto;
-    /* Centraliza horizontalmente */
-    max-width: 1050px;
-    /* Define a largura máxima do container */
-}
-
-/* Estilo dos Campos (field) */
-/* Desktop + Mobile */
-.field {
-    padding: 15px 20px;
-    border: none;
-    border-radius: 12px;
-    background-color: #E0E0E0;     /* Essa classe aqui deveria estar num arquivo css separado! */
-    color: var(--grey-dark);
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Desktop + Mobile */
-.field:hover {
-    background-color: #005599;
-    color: white;
-}
-
 /* Botão Ativo */
 /* Desktop + Mobile */
 .link-ativo {
@@ -425,355 +382,6 @@ body {
     font-weight: 500;
 }
 
-/* Container de Cards (cards) */
-/* Desktop + Mobile */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* alterei para 3 colunas no desktop */
-    /* 4 colunas no desktop */
-    gap: 20px;
-    /* Espaçamento entre os cards */
-    justify-content: center;
-    /* Centraliza os cards */
-    margin: 20px auto;
-    /* Centraliza e adiciona margem */
-    padding: 10px;
-}
-
-/* Desktop + Mobile */
-.card {
-    background: #F5F5F5;
-    /* Fundo padrão */
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* Alinha os elementos à esquerda */
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra leve */
-    text-align: left;
-    /* Alinha o texto à esquerda */
-}
-
-/* Desktop + Mobile */
-.card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    /* Espaçamento abaixo da bolinha */
-    display: flex;
-    /* Flexbox para centralização */
-    justify-content: center;
-    /* Centraliza horizontalmente */
-    align-items: center;
-    /* Centraliza verticalmente */
-    position: relative;
-    /* Garante que o conteúdo dentro da bolinha esteja alinhado */
-    overflow: hidden;
-    /* Evita qualquer conteúdo extra fora do círculo */
-}
-
-/* Desktop + Mobile */
-.card-icon img {
-    width: 60%;
-    /* Ajuste para deixar o ícone proporcional à bolinha */
-    height: 60%;
-    object-fit: contain;
-    /* Evita distorção do ícone */
-}
-
-/* Desktop + Mobile */
-.card-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    /* Cor do número */
-    margin-bottom: 5px;
-}
-
-/* Desktop + Mobile */
-.card-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #666;
-    /* Cor do título */
-    margin-bottom: 8px;
-}
-
-/* Desktop + Mobile */
-.card-detail {
-    font-size: 12px;
-    color: #979797;
-    /* Cor do detalhe */
-}
-
-/* Cards com 2 colunas */
-/* Desktop + Mobile */
-.card2s {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 42 colunas no desktop */
-    gap: 20px;
-    /* Espaçamento entre os cards */
-    width: 100% !important;
-    flex-basis: 100% !important;
-    margin: 5px auto;
-    /* Centraliza e adiciona margem */
-    padding: 10px;
-}
-
-/* Desktop + Mobile */
-.card2 {
-    background-color: transparent;
-    /* sem cor de fundo */
-    border: 1px solid #DDD;
-    /* borda cinza clara */
-    border-radius: 15px;
-    /* mantém o radius */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* Alinha os elementos à esquerda */
-    padding: 20px;
-    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-    /* Sombra leve */
-    text-align: left;
-    /* Alinha o texto à esquerda */
-}
-
-/* --------------------------------------------------
-                    RELATÓRIOS E GRÁFICOS
--------------------------------------------------- */
-
-/* Estilo do cabeçalho do relatório */
-/* Desktop + Mobile */
-.report-header {
-    text-align: left;
-    /* Centraliza o texto */
-    margin-bottom: 20px;
-    /* Espaço abaixo do cabeçalho */
-    margin-left: 10px;
-}
-
-/* Desktop + Mobile */
-.report-subtitle {
-    font-size: 20px;
-    color: #464646;
-    /* Cor do subtítulo */
-    margin-bottom: 5px;
-    text-align: left;
-    margin-left: 10px;
-}
-
-/* Desktop + Mobile */
-.report-title {
-    font-size: 60px;
-    color: #00A19A;
-    /* Cor principal do título */
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-/* Desktop + Mobile */
-.report-description {
-    font-size: 16px;
-    color: #979797;
-    /* Cor secundária para o texto */
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-/* GRAFICOOO */
-/* Desktop + Mobile */
-.chart-container {
-    margin: 30px auto;
-    max-width: 1050px;
-    padding: 20px;
-    background: #FFFFFF;
-    border: 1PX solid #c4c4c4;
-    border-radius: 20px;
-}
-
-/* Desktop + Mobile */
-.chart-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #464646;
-    text-align: left;
-}
-
-/* Desktop + Mobile */
-.chart-description {
-    font-size: 14px;
-    color: #00A19A;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-/* Container geral para os dois boxes (dual-box-container) */
-/* Desktop + Mobile */
-.dual-box-container {
-    display: flex;
-    justify-content: space-between;
-    /* Espaçamento entre os boxes */
-    gap: 20px;
-    /* Espaçamento horizontal */
-    align-items: flex-start;
-    /* Alinha os boxes no topo */
-}
-
-/* Estilo padrão para os boxes */
-/* Desktop + Mobile */
-.box {
-    flex: 1;
-    /* Cada box ocupa metade do espaço */
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    border: 1PX solid #c4c4c4;
-    border-radius: 20px;
-
-}
-
-/* Barras de progresso */
-/* Desktop + Mobile */
-.progress1 {
-    background: #E0E0E0;
-    border-radius: 13px;
-    height: 5px;
-    width: 300px;
-    padding: 0px;
-}
-
-/* Desktop + Mobile */
-.progress1:after {
-    content: '';
-    display: block;
-    background: #20A09F;
-    width: 80%;
-    height: 100%;
-    border-radius: 9px;
-}
-
-/* Desktop + Mobile */
-.progress2 {
-    background: #E0E0E0;
-    border-radius: 13px;
-    height: 5px;
-    width: 300px;
-    padding: 0px;
-}
-
-/* Desktop + Mobile */
-.progress2:after {
-    content: '';
-    display: block;
-    background: #20A09F;
-    width: 65%;
-    height: 100%;
-    border-radius: 9px;
-}
-
-/* Desktop + Mobile */
-.progress3 {
-    background: #E0E0E0;
-    border-radius: 13px;
-    height: 5px;
-    width: 300px;
-    padding: 0px;
-}
-
-/* Desktop + Mobile */
-.progress3:after {
-    content: '';
-    display: block;
-    background: #20A09F;
-    width: 60%;
-    height: 100%;
-    border-radius: 9px;
-}
-
-/* Desktop + Mobile */
-.progress4 {
-    background: #E0E0E0;
-    border-radius: 13px;
-    height: 5px;
-    width: 300px;
-    padding: 0px;
-}
-
-/* Desktop + Mobile */
-.progress4:after {
-    content: '';
-    display: block;
-    background: #20A09F;
-    width: 25%;
-    height: 100%;
-    border-radius: 9px;
-}
-
-/* ESTILOS DE LISTAS (Melhores Disciplinas, Aprovados) */
-/* Desktop + Mobile */
-.best-disciplines h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #464646;
-    margin-bottom: 10px;
-}
-
-/* Desktop + Mobile */
-.best-disciplines p {
-    font-size: 14px;
-    color: #00A19A;
-    margin-bottom: 20px;
-}
-
-/* Para a tabela na Lista de Aprovados */
-/* Desktop + Mobile */
-.approved-list h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #464646;
-    margin-bottom: 10px;
-}
-
-/* Desktop + Mobile */
-.approved-list p {
-    font-size: 14px;
-    color: #00A19A;
-    margin-bottom: 20px;
-}
-
-/* Desktop + Mobile */
-.approved-list table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Desktop + Mobile */
-.approved-list th,
-.approved-list td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-/* Desktop + Mobile */
-.approved-list th {
-    font-size: 14px;
-    font-weight: bold;
-    color: #979797;
-}
-
-/* Desktop + Mobile */
-.approved-list td {
-    font-size: 14px;
-    color: #333;
-}
 
 
 /* --------------------------------------------------
@@ -793,6 +401,7 @@ body {
     width: 100%;
     /* Garante que o container ocupe todo o espaço disponível */
 }
+
 
 
 /* --------------------------------------------------
@@ -819,6 +428,8 @@ iframe {
     border: none;
     border-radius: 20px;
 }
+
+
 
 /* --------------------------------------------------
                     ASIDE PROPAGANDAS
@@ -864,53 +475,6 @@ iframe {
     transition: transform 0.3s ease;
 }
 
-/* --------------------------------------------------
-                    ATALHOS (SHORCUTS)
--------------------------------------------------- */
-/* ===================================================================
-    Força o container inteiro de atalhos a ocupar 100% dentro do flex
-    =================================================================== */
-/* Desktop + Mobile */
-.shortcuts-section {
-    width: 100% !important;
-    flex-basis: 100% !important;
-}
-
-/* ===================================================================
-    Grid de links 3 colunas × 2 linhas — preenche todo o espaço pai
-    =================================================================== */
-/* Desktop + Mobile */
-.shortcuts-section .links-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 16px 24px !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-}
-
-/* ===================================================================
-    botões cocupando 100%
-    =================================================================== */
-/* Desktop + Mobile */
-.shortcuts-section .links-grid .field {
-    display: block !important;
-    width: 100% !important;
-    padding: 12px 0 !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    color: #707070 !important;
-    background-color: #ECECEC !important;
-    border-radius: 8px !important;
-    transition: background-color 0.2s !important;
-}
-
-/* Desktop + Mobile */
-.shortcuts-section .links-grid .field:hover {
-    background-color: #DDDDDD !important;
-}
 
 
 /* --------------------------------------------------
@@ -947,7 +511,6 @@ iframe {
         flex: 1;
         text-align: center;
     }
-
 
     /* Menu (Mobile) */
     /* Mobile */
@@ -1000,102 +563,6 @@ iframe {
         /* Oculta a área azul no mobile */
     }
 
-    /* field-group (Mobile) */
-    /* Mobile */
-    .field-group {
-        grid-template-columns: repeat(4, 1fr);
-        /* 4 colunas no mobile */
-    }
-
-    /* Mobile */
-    .field {
-        padding: 12px 18px;
-        /* Reduz o tamanho para mobile */
-        font-size: 12px;
-        /* Reduz o tamanho da fonte */
-    }
-
-    /* cards (Mobile) */
-    /* Mobile */
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 colunas no mobile */
-    }
-
-    /* Mobile */
-    .card {
-        padding: 15px;
-    }
-
-    /* Mobile */
-    .card-number {
-        font-size: 20px;
-    }
-
-    /* Mobile */
-    .card-title {
-        font-size: 14px;
-    }
-
-    /* Mobile */
-    .card-detail {
-        font-size: 12px;
-    }
-
-    /* report (Mobile) */
-    /* Mobile */
-    .report-title {
-        font-size: 48px;
-        /* Reduz tamanho do título no mobile */
-        text-align: center;
-    }
-
-    /* Mobile */
-    .report-subtitle {
-        font-size: 24px;
-        /* Ajusta o subtítulo */
-        text-align: center;
-    }
-
-    /* Mobile */
-    .report-description {
-        font-size: 12px;
-        /* Ajusta o texto descritivo */
-        text-align: center;
-    }
-
-    /* Chart (Mobile) */
-    /* Mobile */
-    .chart-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #464646;
-        text-align: center;
-    }
-
-    /* Mobile */
-    .chart-description {
-        font-size: 14px;
-        color: #00A19A;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    /* Dual Box (Mobile) */
-    /* Mobile */
-    .dual-box-container {
-        flex-direction: column;
-        /* Empilha os boxes no mobile */
-        gap: 20px;
-        /* Ajusta o espaçamento entre os boxes */
-    }
-
-    /* Mobile */
-    .box {
-        width: 100%;
-        /* Cada box ocupa toda a largura */
-    }
-
     /* Ads (Mobile) */
     /* Mobile */
     .ads-container {
@@ -1139,28 +606,7 @@ iframe {
         max-width: 100%;
         /* Garante que o calendário ocupe toda a largura */
     }
-
-    /* Tabela de Aprovados (Mobile) */
-    /* Mobile */
-    .chart-container .approved-list {
-        overflow-x: auto;
-        display: block;
-    }
-
-    /* Mobile */
-    .chart-container .approved-list table {
-        min-width: 600px;
-        display: block;
-    }
-
-    /* Mobile */
-    .chart-container .approved-list table thead,
-    .chart-container .approved-list table tbody,
-    .chart-container .approved-list table tr {
-        display: table;
-        width: 100%;
-    }
-
+    
     /* Shortcuts (Mobile) */
     /* Mobile */
     .shortcuts-section .links-grid {
@@ -1168,12 +614,5 @@ iframe {
         gap: 12px 16px !important;
         /* opcional: ajustar espaçamento */
     }
-
-    /* Cards2 (Mobile) */
-    /* Mobile */
-    .card2s {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-        /* ou o espaçamento que preferir */
-    }
+    
 }
