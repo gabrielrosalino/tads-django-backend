@@ -63,7 +63,10 @@ ROOT_URLCONF = "ad1.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # inclua aqui o caminho completo até a sua pasta interna de templates
+        "DIRS": [
+            BASE_DIR / "cadastros" / "templates" / "cadastros" / "templates"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -74,6 +77,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "ad1.wsgi.application"
 
